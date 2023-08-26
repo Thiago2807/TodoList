@@ -8,7 +8,7 @@ class SplashServices extends ISplashServices {
     await Future.delayed(const Duration(seconds: 5));
 
     if (context.mounted) {
-      Navigator.of(context).pushNamedAndRemoveUntil("/Presentation", (route) => false);
+      Navigator.of(context).pushNamedAndRemoveUntil("/Login", (route) => false);
     }
   }
 }

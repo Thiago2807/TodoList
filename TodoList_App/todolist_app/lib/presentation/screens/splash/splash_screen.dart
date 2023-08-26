@@ -14,7 +14,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   final ISplashServices _splashServices = GetIt.instance<ISplashServices>();
 
   @override
@@ -33,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Container(
             decoration: BoxDecoration(color: Color(primaryColor)),
-            child: Image.asset("images/SplashImage.jpg"),
+            child: Image.asset("images/imageDefault.jpg"),
           ),
           Align(
             alignment: Alignment.bottomCenter,
