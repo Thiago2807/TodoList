@@ -1,0 +1,4 @@
+enum TypeButtonAuth {
+  google,
+  email
+}

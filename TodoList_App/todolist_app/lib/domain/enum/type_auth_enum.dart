@@ -1,0 +1,4 @@
+enum TypeAuthEnum {
+  register,
+  login
+}
