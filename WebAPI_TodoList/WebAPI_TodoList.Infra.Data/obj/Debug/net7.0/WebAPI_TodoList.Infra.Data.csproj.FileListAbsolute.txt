@@ -1,0 +1,17 @@
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\bin\Debug\net7.0\WebAPI_TodoList.Infra.Data.deps.json
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\bin\Debug\net7.0\WebAPI_TodoList.Infra.Data.runtimeconfig.json
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\bin\Debug\net7.0\WebAPI_TodoList.Infra.Data.dll
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\bin\Debug\net7.0\WebAPI_TodoList.Infra.Data.pdb
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\bin\Debug\net7.0\WebAPI_TodoList.Domain.dll
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\bin\Debug\net7.0\WebAPI_TodoList.Domain.pdb
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\obj\Debug\net7.0\WebAPI_TodoList.Infra.Data.csproj.AssemblyReference.cache
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\obj\Debug\net7.0\WebAPI_TodoList.Infra.Data.GeneratedMSBuildEditorConfig.editorconfig
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\obj\Debug\net7.0\WebAPI_TodoList.Infra.Data.AssemblyInfoInputs.cache
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\obj\Debug\net7.0\WebAPI_TodoList.Infra.Data.AssemblyInfo.cs
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\obj\Debug\net7.0\WebAPI_TodoList.Infra.Data.csproj.CoreCompileInputs.cache
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\obj\Debug\net7.0\WebAPI_TodoList.Infra.Data.csproj.CopyComplete
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\obj\Debug\net7.0\WebAPI_TodoList.Infra.Data.dll
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\obj\Debug\net7.0\refint\WebAPI_TodoList.Infra.Data.dll
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\obj\Debug\net7.0\WebAPI_TodoList.Infra.Data.pdb
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\obj\Debug\net7.0\WebAPI_TodoList.Infra.Data.genruntimeconfig.cache
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\obj\Debug\net7.0\ref\WebAPI_TodoList.Infra.Data.dll

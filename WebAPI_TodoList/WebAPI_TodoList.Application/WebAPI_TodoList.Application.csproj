@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebAPI_TodoList.Domain\WebAPI_TodoList.Domain.csproj" />
+    <ProjectReference Include="..\WebAPI_TodoList.Infra.Data\WebAPI_TodoList.Infra.Data.csproj" />
+  </ItemGroup>
+
+</Project>
