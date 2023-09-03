@@ -11,4 +11,9 @@
     <ProjectReference Include="..\WebAPI_TodoList.Infra.Data\WebAPI_TodoList.Infra.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+  </ItemGroup>
+
 </Project>

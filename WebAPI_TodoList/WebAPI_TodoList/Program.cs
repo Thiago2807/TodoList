@@ -1,4 +1,5 @@
 using WebAPI_TodoList.Infra.IOC;
+using WebAPI_TodoList.Application.Mapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +10,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddApplicationDataContext(builder.Configuration);
-builder.Services.AddConfigurationIdentityFramework();
+builder.Services.AddApplicationDataContext(builder.Configuration); // Configuration data context
+
+builder.Services.AddConfigurationIdentityFramework(); // Configuration Identity Framework
+
+builder.Services.AddDependencyInjection(); // Add Dependency Injection
+
+builder.Services.AddConfigurationAutoMapper(); // Add Auto Mapper
 
 var app = builder.Build();
 

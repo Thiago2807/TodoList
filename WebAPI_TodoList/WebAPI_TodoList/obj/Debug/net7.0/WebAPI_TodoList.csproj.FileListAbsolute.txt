@@ -90,3 +90,5 @@ E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList\bin\Debug\net7.0\Mono.Text
 E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList\bin\Debug\net7.0\System.CodeDom.dll
 E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList\bin\Debug\net7.0\WebAPI_TodoList.Application.dll
 E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList\bin\Debug\net7.0\WebAPI_TodoList.Application.pdb
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList\bin\Debug\net7.0\AutoMapper.dll
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

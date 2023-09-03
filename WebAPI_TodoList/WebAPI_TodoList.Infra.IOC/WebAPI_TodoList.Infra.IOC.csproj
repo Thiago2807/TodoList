@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WebAPI_TodoList.Application\WebAPI_TodoList.Application.csproj" />
     <ProjectReference Include="..\WebAPI_TodoList.Infra.Data\WebAPI_TodoList.Infra.Data.csproj" />
   </ItemGroup>
 

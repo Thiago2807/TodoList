@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
-using WebAPI_TodoList.Infra.Data;
+using WebAPI_TodoList.Infra.Data.DataContext;
 
 namespace WebAPI_TodoList.Infra.IOC;
 

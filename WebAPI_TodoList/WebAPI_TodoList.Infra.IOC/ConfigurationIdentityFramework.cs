@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using WebAPI_TodoList.Infra.Data;
+﻿using Microsoft.Extensions.DependencyInjection;
+using WebAPI_TodoList.Infra.Data.DataContext;
 using WebAPI_TodoList.Infra.Data.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebAPI_TodoList.Infra.IOC;
 

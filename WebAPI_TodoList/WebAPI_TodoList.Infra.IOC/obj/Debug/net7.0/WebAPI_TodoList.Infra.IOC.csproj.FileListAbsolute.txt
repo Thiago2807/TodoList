@@ -17,3 +17,5 @@ E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.IOC\obj\Debug\net7.0
 E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.IOC\obj\Debug\net7.0\ref\WebAPI_TodoList.Infra.IOC.dll
 E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.IOC\bin\Debug\net7.0\WebAPI_TodoList.Infra.IOC.runtimeconfig.json
 E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.IOC\obj\Debug\net7.0\WebAPI_TodoList.Infra.IOC.genruntimeconfig.cache
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.IOC\bin\Debug\net7.0\WebAPI_TodoList.Application.dll
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.IOC\bin\Debug\net7.0\WebAPI_TodoList.Application.pdb

@@ -18,8 +18,4 @@
     <ProjectReference Include="..\WebAPI_TodoList.Infra.IOC\WebAPI_TodoList.Infra.IOC.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
