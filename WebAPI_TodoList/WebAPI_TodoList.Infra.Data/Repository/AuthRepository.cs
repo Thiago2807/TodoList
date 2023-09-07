@@ -15,11 +15,11 @@ public class AuthRepository : IAuthRepository
 
     }
 
-    public async Task<UserCustomEntity> AddUserAsync(UserCustomEntity user, string password)
+    public async Task<IdentityResult> AddUserAsync(UserCustomEntity user, string password)
     {
-        await _userManager.CreateAsync(user, password);
+        IdentityResult result = await _userManager.CreateAsync(user, password);
 
-        return user;
+        return result;
     }
 
 }

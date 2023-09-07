@@ -1,5 +1,6 @@
 using WebAPI_TodoList.Infra.IOC;
 using WebAPI_TodoList.Application.Mapper;
+using WebAPI_TodoList.Infra.IOC.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 

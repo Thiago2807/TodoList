@@ -8,7 +8,6 @@ import 'package:todolist_app/presentation/colors/colors.dart';
 import 'package:todolist_app/presentation/fonts/fonts.dart';
 
 import '../../../../application/interfaces/iauth_services.dart';
-import '../../../components/scaffold_message.dart';
 
 class Button extends StatelessWidget {
   Button(
@@ -35,12 +34,13 @@ class Button extends StatelessWidget {
           onPressed: () async {
             value.loadingAuth = true;
 
-            bool response = await _authServices.registerEmailUser(
-                email: email, password: password);
-
-            if (!response && context.mounted) {
-              ScaffoldMessageComponent.scaffoldMessenger(
-                  context, redColor, "Ocorreu um erro");
+            if (!value.loginScreen) {
+              await _authServices.registerEmailUser(
+                email: email,
+                password: password,
+                nickname: nickname,
+                context: context,
+              );
             }
 
             value.loadingAuth = false;

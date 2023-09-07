@@ -1,4 +1,3 @@
-import 'package:fancy_password_field/fancy_password_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todolist_app/application/provider/auth_provider.dart';
@@ -58,7 +57,7 @@ class _BodyState extends State<Body> {
                 children: [
                   SizedBox(height: size.height * .03),
                   Input(
-                      textEditingController: _passwordEditingController,
+                      textEditingController: _nicknameEditingController,
                       labelInput: "Apelido",
                       indexIcon: 1),
                 ],
@@ -107,6 +106,7 @@ class _BodyState extends State<Body> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+
               if (value.loginScreen) ...[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -140,6 +140,7 @@ class _BodyState extends State<Body> {
                 ),
                 SizedBox(height: size.width * .1),
               ],
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,

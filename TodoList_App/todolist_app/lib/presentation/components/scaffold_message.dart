@@ -13,7 +13,7 @@ class ScaffoldMessageComponent {
         showCloseIcon: true,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(size.width * .02)
+          borderRadius: BorderRadius.circular(size.width * .01)
         ),
         content: Text(
           message,

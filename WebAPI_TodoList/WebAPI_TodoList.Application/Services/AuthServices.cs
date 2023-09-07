@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using WebAPI_TodoList.Application.DTO.Auth;
 using WebAPI_TodoList.Application.Interfaces;
+using WebAPI_TodoList.Domain.Exceptions;
 using WebAPI_TodoList.Domain.Interfaces;
 using WebAPI_TodoList.Infra.Data.Identity;
 
@@ -26,7 +28,10 @@ public class AuthServices : IAuthServices
         userEntity.UserName = user.Email;
         userEntity.Name = user.Surname;
 
-        userEntity = await _authRepository.AddUserAsync(userEntity, user.Password);
+        IdentityResult responseServer = await _authRepository.AddUserAsync(userEntity, user.Password);
+
+        if (!responseServer.Succeeded)
+            throw new AuthCustomExceptions(responseServer.Errors.First().Description);
 
         return _mapper.Map<RegisterOutputUser>(userEntity);
     }

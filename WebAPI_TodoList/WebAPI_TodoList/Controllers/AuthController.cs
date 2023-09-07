@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebAPI_TodoList.Application.DTO.Auth;
 using WebAPI_TodoList.Application.Interfaces;
+using WebAPI_TodoList.HandleCustomException;
 
 namespace WebAPI_TodoList.Controllers;
 
@@ -25,7 +26,7 @@ public class AuthController : ControllerBase
 		}
 		catch (Exception ex)
 		{
-			return BadRequest(ex.Message);
-		}
+            return new HandleDefaultException().HandleDefault(ex.Message);
+        }
     }
 }
