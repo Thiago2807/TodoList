@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using WebAPI_TodoList.Application.DTO.Auth;
-using WebAPI_TodoList.Application.Interfaces;
+﻿using WebAPI_TodoList.Application.Interfaces;
 using WebAPI_TodoList.HandleCustomException;
+using WebAPI_TodoList.Application.DTO.Auth;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using WebAPI_TodoList.Domain.Exceptions;
 
 namespace WebAPI_TodoList.Controllers;
 
@@ -16,11 +17,11 @@ public class AuthController : ControllerBase
 
     [HttpPost]
     [AllowAnonymous]
-    public async Task<IActionResult> AddNewUserAsync([FromBody] RegisterInputUser user)
+    public async Task<IActionResult> AddNewUserAsync([FromBody] RegisterInputUserDTO user)
     {
 		try
 		{
-			RegisterOutputUser responseServer = await _authServices.AddNewUserAsync(user);
+			RegisterOutputUserDTO responseServer = await _authServices.AddNewUserAsync(user);
 
 			return StatusCode(201, responseServer);
 		}
@@ -29,4 +30,25 @@ public class AuthController : ControllerBase
             return new HandleDefaultException().HandleDefault(ex.Message);
         }
     }
+
+	[HttpPost]
+	[AllowAnonymous]
+	public async Task<IActionResult> AuthUserAsync([FromBody] AuthInputUserDTO cred)
+	{
+        try
+        {
+            AuthOutputUserDTO responseServer = await _authServices.AuthUserAsync(cred);
+
+            return Ok(responseServer);
+        }
+        catch (AuthNotFoundExceptions ex)
+        {
+            return new HandleNotFoundException().HandleNotFound(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return new HandleDefaultException().HandleDefault(ex.Message);
+        }
+    }
+
 }

@@ -2,7 +2,7 @@
 
 namespace WebAPI_TodoList.Application.DTO.Auth;
 
-public class RegisterInputUser
+public class RegisterInputUserDTO
 {
     [EmailAddress(ErrorMessage = "E-mail inválido.")]
     public string? Email { get; set; }

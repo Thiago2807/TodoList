@@ -1,6 +1,6 @@
-using WebAPI_TodoList.Infra.IOC;
 using WebAPI_TodoList.Application.Mapper;
 using WebAPI_TodoList.Infra.IOC.Identity;
+using WebAPI_TodoList.Infra.IOC;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +19,8 @@ builder.Services.AddDependencyInjection(); // Add Dependency Injection
 
 builder.Services.AddConfigurationAutoMapper(); // Add Auto Mapper
 
+builder.Services.AddJWTBearerToken(builder.Configuration);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,6 +31,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

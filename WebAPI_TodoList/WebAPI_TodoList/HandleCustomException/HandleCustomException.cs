@@ -11,3 +11,12 @@ public class HandleDefaultException : ControllerBase
         DescError = message
     });
 }
+
+public class HandleNotFoundException : ControllerBase
+{
+    public IActionResult HandleNotFound(string message) => NotFound(new ResponseServerErrorDTO()
+    {
+        CodError = 1,
+        DescError = message
+    });
+}

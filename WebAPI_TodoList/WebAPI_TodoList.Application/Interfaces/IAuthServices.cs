@@ -4,5 +4,6 @@ namespace WebAPI_TodoList.Application.Interfaces;
 
 public interface IAuthServices
 {
-    Task<RegisterOutputUser> AddNewUserAsync(RegisterInputUser user);
+    Task<AuthOutputUserDTO> AuthUserAsync(AuthInputUserDTO cred);
+    Task<RegisterOutputUserDTO> AddNewUserAsync(RegisterInputUserDTO user);
 }

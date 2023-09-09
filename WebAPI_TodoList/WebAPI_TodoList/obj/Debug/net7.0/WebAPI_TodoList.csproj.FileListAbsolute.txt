@@ -92,3 +92,4 @@ E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList\bin\Debug\net7.0\WebAPI_To
 E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList\bin\Debug\net7.0\WebAPI_TodoList.Application.pdb
 E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList\bin\Debug\net7.0\AutoMapper.dll
 E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

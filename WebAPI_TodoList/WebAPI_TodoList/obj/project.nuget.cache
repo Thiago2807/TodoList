@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ozK+TcvXql1q3uI9JRUurC7X/+z+cLACGgqjZjDQkK/GTTZaJq0hYXaqYX4D9GyBWLEGUdQKPqjGJaWCh7gn8w==",
+  "dgSpecHash": "mH8YyngfH8s+v6wc5QMdVP9xWnWYImUeoAgsEs3ywYrNDFrBewENIyqDZRJ0L9CfV5/0h+5zNde/wL8TYGDcRQ==",
   "success": true,
   "projectFilePath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList\\WebAPI_TodoList.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\thiag\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\thiag\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\thiag\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\thiag\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.10\\microsoft.aspnetcore.authentication.jwtbearer.7.0.10.nupkg.sha512",
     "C:\\Users\\thiag\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.10\\microsoft.aspnetcore.cryptography.internal.7.0.10.nupkg.sha512",
     "C:\\Users\\thiag\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.10\\microsoft.aspnetcore.cryptography.keyderivation.7.0.10.nupkg.sha512",
     "C:\\Users\\thiag\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.10\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.10.nupkg.sha512",
