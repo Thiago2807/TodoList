@@ -41,6 +41,12 @@ class Button extends StatelessWidget {
                 nickname: nickname,
                 context: context,
               );
+            } else {
+              await _authServices.authUser(
+                email: email,
+                password: password,
+                context: context,
+              );
             }
 
             value.loadingAuth = false;
