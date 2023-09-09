@@ -32,7 +32,7 @@ class MessageInitial extends StatelessWidget {
                     style: FontGoogle.interFont(
                       size: size.width * .065,
                       fontWeight: FontWeight.w600,
-                      color: Color(primaryColor),
+                      color: Color(secondaryColor),
                     ),
                   ),
                   Text(
@@ -41,7 +41,7 @@ class MessageInitial extends StatelessWidget {
                     style: FontGoogle.interFont(
                       size: size.width * .03,
                       fontWeight: FontWeight.w500,
-                      color: Color(primaryColor),
+                      color: Color(secondaryColor),
                     ),
                   ),
                 ],
@@ -56,7 +56,7 @@ class MessageInitial extends StatelessWidget {
                     style: FontGoogle.interFont(
                       size: size.width * .065,
                       fontWeight: FontWeight.w600,
-                      color: Color(primaryColor),
+                      color: Color(secondaryColor),
                     ),
                   ),
                   Text(
@@ -65,7 +65,7 @@ class MessageInitial extends StatelessWidget {
                     style: FontGoogle.interFont(
                       size: size.width * .03,
                       fontWeight: FontWeight.w500,
-                      color: Color(primaryColor),
+                      color: Color(secondaryColor),
                     ),
                   ),
                 ],
