@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:todolist_app/presentation/fonts/fonts.dart';
 import 'package:unicons/unicons.dart';
 
 import '../../colors/colors.dart';
