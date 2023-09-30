@@ -37,5 +37,4 @@ class AuthPreferences {
 
     return pref.containsKey(key);
   }
-
 }

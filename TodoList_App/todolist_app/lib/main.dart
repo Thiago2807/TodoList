@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:todolist_app/domain/routes/routes_app.dart';
 

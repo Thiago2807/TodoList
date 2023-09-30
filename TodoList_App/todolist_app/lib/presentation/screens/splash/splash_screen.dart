@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -17,9 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
   final ISplashServices _splashServices = GetIt.instance<ISplashServices>();
 
   @override
-  void initState() {
-    super.initState();
-
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _splashServices.splashInitialApp(context);
   }
 
@@ -27,85 +28,51 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
+    final gradientColors = LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [Color(primaryColor), Color(secondaryColor)],
+    );
+
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(color: Color(primaryColor)),
-            child: Image.asset("images/imageDefault.jpg"),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: size.height * .75,
-              decoration: BoxDecoration(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: gradientColors
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              nameCompany,
+              textAlign: TextAlign.center,
+              style: FontGoogle.dosisFont(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(size.width * .1),
-                  topLeft: Radius.circular(size.width * .1),
-                ),
-                boxShadow: const [
-                  BoxShadow(
-                    blurRadius: 5,
-                    offset: Offset(1, 1),
-                    color: Color(0xff1c1c1c),
-                  ),
-                ],
+                letterSpacing: .5,
+                size: size.width * .1,
+                fontWeight: FontWeight.w500,
               ),
             ),
-          ),
-          Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  nameCompany,
-                  style: FontGoogle.dosisFont(
-                    color: Color(primaryColor),
-                    letterSpacing: .5,
-                    size: size.width * .1,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  buttonhole,
-                  style: FontGoogle.dosisFont(
-                    color: Color(primaryColor),
-                    letterSpacing: .5,
-                    size: size.width * .04,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                SizedBox(height: size.height * .15),
-                CircularProgressIndicator(
-                  color: Color(primaryColor),
-                ),
-                SizedBox(height: size.height * .02),
-                Text(
-                  "Loading...",
-                  style: FontGoogle.dosisFont(
-                    color: Color(primaryColor),
-                    letterSpacing: .5,
-                    size: size.width * .04,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Text(
-              "By Thiago Corp.",
+            Text(
+              buttonhole,
+              textAlign: TextAlign.center,
               style: FontGoogle.dosisFont(
-                color: Color(primaryColor),
+                color: Colors.white,
                 letterSpacing: .5,
                 size: size.width * .04,
                 fontWeight: FontWeight.w400,
               ),
             ),
-          ),
-        ],
+            SizedBox(height: size.height * .03),
+            Align(
+              alignment: Alignment.center,
+              child: CircularProgressIndicator(
+                color: Colors.white,
+                strokeWidth: size.width * .005,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

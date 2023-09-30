@@ -7,7 +7,7 @@ import '../interfaces/iauth_services.dart';
 import '../interfaces/isplash_services.dart';
 import '../preferences/auth_preferences.dart';
 
-class SplashServices extends ISplashServices {
+class SplashServices implements ISplashServices {
   final IAuthServices _authRepository = GetIt.instance<IAuthServices>();
 
   @override

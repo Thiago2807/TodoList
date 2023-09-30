@@ -8,6 +8,7 @@ public class TodoConfigurationData : IEntityTypeConfiguration<Todo>
 {
     public void Configure(EntityTypeBuilder<Todo> builder)
     {
+
         builder.HasKey(pk => pk.TodoId);
 
         builder.Property(prop => prop.Title)

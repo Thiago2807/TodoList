@@ -1,2 +1,2 @@
 String get nameCompany => "Organized";
-String get buttonhole => "Get organized and keep order";
+String get buttonhole => "Organize-se e mantenha a ordem";

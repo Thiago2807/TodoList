@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 
 import '../url_server.dart';
 
-class AuthRepository extends IAuthRepository {
+class AuthRepository implements IAuthRepository {
 
   @override
   Future<ResponseServerDefault> addNewUserAsync(AuthRegisterUserDTO cred) async {

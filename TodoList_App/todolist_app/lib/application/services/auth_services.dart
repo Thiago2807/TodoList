@@ -15,7 +15,7 @@ import '../interfaces/iauth_services.dart';
 import '../preferences/auth_preferences.dart';
 import '../provider/auth_provider.dart';
 
-class AuthServices extends IAuthServices {
+class AuthServices implements IAuthServices {
 
   final IAuthRepository _authRepository = GetIt.instance<IAuthRepository>();
 
