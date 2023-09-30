@@ -37,4 +37,10 @@ class AuthPreferences {
 
     return pref.containsKey(key);
   }
+
+  static Future<bool> deletePreferencesAsync(String key) async {
+    SharedPreferences pref = await _getInstance();
+
+    return await pref.remove(key);
+  }
 }

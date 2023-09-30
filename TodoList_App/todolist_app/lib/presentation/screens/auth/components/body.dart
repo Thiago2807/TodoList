@@ -24,11 +24,6 @@ class _BodyState extends State<Body> {
       TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   void dispose() {
     super.dispose();
     _emailEditingController.dispose();

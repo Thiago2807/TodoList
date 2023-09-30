@@ -14,7 +14,6 @@ class AuthScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    final Radius radiusSize = Radius.circular(size.width * .1);
 
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
