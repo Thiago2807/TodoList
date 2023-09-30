@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 
 import '../../../application/interfaces/isplash_services.dart';
 import '../../colors/colors.dart';
+import '../../components/gradient.dart';
 import '../../fonts/fonts.dart';
 import '../../string/strings.dart';
 
@@ -27,12 +28,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-
-    final gradientColors = LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: [Color(primaryColor), Color(secondaryColor)],
-    );
 
     return Scaffold(
       body: Container(

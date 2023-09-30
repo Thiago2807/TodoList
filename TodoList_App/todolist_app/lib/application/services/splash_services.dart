@@ -8,25 +8,29 @@ import '../interfaces/isplash_services.dart';
 import '../preferences/auth_preferences.dart';
 
 class SplashServices implements ISplashServices {
-  final IAuthServices _authRepository = GetIt.instance<IAuthServices>();
+  final IAuthServices _authServices = GetIt.instance<IAuthServices>();
 
   @override
   Future<void> splashInitialApp(BuildContext context) async {
 
-    bool userAuth = await AuthPreferences.checkDataAsync(credentialsUser);
+    try {
+      bool userAuth = await AuthPreferences.checkDataAsync(credentialsUser);
 
-    if (context.mounted) {
-      if (!userAuth) {
-        Navigator.of(context).pushNamedAndRemoveUntil("/Login", (route) => false);
-      }
-      else {
-        AuthOutputUserDTO userCredential = await AuthPreferences.getUserObject();
+      if (context.mounted) {
+        if (!userAuth) {
+          Navigator.of(context).pushNamedAndRemoveUntil("/Login", (route) => false);
+        }
+        else {
+          AuthOutputUserDTO userCredential = await AuthPreferences.getUserObject();
 
-        if (context.mounted) {
-          await _authRepository.authUser(email: userCredential.email, password: userCredential.password, context: context);
+          if (context.mounted) {
+            await _authServices.authUser(email: userCredential.email, password: userCredential.password, context: context);
+          }
         }
       }
     }
-
+    catch (ex) {
+      Navigator.of(context).pushNamedAndRemoveUntil("/ErrorSplash", (route) => false);
+    }
   }
 }

@@ -46,26 +46,20 @@ class AuthServices implements IAuthServices {
   @override
   Future authUser({required String email, required String password, required BuildContext context}) async {
 
-    try {
-      AuthInputUserDTO auth = AuthInputUserDTO(email: email, password: password);
+    AuthInputUserDTO auth = AuthInputUserDTO(email: email, password: password);
 
-      Map<String, dynamic> response = await _authRepository.authUserAsync(auth);
+    Map<String, dynamic> response = await _authRepository.authUserAsync(auth);
 
-      response.addAll({ "password": password });
+    response.addAll({ "password": password });
 
-      bool responseSaved = await AuthPreferences.savedDataStringAsync(key: credentialsUser, content: json.encode(response));
+    bool responseSaved = await AuthPreferences.savedDataStringAsync(key: credentialsUser, content: json.encode(response));
 
-      if (!responseSaved) {
-        throw Exception("Não foi possível salvar os dados localmente.");
-      }
-
-      if (context.mounted) {
-        Navigator.of(context).pushNamedAndRemoveUntil("/Home", (route) => false);
-      }
-
+    if (!responseSaved) {
+      throw Exception("Não foi possível salvar os dados localmente.");
     }
-    catch (ex) {
-      ScaffoldMessageComponent.scaffoldMessenger(context, redColor, ex.toString());
+
+    if (context.mounted) {
+      Navigator.of(context).pushNamedAndRemoveUntil("/Home", (route) => false);
     }
   }
 
