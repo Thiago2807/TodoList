@@ -26,7 +26,7 @@ class Input extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.sizeOf(context);
     final Radius radiusSize = Radius.circular(size.width * .03);
 
     return Consumer<AuthProvider>(
