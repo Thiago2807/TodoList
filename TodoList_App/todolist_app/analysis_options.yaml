@@ -9,6 +9,13 @@
 # packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  errors:
+    prefer_const_constructors: error # Preferir que "tudo" esteja com o const
+    unused_element: error # Classe e métodos que nunca são usados
+    unused_local_variable: error # Variaveis que são declaradas, mas nunca usadas
+    unused_import: error # Imports nunca usados
+
 linter:
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`

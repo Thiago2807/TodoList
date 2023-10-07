@@ -13,17 +13,17 @@ class Button extends StatelessWidget {
   Button(
       {Key? key,
       required this.typeButton,
-      required this.email,
-      required this.nickname,
-      required this.password})
+      required this.emailController,
+      required this.nicknameController,
+      required this.passwordController})
       : super(key: key);
 
   final IAuthServices _authServices = GetIt.instance<IAuthServices>();
 
-  final String email;
-  final String password;
-  final String nickname;
   final TypeButtonAuth typeButton;
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+  final TextEditingController nicknameController;
 
   @override
   Widget build(BuildContext context) {
@@ -33,23 +33,27 @@ class Button extends StatelessWidget {
         builder: (context, value, child) => ElevatedButton(
           onPressed: () async {
             value.loadingAuth = true;
-
-            if (!value.loginScreen) {
-              await _authServices.registerEmailUser(
-                email: email,
-                password: password,
-                nickname: nickname,
-                context: context,
-              );
-            } else {
-              await _authServices.authUser(
-                email: email,
-                password: password,
-                context: context,
-              );
+            FocusScope.of(context).unfocus(); // Fechar o teclado antes do envio
+            try {
+              if (!value.loginScreen) {
+                await _authServices.registerEmailUser(
+                  email: emailController.text,
+                  password: passwordController.text,
+                  nickname: nicknameController.text,
+                  context: context,
+                );
+              } else {
+                await _authServices.authUser(
+                  email: emailController.text,
+                  password: passwordController.text,
+                  context: context,
+                );
+              }
             }
-
-            value.loadingAuth = false;
+            catch (ex) { }
+            finally {
+              value.loadingAuth = false;
+            }
           },
           style: ElevatedButton.styleFrom(
             shadowColor: Colors.transparent,

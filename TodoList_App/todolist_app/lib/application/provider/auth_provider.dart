@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 class AuthProvider extends ChangeNotifier {
   bool _loginScreen = true;
   bool get loginScreen => _loginScreen;
-  set loginScreen (bool value) {
-    _loginScreen = value;
-  }
+  set loginScreen (bool value) => _loginScreen = value;
+
   void alterScreenAuth() {
 
     if (_loginScreen) {

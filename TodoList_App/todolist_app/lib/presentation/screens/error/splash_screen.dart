@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todolist_app/presentation/colors/colors.dart';
 
-import '../../components/gradient.dart';
 import '../../fonts/fonts.dart';
 import '../../string/strings.dart';
 

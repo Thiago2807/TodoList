@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:unicons/unicons.dart';
 
 import '../../../application/preferences/auth_preferences.dart';
 import '../../../domain/keys/keys.dart';
 import '../../colors/colors.dart';
 import '../../fonts/fonts.dart';
-import '../../string/strings.dart';
 import 'components/next_task.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -99,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
+          children: const [
             NextTaskComponent(),
 
             Text("Lista das tarefas e botão para adicionar uma nova tarefa"),
