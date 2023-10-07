@@ -94,9 +94,9 @@ class _HomeScreenState extends State<HomeScreen> {
           vertical: size.height * .01,
           horizontal: size.height * .03,
         ),
-        child: Column(
+        child: const Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const [
+          children: [
             NextTaskComponent(),
 
             Text("Lista das tarefas e botão para adicionar uma nova tarefa"),

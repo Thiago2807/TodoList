@@ -27,7 +27,8 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.sizeOf(context);
+
     if (typeButton == TypeButtonAuth.email) {
       return Consumer<AuthProvider>(
         builder: (context, value, child) => ElevatedButton(
