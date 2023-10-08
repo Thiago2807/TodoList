@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todolist_app/presentation/bloc/events/default_events.dart';
 
 import '../../../application/preferences/auth_preferences.dart';
 import '../../../domain/keys/keys.dart';
+import '../../bloc/states/default_states.dart';
 import '../../colors/colors.dart';
 import '../../components/alert_dialog.dart';
 import '../../fonts/fonts.dart';
-import '../home/components/next_task.dart';
+import '../home/home_screen.dart';
+import 'default_bloc.dart';
 
 class DefaultScreen extends StatefulWidget {
   const DefaultScreen({Key? key}) : super(key: key);
@@ -17,7 +21,13 @@ class DefaultScreen extends StatefulWidget {
 class _HomeScreenState extends State<DefaultScreen> {
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<DefaultScreenBloc>();
     final Size size = MediaQuery.sizeOf(context);
+
+    List<Widget> screens = [
+      const HomeScreen(),
+      Container(),
+    ];
 
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
@@ -115,21 +125,38 @@ class _HomeScreenState extends State<DefaultScreen> {
           ),
         ],
       ),
-      body: Container(
-        padding: EdgeInsets.symmetric(
-          vertical: size.height * .01,
-          horizontal: size.height * .03,
-        ),
-        child: const Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            NextTaskComponent(),
-            Text("Lista das tarefas e botão para adicionar uma nova tarefa"),
-            Divider(),
-            Text("Bottom navigator ali embaixo")
-          ],
-        ),
-      ),
+      bottomNavigationBar: BlocBuilder<DefaultScreenBloc, DefaultState>(
+          builder: (context, state) {
+        if (state is StateDefault) {
+          return BottomNavigationBar(
+            elevation: 0,
+            backgroundColor: Colors.white70,
+            currentIndex: state.indexScreen,
+            onTap: (value) =>
+                bloc.add(AlterScreenDefaultScreen(indexScreen: value)),
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.checklist_rounded),
+                label: "",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person_2_rounded),
+                label: "",
+              ),
+            ],
+          );
+        }
+
+        return Container();
+      }),
+      body: BlocBuilder<DefaultScreenBloc, DefaultState>(
+          builder: (context, state) {
+        if (state is StateDefault) {
+          return screens[state.indexScreen];
+        }
+
+        return Container();
+      }),
     );
   }
 }
