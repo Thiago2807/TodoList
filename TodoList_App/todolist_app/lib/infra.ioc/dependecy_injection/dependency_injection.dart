@@ -10,11 +10,12 @@ import '../../infra.data/repository/auth_repository.dart';
 class DependencyInjection {
   static void setupDependencyInjection() {
     // Camada de aplicação
-    GetIt.instance.registerLazySingleton<ISplashServices>(() => SplashServices());
     GetIt.instance.registerLazySingleton<IAuthServices>(() => AuthServices());
+    GetIt.instance
+        .registerLazySingleton<ISplashServices>(() => SplashServices());
 
     // Camada de dados
-    GetIt.instance.registerLazySingleton<IAuthRepository>(() => AuthRepository());
-
+    GetIt.instance
+        .registerLazySingleton<IAuthRepository>(() => AuthRepository());
   }
 }

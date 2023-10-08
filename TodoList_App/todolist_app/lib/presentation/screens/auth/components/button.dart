@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
-import 'package:provider/provider.dart';
-import 'package:todolist_app/application/provider/auth_provider.dart';
 import 'package:todolist_app/domain/enum/type_button_auth.dart';
+import 'package:todolist_app/presentation/bloc/events/auth_events.dart';
+import 'package:todolist_app/presentation/bloc/states/auth_states.dart';
 import 'package:todolist_app/presentation/colors/colors.dart';
 import 'package:todolist_app/presentation/fonts/fonts.dart';
+import 'package:todolist_app/presentation/screens/auth/auth_bloc.dart';
 
 import '../../../../application/interfaces/iauth_services.dart';
 
@@ -27,16 +29,18 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var blocWatch = context.read<AuthBloc>();
+
     final Size size = MediaQuery.sizeOf(context);
 
     if (typeButton == TypeButtonAuth.email) {
-      return Consumer<AuthProvider>(
-        builder: (context, value, child) => ElevatedButton(
+      return BlocBuilder<AuthBloc, AuthState>(
+        builder: (context, state) => ElevatedButton(
           onPressed: () async {
-            value.loadingAuth = true;
+            blocWatch.add(UpdateLoadingAuth(loadingScreen: true));
             FocusScope.of(context).unfocus(); // Fechar o teclado antes do envio
             try {
-              if (!value.loginScreen) {
+              if (state is StateAuth && !state.loginScreen) {
                 await _authServices.registerEmailUser(
                   email: emailController.text,
                   password: passwordController.text,
@@ -50,10 +54,8 @@ class Button extends StatelessWidget {
                   context: context,
                 );
               }
-            }
-            catch (ex) { }
-            finally {
-              value.loadingAuth = false;
+            } finally {
+              blocWatch.add(UpdateLoadingAuth(loadingScreen: false));
             }
           },
           style: ElevatedButton.styleFrom(
@@ -64,24 +66,28 @@ class Button extends StatelessWidget {
             backgroundColor: Color(secondaryColor),
             padding: EdgeInsets.symmetric(vertical: size.height * .015),
           ),
-          child: Column(
-            children: [
-              if (!value.loadingAuth) ...[
-                Text(
-                  value.loginScreen ? "Acessar" : "Cadastre-se",
-                  style: FontGoogle.interFont(fontWeight: FontWeight.w500),
-                ),
-              ] else ...[
-                Transform.scale(
-                  scaleX: size.width * .0022,
-                  scaleY: size.height * .001,
-                  child: CircularProgressIndicator(
-                    color: Colors.white,
-                    strokeWidth: size.width * .006,
-                  ),
-                ),
-              ]
-            ],
+          child: BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) {
+              return Column(
+                children: [
+                  if (state is StateAuth && !state.loadingScreenAuth) ...[
+                    Text(
+                      state.loginScreen ? "Acessar" : "Cadastre-se",
+                      style: FontGoogle.interFont(fontWeight: FontWeight.w500),
+                    ),
+                  ] else ...[
+                    Transform.scale(
+                      scaleX: size.width * .0022,
+                      scaleY: size.height * .001,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: size.width * .006,
+                      ),
+                    ),
+                  ]
+                ],
+              );
+            },
           ),
         ),
       );

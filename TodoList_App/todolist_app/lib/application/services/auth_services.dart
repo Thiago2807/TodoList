@@ -4,6 +4,8 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
+import 'package:todolist_app/presentation/bloc/events/auth_events.dart';
+import 'package:todolist_app/presentation/screens/auth/auth_bloc.dart';
 import '../../domain/DTO/auth_input_user_dto.dart';
 import '../../domain/DTO/auth_register_user_dto.dart';
 import '../../domain/DTO/response_server_default.dart';
@@ -13,7 +15,6 @@ import '../../presentation/colors/colors.dart';
 import '../../presentation/components/scaffold_message.dart';
 import '../interfaces/iauth_services.dart';
 import '../preferences/auth_preferences.dart';
-import '../provider/auth_provider.dart';
 
 class AuthServices implements IAuthServices {
   final IAuthRepository _authRepository = GetIt.instance<IAuthRepository>();
@@ -25,12 +26,20 @@ class AuthServices implements IAuthServices {
       required String nickname,
       required BuildContext context}) async {
     try {
-      bool valueResponseValidInputs = _validForm(context: context, email: email, password: password, nickName: nickname);
+      bool valueResponseValidInputs = _validForm(
+        email: email,
+        context: context,
+        password: password,
+        nickName: nickname,
+      );
 
       if (!valueResponseValidInputs) return false;
 
       final AuthRegisterUserDTO auth = AuthRegisterUserDTO(
-          email: email, password: password, surname: nickname);
+        email: email,
+        password: password,
+        surname: nickname,
+      );
 
       ResponseServerDefault responseServer =
           await _authRepository.addNewUserAsync(auth);
@@ -39,14 +48,18 @@ class AuthServices implements IAuthServices {
         ScaffoldMessageComponent.scaffoldMessenger(
             context, redColor, responseServer.messageError);
       } else {
-        Provider.of<AuthProvider>(context, listen: false).loginScreen = true;
+        if (context.mounted) {
+          context.read<AuthBloc>().add(UpdateLoadingAuth(loadingScreen: true));
 
-        ScaffoldMessageComponent.scaffoldMessenger(
-            context, secondaryColor, "Cadastro realizado com sucesso!");
+          ScaffoldMessageComponent.scaffoldMessenger(
+              context, secondaryColor, "Cadastro realizado com sucesso!");
+        }
       }
     } catch (ex) {
-      ScaffoldMessageComponent.scaffoldMessenger(context, redColor,
-          "Desculpe, mas não foi possível concluir o cadastro.");
+      if (context.mounted) {
+        ScaffoldMessageComponent.scaffoldMessenger(context, redColor,
+            "Desculpe, mas não foi possível concluir o cadastro.");
+      }
     }
   }
 
@@ -55,8 +68,9 @@ class AuthServices implements IAuthServices {
       {required String email,
       required String password,
       required BuildContext context}) async {
+    bool valueResponseValidInputs = _validForm(context: context, email: email, password: password);
 
-    _validForm(context: context, email: email, password: password);
+    if (!valueResponseValidInputs) return false;
 
     AuthInputUserDTO auth = AuthInputUserDTO(email: email, password: password);
 
@@ -81,7 +95,6 @@ class AuthServices implements IAuthServices {
       required String password,
       String? nickName,
       required BuildContext context}) {
-
     if (!EmailValidator.validate(email)) {
       ScaffoldMessageComponent.scaffoldMessenger(context, secondaryAlterColor,
           "Por favor, insira seu e-mail e vamos embarcar juntos nessa aventura! 🚀");
