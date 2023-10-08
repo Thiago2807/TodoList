@@ -18,14 +18,14 @@ class AuthRepository implements IAuthRepository {
     Response<dynamic> responseServer = await dio.post(
       "v1/Auth/AddNewUser",
       data: json.encode(cred.toJson()),
+      options: Options(validateStatus: (status) => status! < 500),
     );
 
     final ResponseServerDefault response =
         ResponseServerDefault(codError: 0, error: false, messageError: "");
 
     if (responseServer.statusCode != 201 && responseServer.statusCode != 200) {
-      Map<String, dynamic> descriptionError =
-          json.decode(responseServer.data) as Map<String, dynamic>;
+      Map<String, dynamic> descriptionError = responseServer.data as Map<String, dynamic>;
 
       response.error = true;
       response.codError = descriptionError["codError"];
@@ -40,12 +40,13 @@ class AuthRepository implements IAuthRepository {
     Response<dynamic> responseServer = await dio.post(
       "v1/Auth/AuthUser",
       data: json.encode(cred.toJson()),
+      options: Options(validateStatus: (status) => status! < 500),
     );
 
     if (responseServer.statusCode != 200) {
       throw Exception(responseServer.data);
     }
 
-    return json.decode(responseServer.data) as Map<String, dynamic>;
+    return responseServer.data as Map<String, dynamic>;
   }
 }

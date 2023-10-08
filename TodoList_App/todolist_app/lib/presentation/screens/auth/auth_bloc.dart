@@ -4,10 +4,13 @@ import 'package:todolist_app/presentation/bloc/states/auth_states.dart';
 
 class AuthBloc extends Bloc<AuthEvents, AuthState> {
   AuthBloc()
-      : super(StateAuth(
+      : super(
+          StateAuth(
             loginScreen: true,
             viewPassword: true,
-            loadingScreenAuth: false)) // Valor inicial
+            loadingScreenAuth: false,
+          ),
+        ) // Valor inicial
   {
     on<UpdateLoginScreen>(
       (event, emit) {

@@ -4,6 +4,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
+import 'package:todolist_app/application/ultility/exception_utility.dart';
 import 'package:todolist_app/presentation/bloc/events/auth_events.dart';
 import 'package:todolist_app/presentation/screens/auth/auth_bloc.dart';
 import '../../domain/DTO/auth_input_user_dto.dart';
@@ -57,8 +58,9 @@ class AuthServices implements IAuthServices {
       }
     } catch (ex) {
       if (context.mounted) {
-        ScaffoldMessageComponent.scaffoldMessenger(context, redColor,
-            "Desculpe, mas não foi possível concluir o cadastro.");
+        final Exception exception = ex as Exception;
+        ScaffoldMessageComponent.scaffoldMessenger(
+            context, redColor, ExceptionUtility.getDescriptionError(exception.toString()));
       }
     }
   }
@@ -68,25 +70,35 @@ class AuthServices implements IAuthServices {
       {required String email,
       required String password,
       required BuildContext context}) async {
-    bool valueResponseValidInputs = _validForm(context: context, email: email, password: password);
+    try {
+      bool valueResponseValidInputs =
+          _validForm(context: context, email: email, password: password);
 
-    if (!valueResponseValidInputs) return false;
+      if (!valueResponseValidInputs) return false;
 
-    AuthInputUserDTO auth = AuthInputUserDTO(email: email, password: password);
+      AuthInputUserDTO auth =
+          AuthInputUserDTO(email: email, password: password);
 
-    Map<String, dynamic> response = await _authRepository.authUserAsync(auth);
+      Map<String, dynamic> response = await _authRepository.authUserAsync(auth);
 
-    response.addAll({"password": password});
+      response.addAll({"password": password});
 
-    bool responseSaved = await AuthPreferences.savedDataStringAsync(
-        key: credentialsUser, content: json.encode(response));
+      bool responseSaved = await AuthPreferences.savedDataStringAsync(
+          key: credentialsUser, content: json.encode(response));
 
-    if (!responseSaved) {
-      throw Exception("Não foi possível salvar os dados localmente.");
-    }
+      if (!responseSaved) {
+        throw Exception("Não foi possível salvar os dados localmente.");
+      }
 
-    if (context.mounted) {
-      Navigator.of(context).pushNamedAndRemoveUntil("/Home", (route) => false);
+      if (context.mounted) {
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil("/Home", (route) => false);
+      }
+    } catch (ex) {
+      if (context.mounted) {
+        ScaffoldMessageComponent.scaffoldMessenger(
+            context, redColor, ExceptionUtility.getDescriptionError(ex.toString()));
+      }
     }
   }
 
