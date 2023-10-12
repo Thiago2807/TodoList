@@ -1,8 +1,12 @@
+import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:todolist_app/application/interfaces/idefault_services.dart';
 import 'package:todolist_app/presentation/bloc/events/default_events.dart';
 
 import '../../../application/preferences/auth_preferences.dart';
+import '../../../domain/entities/user_entity.dart';
 import '../../../domain/keys/keys.dart';
 import '../../bloc/states/default_states.dart';
 import '../../colors/colors.dart';
@@ -19,13 +23,17 @@ class DefaultScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<DefaultScreen> {
+  final IDefaultServices _defaultServices = GetIt.instance<IDefaultServices>();
+
   @override
   Widget build(BuildContext context) {
+    final controller = NotchBottomBarController(index: 0);
     final bloc = context.read<DefaultScreenBloc>();
     final Size size = MediaQuery.sizeOf(context);
 
     List<Widget> screens = [
       const HomeScreen(),
+      Container(child: const Text("Ele está aqui")),
       Container(),
     ];
 
@@ -34,14 +42,34 @@ class _HomeScreenState extends State<DefaultScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.grey.shade200,
-        title: Text(
-          "Olá, Thiago",
-          style: FontGoogle.robotoFont(
-            color: Color(secondaryColor),
-            letterSpacing: .3,
-            size: size.width * .05,
-            fontWeight: FontWeight.w500,
-          ),
+        title: FutureBuilder<UserEntity>(
+          future: _defaultServices.getDataUserAsync(),
+          builder: (context, snapshot) {
+            String nameUser = "Carregando perfil...";
+
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return CircularProgressIndicator(
+                  color: Color(secondaryAlterColor),
+                  strokeWidth: size.width * .004,
+                );
+              default:
+                {
+                  nameUser = snapshot.data == null
+                      ? "Seja bem-vindo(a)"
+                      : "Olá, ${snapshot.data!.name}";
+                  return Text(
+                    nameUser,
+                    style: FontGoogle.robotoFont(
+                      color: Color(secondaryColor),
+                      letterSpacing: .3,
+                      size: size.width * .05,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  );
+                }
+            }
+          },
         ),
         actions: [
           PopupMenuButton(
@@ -125,38 +153,62 @@ class _HomeScreenState extends State<DefaultScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BlocBuilder<DefaultScreenBloc, DefaultState>(
-          builder: (context, state) {
-        if (state is StateDefault) {
-          return BottomNavigationBar(
-            elevation: 0,
-            backgroundColor: Colors.white70,
-            currentIndex: state.indexScreen,
-            onTap: (value) =>
-                bloc.add(AlterScreenDefaultScreen(indexScreen: value)),
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.checklist_rounded),
-                label: "",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person_2_rounded),
-                label: "",
-              ),
-            ],
-          );
-        }
-
-        return Container();
-      }),
       body: BlocBuilder<DefaultScreenBloc, DefaultState>(
-          builder: (context, state) {
-        if (state is StateDefault) {
-          return screens[state.indexScreen];
-        }
+        builder: (context, state) {
+          if (state is StateDefault) {
+            return Stack(
+              children: [
+                screens[state.indexScreen],
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: AnimatedNotchBottomBar(
+                    durationInMilliSeconds: 200,
+                    showBlurBottomBar: true,
+                    bottomBarWidth: size.width,
+                    onTap: (value) =>
+                        bloc.add(AlterScreenDefaultScreen(indexScreen: value)),
+                    bottomBarItems: [
+                      BottomBarItem(
+                        activeItem: Icon(
+                          Icons.checklist_rounded,
+                          color: Color(secondaryAlterColor),
+                        ),
+                        inActiveItem: Icon(
+                          Icons.list,
+                          color: Color(blackColor),
+                        ),
+                      ),
+                      BottomBarItem(
+                        activeItem: Icon(
+                          Icons.add_circle_outline_rounded,
+                          color: Color(secondaryAlterColor),
+                        ),
+                        inActiveItem: Icon(
+                          Icons.add_circle_rounded,
+                          color: Color(blackColor),
+                        ),
+                      ),
+                      BottomBarItem(
+                        activeItem: Icon(
+                          Icons.person_2_outlined,
+                          color: Color(secondaryAlterColor),
+                        ),
+                        inActiveItem: Icon(
+                          Icons.person_2_rounded,
+                          color: Color(blackColor),
+                        ),
+                      ),
+                    ],
+                    notchBottomBarController: controller,
+                  ),
+                ),
+              ],
+            );
+          }
 
-        return Container();
-      }),
+          return Container();
+        },
+      ),
     );
   }
 }

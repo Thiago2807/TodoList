@@ -21,8 +21,6 @@ class HomeScreen extends StatelessWidget {
           children: [
             NextTaskComponent(),
             Text("Lista das tarefas e botão para adicionar uma nova tarefa"),
-            Divider(),
-            Text("Bottom navigator ali embaixo")
           ],
         ),
       ),
