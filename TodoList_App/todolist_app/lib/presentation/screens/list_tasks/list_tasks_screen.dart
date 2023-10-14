@@ -13,7 +13,7 @@ class ListTaskScreen extends StatelessWidget {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => Navigator.pushNamed(context, "/AddNewTask"),
         elevation: 2,
         backgroundColor: Color(secondaryColor),
         shape: RoundedRectangleBorder(
