@@ -39,6 +39,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: "/Splash",
       routes: routesApp,
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.grey.shade200,
+      ),
     );
   }
 }

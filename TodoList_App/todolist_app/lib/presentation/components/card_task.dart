@@ -13,7 +13,7 @@ class CardTask extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: size.height * .01),
       padding: EdgeInsets.symmetric(
-          vertical: size.height * .01, horizontal: size.width * .03),
+          vertical: size.height * .025, horizontal: size.width * .045),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(size.width * .015),
@@ -21,72 +21,51 @@ class CardTask extends StatelessWidget {
           BoxShadow(
             blurRadius: 5,
             color: Colors.black12,
-            offset: Offset(2, 4),
+            offset: Offset(1, 2),
           )
         ],
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Text(
+          Flexible(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
                   "Titulo da tarefa",
-                  overflow: TextOverflow.ellipsis,
                   maxLines: 1,
+                  textAlign: TextAlign.left,
                   style: FontGoogle.interFont(
-                    color: Color(blackColor),
+                    color: Color(secondaryColor),
                     size: size.width * .045,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-              ),
-              SizedBox(width: size.width * .06),
-              Icon(
-                Icons.more_horiz_rounded,
-                color: Color(secondaryAlterColor),
-              )
-            ],
-          ),
-          SizedBox(height: size.height * .01),
-          Text(
-            "Descrição da tarefa",
-            overflow: TextOverflow.ellipsis,
-            maxLines: 3,
-            style: FontGoogle.interFont(
-              color: Colors.grey.shade600,
-              size: size.width * .04,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-          SizedBox(height: size.height * .03),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  Icons.alarm_rounded,
-                  size: size.width * .055,
-                  color: Color(secondaryAlterColor),
-                ),
-                SizedBox(width: size.width * .02),
+                SizedBox(height: size.height * .01),
                 Text(
-                  "00:00",
+                  "Descrição da tarefa",
                   overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: FontGoogle.dosisFont(
-                    color: Color(secondaryAlterColor),
-                    letterSpacing: .5,
-                    size: size.width * .045,
-                    fontWeight: FontWeight.w500,
+                  maxLines: 3,
+                  style: FontGoogle.interFont(
+                    color: Colors.grey.shade500,
+                    size: size.width * .035,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ],
+            ),
+          ),
+          Text(
+            "00:00",
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: FontGoogle.dosisFont(
+              color: Color(secondaryColor),
+              letterSpacing: .5,
+              size: size.width * .045,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ],
