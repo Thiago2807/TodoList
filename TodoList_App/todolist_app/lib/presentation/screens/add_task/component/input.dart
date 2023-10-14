@@ -18,20 +18,21 @@ class InputAddTask extends StatelessWidget {
     final Size size = MediaQuery.sizeOf(context);
 
     return TextField(
-      maxLines:multiLines ? null : 1,
+      maxLines: multiLines ? null : 1,
       expands: multiLines,
-      maxLength: multiLines ? 150 : null,
+      maxLength: multiLines ? 150 : 50,
       decoration: InputDecoration(
-        border: UnderlineInputBorder(
-          borderRadius: BorderRadius.circular(size.width * .02),
-        ),
+        border: InputBorder.none,
         focusedBorder: UnderlineInputBorder(
           borderRadius: BorderRadius.circular(size.width * .02),
           borderSide: BorderSide(
-            color: Color(primaryColor),
+            color: Color(secondaryAlterColor),
           ),
         ),
-        prefixIconColor: Colors.grey.shade400,
+        prefixIconColor: Colors.grey.shade500,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: size.width * .02,
+        ),
         labelText: textInformation,
         labelStyle: FontGoogle.interFont(
           fontWeight: FontWeight.w400,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:todolist_app/presentation/colors/colors.dart';
 
-import '../../components/gradient.dart';
 import '../../fonts/fonts.dart';
-import 'components/next_task.dart';
 import 'components/options.dart';
+import 'components/next_task.dart';
+import '../../components/gradient.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,14 +15,14 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
-      body: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(
-          parent: BouncingScrollPhysics(),
+      body: Container(
+        padding: EdgeInsets.symmetric(
+          vertical: size.height * .01,
+          horizontal: size.height * .03,
         ),
-        child: Container(
-          padding: EdgeInsets.symmetric(
-            vertical: size.height * .01,
-            horizontal: size.height * .03,
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(
+            parent: BouncingScrollPhysics(),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
