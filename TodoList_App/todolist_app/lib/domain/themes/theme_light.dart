@@ -6,11 +6,16 @@ import '../../presentation/fonts/fonts.dart';
 ThemeData get customThemeDataLight => ThemeData(
       useMaterial3: true,
       scaffoldBackgroundColor: Colors.grey.shade100,
+
+      // INICIO: Cores
       primaryColor: Color(primaryColor),
       colorScheme: ThemeData().colorScheme.copyWith(
             secondary: Color(secondaryColor),
             tertiary: Color(blackColor),
           ),
+      // FIM: Cores
+
+      // INICIO: Input
       inputDecorationTheme: InputDecorationTheme(
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
@@ -22,6 +27,9 @@ ThemeData get customThemeDataLight => ThemeData(
           color: Color(blackColor),
         ),
       ),
+      // FIM: Input
+
+      // INICIO: ElevatedButton
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           elevation: 0,
@@ -29,15 +37,22 @@ ThemeData get customThemeDataLight => ThemeData(
           backgroundColor: Color(secondaryColor),
         ),
       ),
+      // FIM: ElevatedButton
+
+      // INICIO: Text
       textTheme: TextTheme(
-        labelLarge: FontGoogle.interFont( // Fonte para botões
+        labelLarge: FontGoogle.interFont(
+          // Fonte para botões
           fontWeight: FontWeight.w500,
           color: Colors.white,
         ),
-        displaySmall: FontGoogle.interFont( // Fonte para inputs
+        displaySmall: FontGoogle.interFont(
+          // Fonte para inputs
           color: Color(blackColor),
         ),
       ),
+      // FIM: Text
+
       progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: Colors.white,
       ),

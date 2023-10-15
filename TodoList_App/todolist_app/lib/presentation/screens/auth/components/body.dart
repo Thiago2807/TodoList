@@ -49,9 +49,10 @@ class _BodyState extends State<Body> {
           const MessageInitial(),
           SizedBox(height: size.height * .07),
           Input(
-              textEditingController: _emailEditingController,
-              labelInput: "Email",
-              indexIcon: 0),
+            indexIcon: 0,
+            labelInput: "Email",
+            textEditingController: _emailEditingController,
+          ),
           BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
               if (state is StateAuth && !state.loginScreen) {
@@ -59,25 +60,26 @@ class _BodyState extends State<Body> {
                   children: [
                     SizedBox(height: size.height * .03),
                     Input(
-                        textEditingController: _nicknameEditingController,
-                        labelInput: "Apelido",
-                        indexIcon: 1),
+                      indexIcon: 1,
+                      labelInput: "Apelido",
+                      textEditingController: _nicknameEditingController,
+                    ),
                   ],
                 );
-              } else {
-                return Container();
               }
+              return Container();
             },
           ),
           SizedBox(height: size.height * .03),
           Input(
-              textEditingController: _passwordEditingController,
-              labelInput: "Senha",
-              indexIcon: 2),
+            indexIcon: 2,
+            labelInput: "Senha",
+            textEditingController: _passwordEditingController,
+          ),
           BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) => Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 if (state is StateAuth && state.loginScreen) ...[
                   SizedBox(height: size.height * .03),
@@ -85,9 +87,10 @@ class _BodyState extends State<Body> {
                     "Esqueceu a senha?",
                     textAlign: TextAlign.end,
                     style: FontGoogle.interFont(
-                        color: theme.colorScheme.secondary,
-                        fontWeight: FontWeight.w500,
-                        size: size.width * .035),
+                      size: size.width * .035,
+                      fontWeight: FontWeight.w500,
+                      color: theme.colorScheme.secondary,
+                    ),
                   ),
                   SizedBox(height: size.width * .04),
                 ] else ...[
@@ -113,24 +116,18 @@ class _BodyState extends State<Body> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Expanded(
-                        child: Divider(
-                          color: Colors.grey.shade500,
+                      Expanded(child: Divider(color: Colors.grey.shade500)),
+                      Container(
+                        margin:
+                            EdgeInsets.symmetric(horizontal: size.width * .03),
+                        child: Text(
+                          "OU",
+                          style: FontGoogle.interFont(
+                              color: Colors.grey.shade500,
+                              size: size.width * .035),
                         ),
                       ),
-                      SizedBox(width: size.width * .03),
-                      Text(
-                        "OU",
-                        style: FontGoogle.interFont(
-                            color: Colors.grey.shade500,
-                            size: size.width * .035),
-                      ),
-                      SizedBox(width: size.width * .03),
-                      Expanded(
-                        child: Divider(
-                          color: Colors.grey.shade500,
-                        ),
-                      ),
+                      Expanded(child: Divider(color: Colors.grey.shade500)),
                     ],
                   ),
                   SizedBox(height: size.width * .05),
@@ -151,26 +148,27 @@ class _BodyState extends State<Body> {
                           ? "Ainda não se registrou?"
                           : "Já tem uma conta?",
                       style: FontGoogle.interFont(
-                        color: Colors.grey.shade500,
                         size: size.width * .035,
+                        color: Colors.grey.shade500,
                       ),
                     ),
                     SizedBox(width: size.width * .02),
                     GestureDetector(
                       onTap: () => blocAuth.add(
                         UpdateLoginScreen(
-                            loginScreen: state is StateAuth && state.loginScreen
-                                ? false
-                                : true),
+                          loginScreen: state is StateAuth && state.loginScreen
+                              ? false
+                              : true,
+                        ),
                       ),
                       child: Text(
                         state is StateAuth && state.loginScreen
                             ? "Crie uma conta"
                             : "Acesse sua conta",
                         style: FontGoogle.interFont(
-                          color: theme.colorScheme.secondary,
-                          fontWeight: FontWeight.w500,
                           size: size.width * .035,
+                          fontWeight: FontWeight.w500,
+                          color: theme.colorScheme.secondary,
                         ),
                       ),
                     ),

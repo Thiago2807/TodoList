@@ -17,19 +17,22 @@ class AuthBloc extends Bloc<AuthEvents, AuthState> {
         // Informar que ele terá um novo estado
         emit(
           StateAuth(
-              loginScreen: event.loginScreen,
-              loadingScreenAuth: (state as StateAuth).loadingScreenAuth,
-              viewPassword: (state as StateAuth).viewPassword),
+            loginScreen: event.loginScreen,
+            loadingScreenAuth: (state as StateAuth).loadingScreenAuth,
+            viewPassword: (state as StateAuth).viewPassword,
+          ),
         );
       },
     ); // Monitorar esses eventos
     on<UpdateLoadingAuth>(
       (event, emit) {
-        emit(StateAuth(
-          loadingScreenAuth: event.loadingScreen,
-          loginScreen: (state as StateAuth).loginScreen,
-          viewPassword: (state as StateAuth).viewPassword,
-        ));
+        emit(
+          StateAuth(
+            loadingScreenAuth: event.loadingScreen,
+            loginScreen: (state as StateAuth).loginScreen,
+            viewPassword: (state as StateAuth).viewPassword,
+          ),
+        );
       },
     );
     on<UpdateViewPasswords>(
