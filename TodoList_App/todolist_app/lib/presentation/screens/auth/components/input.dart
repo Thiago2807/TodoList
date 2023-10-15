@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:todolist_app/presentation/bloc/events/auth_events.dart';
 import 'package:todolist_app/presentation/bloc/states/auth_states.dart';
-import 'package:todolist_app/presentation/colors/colors.dart';
-import 'package:todolist_app/presentation/fonts/fonts.dart';
 import 'package:todolist_app/presentation/screens/auth/auth_bloc.dart';
 
 class Input extends StatelessWidget {
@@ -28,21 +25,22 @@ class Input extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
+    final ThemeData theme = Theme.of(context);
     final blocRead = context.read<AuthBloc>();
+    final Size size = MediaQuery.sizeOf(context);
     final Radius radiusSize = Radius.circular(size.width * .03);
 
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
-        final bool condicion = (state is StateAuth && state.viewPassword);
+        final bool cond = (state is StateAuth && state.viewPassword);
 
         return TextFormField(
           controller: textEditingController,
           cursorColor: const Color(0xff1c1c1c),
-          obscureText: indexIcon == 2 && condicion,
+          obscureText: indexIcon == 2 && cond,
           decoration: InputDecoration(
             suffixIcon: indexIcon == 2
-                ? condicion
+                ? cond
                     ? GestureDetector(
                         onTap: () => blocRead
                             .add(UpdateViewPasswords(viewPassword: false)),
@@ -63,11 +61,12 @@ class Input extends StatelessWidget {
                       )
                 : null,
             border: UnderlineInputBorder(
-                borderRadius: BorderRadius.all(radiusSize)),
+              borderRadius: BorderRadius.all(radiusSize),
+            ),
             focusedBorder: UnderlineInputBorder(
               borderRadius: BorderRadius.all(radiusSize * .6),
               borderSide: BorderSide(
-                color: Color(primaryColor),
+                color: theme.colorScheme.primary,
               ),
             ),
             prefixIcon: Icon(
@@ -76,12 +75,8 @@ class Input extends StatelessWidget {
             ),
             prefixIconColor: Colors.grey.shade400,
             labelText: labelInput,
-            labelStyle: FontGoogle.interFont(
-              fontWeight: FontWeight.w400,
-              color: Color(blackColor),
-            ),
           ),
-          style: FontGoogle.interFont(color: Color(blackColor)),
+          style: theme.textTheme.displaySmall
         );
       },
     );

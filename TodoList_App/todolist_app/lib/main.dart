@@ -5,6 +5,8 @@ import 'package:todolist_app/domain/routes/routes_app.dart';
 import 'package:todolist_app/presentation/screens/auth/auth_bloc.dart';
 import 'package:todolist_app/presentation/screens/default/default_bloc.dart';
 
+import 'domain/themes/theme_dark.dart';
+import 'domain/themes/theme_light.dart';
 import 'infra.ioc/dependecy_injection/dependency_injection.dart';
 
 void main() {
@@ -39,9 +41,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: "/Splash",
       routes: routesApp,
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.grey.shade200,
-      ),
+      theme: customThemeDataLight,
+      darkTheme: customThemeDataDark,
     );
   }
 }

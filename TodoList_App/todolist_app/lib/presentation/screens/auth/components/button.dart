@@ -29,9 +29,17 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
     var blocWatch = context.read<AuthBloc>();
 
     final Size size = MediaQuery.sizeOf(context);
+
+    final buttonRadiusCustom = RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(size.width * .025),
+    );
+
+    final buttonPaddingCustom =
+        EdgeInsets.symmetric(vertical: size.height * .015);
 
     if (typeButton == TypeButtonAuth.email) {
       return BlocBuilder<AuthBloc, AuthState>(
@@ -59,12 +67,8 @@ class Button extends StatelessWidget {
             }
           },
           style: ElevatedButton.styleFrom(
-            shadowColor: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(size.width * .025),
-            ),
-            backgroundColor: Color(secondaryColor),
-            padding: EdgeInsets.symmetric(vertical: size.height * .015),
+            shape: buttonRadiusCustom,
+            padding: buttonPaddingCustom,
           ),
           child: BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
@@ -73,14 +77,13 @@ class Button extends StatelessWidget {
                   if (state is StateAuth && !state.loadingScreenAuth) ...[
                     Text(
                       state.loginScreen ? "Acessar" : "Cadastre-se",
-                      style: FontGoogle.interFont(fontWeight: FontWeight.w500),
+                      style: theme.textTheme.labelLarge,
                     ),
                   ] else ...[
                     Transform.scale(
                       scaleX: size.width * .0022,
                       scaleY: size.height * .001,
                       child: CircularProgressIndicator(
-                        color: Colors.white,
                         strokeWidth: size.width * .006,
                       ),
                     ),
@@ -93,21 +96,20 @@ class Button extends StatelessWidget {
       );
     } else {
       return ElevatedButton(
-        onPressed: null,
+        onPressed: () {},
         style: ElevatedButton.styleFrom(
-          shadowColor: Colors.transparent,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(size.width * .025),
-          ),
-          backgroundColor: Colors.grey.shade300,
-          padding: EdgeInsets.symmetric(vertical: size.height * .015),
+          shape: buttonRadiusCustom,
+          padding: buttonPaddingCustom,
+          backgroundColor: Colors.grey.shade200,
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               margin: EdgeInsets.only(
-                  left: size.width * .09, right: size.width * .07),
+                left: size.width * .09,
+                right: size.width * .07,
+              ),
               child: SvgPicture.asset(
                 "images/google-original.svg",
                 width: size.width * .055,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todolist_app/presentation/bloc/events/auth_events.dart';
 import 'package:todolist_app/presentation/bloc/states/auth_states.dart';
-import 'package:todolist_app/presentation/colors/colors.dart';
 import 'package:todolist_app/presentation/fonts/fonts.dart';
 import 'package:todolist_app/presentation/screens/auth/auth_bloc.dart';
 import 'package:todolist_app/presentation/screens/auth/components/button.dart';
@@ -37,6 +36,7 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
     final blocAuth = context.read<AuthBloc>();
     final Size size = MediaQuery.sizeOf(context);
 
@@ -85,7 +85,7 @@ class _BodyState extends State<Body> {
                     "Esqueceu a senha?",
                     textAlign: TextAlign.end,
                     style: FontGoogle.interFont(
-                        color: Color(secondaryColor),
+                        color: theme.colorScheme.secondary,
                         fontWeight: FontWeight.w500,
                         size: size.width * .035),
                   ),
@@ -151,7 +151,9 @@ class _BodyState extends State<Body> {
                           ? "Ainda não se registrou?"
                           : "Já tem uma conta?",
                       style: FontGoogle.interFont(
-                          color: Colors.grey.shade500, size: size.width * .035),
+                        color: Colors.grey.shade500,
+                        size: size.width * .035,
+                      ),
                     ),
                     SizedBox(width: size.width * .02),
                     GestureDetector(
@@ -166,9 +168,10 @@ class _BodyState extends State<Body> {
                             ? "Crie uma conta"
                             : "Acesse sua conta",
                         style: FontGoogle.interFont(
-                            color: Color(secondaryColor),
-                            fontWeight: FontWeight.w500,
-                            size: size.width * .035),
+                          color: theme.colorScheme.secondary,
+                          fontWeight: FontWeight.w500,
+                          size: size.width * .035,
+                        ),
                       ),
                     ),
                   ],

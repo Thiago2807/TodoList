@@ -13,12 +13,10 @@ class AuthScreen extends StatelessWidget {
     final Size size = MediaQuery.sizeOf(context);
 
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: size.width * .1),
           margin: EdgeInsets.only(top: size.height * .07),
-          color: Colors.grey.shade50,
           child: const Body(),
         ),
       ),

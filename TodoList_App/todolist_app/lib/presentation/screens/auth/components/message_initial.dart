@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todolist_app/presentation/bloc/states/auth_states.dart';
 import 'package:todolist_app/presentation/screens/auth/auth_bloc.dart';
 
-import '../../../colors/colors.dart';
 import '../../../fonts/fonts.dart';
 
 class MessageInitial extends StatelessWidget {
@@ -11,6 +10,7 @@ class MessageInitial extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
     final Size size = MediaQuery.sizeOf(context);
 
     return SafeArea(
@@ -21,17 +21,13 @@ class MessageInitial extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // SvgPicture.asset(
-                //   "images/register.svg",
-                //   height: size.height * .2,
-                // ),
                 Text(
                   "Acesse sua conta",
                   textAlign: TextAlign.start,
                   style: FontGoogle.interFont(
                     size: size.width * .065,
                     fontWeight: FontWeight.w600,
-                    color: Color(secondaryColor),
+                    color: theme.colorScheme.secondary,
                   ),
                 ),
                 Text(
@@ -40,7 +36,7 @@ class MessageInitial extends StatelessWidget {
                   style: FontGoogle.interFont(
                     size: size.width * .03,
                     fontWeight: FontWeight.w500,
-                    color: Color(secondaryColor),
+                    color: theme.colorScheme.secondary,
                   ),
                 ),
               ],
@@ -55,7 +51,7 @@ class MessageInitial extends StatelessWidget {
                   style: FontGoogle.interFont(
                     size: size.width * .065,
                     fontWeight: FontWeight.w600,
-                    color: Color(secondaryColor),
+                    color: theme.colorScheme.secondary,
                   ),
                 ),
                 Text(
@@ -64,7 +60,7 @@ class MessageInitial extends StatelessWidget {
                   style: FontGoogle.interFont(
                     size: size.width * .03,
                     fontWeight: FontWeight.w500,
-                    color: Color(secondaryColor),
+                    color: theme.colorScheme.secondary,
                   ),
                 ),
               ],

@@ -6,3 +6,5 @@ int get secondaryAlterColor => 0xff1e4fe3;
 
 int get blackColor => 0xff242424;
 int get redColor => 0xffc81d25;
+
+int get backgroundDarkScreenColor => 0xff333533;
