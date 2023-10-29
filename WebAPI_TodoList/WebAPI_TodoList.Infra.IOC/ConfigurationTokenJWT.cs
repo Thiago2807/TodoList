@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using WebAPI_TodoList.Infra.Data.DataContext;
+
 
 namespace WebAPI_TodoList.Infra.IOC;
 
@@ -28,7 +28,7 @@ public static class ConfigurationTokenJWT
             {
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(key),
-                ValidateIssuer = true,
+                ValidateIssuer = false,
                 ValidateAudience = false
             };
         });

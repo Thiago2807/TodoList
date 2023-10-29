@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI_TodoList.Infra.Data.ConfigurationData;
 
-public class TodoConfigurationData : IEntityTypeConfiguration<Todo>
+public class TodoConfigurationData : IEntityTypeConfiguration<TodoEntity>
 {
-    public void Configure(EntityTypeBuilder<Todo> builder)
+    public void Configure(EntityTypeBuilder<TodoEntity> builder)
     {
 
         builder.HasKey(pk => pk.TodoId);
@@ -22,20 +22,6 @@ public class TodoConfigurationData : IEntityTypeConfiguration<Todo>
         builder.Property(prop => prop.StatusTodo)
             .HasColumnType("INT")
             .IsRequired();
-
-        builder.Property(prop => prop.DtTodoInitial)
-            .IsRequired();
-
-        builder.Property(prop => prop.DtTodoFinal)
-            .IsRequired();
-
-        builder.HasIndex(x => x.DtTodoInitial)
-            .IsClustered(false)
-            .IsUnique(false);
-
-        builder.HasIndex(x => x.DtTodoFinal)
-            .IsClustered(false)
-            .IsUnique(false);
 
     }
 }

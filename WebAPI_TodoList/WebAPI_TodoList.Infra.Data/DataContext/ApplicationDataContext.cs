@@ -10,7 +10,7 @@ public class ApplicationDataContext : IdentityDbContext<UserCustomEntity, Identi
 {
     public ApplicationDataContext(DbContextOptions<ApplicationDataContext> options) : base(options) { }
 
-    public DbSet<Todo> Tasks { get; set; }
+    public DbSet<TodoEntity> Tasks { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

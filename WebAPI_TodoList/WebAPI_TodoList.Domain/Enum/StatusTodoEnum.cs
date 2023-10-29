@@ -2,6 +2,8 @@
 
 public enum StatusTodoEnum
 {
+    Priority,
     Finished,
-    Activated
+    Activated,
+    In_Progress
 }

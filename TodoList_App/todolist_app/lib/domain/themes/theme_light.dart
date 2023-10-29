@@ -12,6 +12,7 @@ ThemeData get customThemeDataLight => ThemeData(
       colorScheme: ThemeData().colorScheme.copyWith(
             secondary: Color(secondaryColor),
             tertiary: Color(blackColor),
+
           ),
       // FIM: Cores
 

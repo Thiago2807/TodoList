@@ -8,6 +8,6 @@ public sealed class UserCustomEntity : IdentityUser
     public string? Name { get; set; }
     public DateTime DtNascimento { get; set; }
 
-    public List<Todo> Todos { get; set; }
+    public List<TodoEntity> Todos { get; set; }
 
 }

@@ -155,7 +155,7 @@ namespace WebAPI_TodoList.Infra.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("WebAPI_TodoList.Domain.Entities.Todo", b =>
+            modelBuilder.Entity("WebAPI_TodoList.Domain.Entities.TodoEntity", b =>
                 {
                     b.Property<Guid>("TodoId")
                         .ValueGeneratedOnAdd()
@@ -164,12 +164,6 @@ namespace WebAPI_TodoList.Infra.Data.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("VARCHAR(250)");
-
-                    b.Property<DateTime>("DtTodoFinal")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DtTodoInitial")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("StatusTodo")
                         .HasColumnType("INT");
@@ -186,14 +180,6 @@ namespace WebAPI_TodoList.Infra.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TodoId");
-
-                    b.HasIndex("DtTodoFinal");
-
-                    SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex("DtTodoFinal"), false);
-
-                    b.HasIndex("DtTodoInitial");
-
-                    SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex("DtTodoInitial"), false);
 
                     b.HasIndex("UserCustomId");
 
@@ -322,7 +308,7 @@ namespace WebAPI_TodoList.Infra.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WebAPI_TodoList.Domain.Entities.Todo", b =>
+            modelBuilder.Entity("WebAPI_TodoList.Domain.Entities.TodoEntity", b =>
                 {
                     b.HasOne("WebAPI_TodoList.Infra.Data.Identity.UserCustomEntity", "UserCustom")
                         .WithMany("Todos")

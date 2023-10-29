@@ -12,10 +12,12 @@ public static class ConfigurationDependencyInjection
     {
         #region Repository
         services.AddScoped<IAuthRepository, AuthRepository>();
+        services.AddScoped<ITodoRepository, TodoRepository>();
         #endregion
 
         #region Application
         services.AddScoped<IAuthServices, AuthServices>();
+        services.AddScoped<ITodoServices, TodoServices>();
         #endregion
 
         return services;
