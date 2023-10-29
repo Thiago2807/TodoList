@@ -9,6 +9,7 @@ using WebAPI_TodoList.HandleCustomException;
 namespace WebAPI_TodoList.Controllers;
 
 
+[Authorize]
 [ApiController]
 [Route("v1/[controller]/[action]")]
 public class TodoController : ControllerBase
@@ -17,7 +18,6 @@ public class TodoController : ControllerBase
     public TodoController(ITodoServices todoServices) => _todoServices = todoServices;
 
     [HttpPost]
-    [Authorize]
     public async Task<IActionResult> AddNewTaskAsync([FromBody] AddNewTaskDTO todo)
     {
 		try
@@ -32,6 +32,25 @@ public class TodoController : ControllerBase
         }
 		catch (Exception ex) 
 		{
+            return new HandleDefaultException().HandleDefault(ex.Message);
+        }
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetListTaskAsync()
+    {
+        try
+        {
+            string headerRequest = Request.Headers.Authorization.FirstOrDefault() ?? throw new Exception("Não foi possível obter o código do usuário, tente novamente mais tarde.");
+            string userId = TokenJWT.GetTokenClaims(headerRequest.Replace("Bearer ", ""))["nameid"];
+
+            IEnumerable<TodoDTO> listTodos = await _todoServices.GetListTodo(userId: userId);
+
+            return Ok(listTodos);
+
+        }
+        catch (Exception ex)
+        {
             return new HandleDefaultException().HandleDefault(ex.Message);
         }
     }

@@ -24,4 +24,7 @@ public class TodoServices : ITodoServices
         return _mapper.Map<AddNewTaskDTO>(newTodo);
     }
 
+    public async Task<IEnumerable<TodoDTO>> GetListTodo(string userId)
+        => _mapper.Map<IEnumerable<TodoDTO>>(await _todoRepository.GetTodoListByUser(userId));
+
 }

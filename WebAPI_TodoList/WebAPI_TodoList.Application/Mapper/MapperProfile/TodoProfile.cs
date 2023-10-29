@@ -10,5 +10,9 @@ public class TodoProfile : Profile
     {
         CreateMap<AddNewTaskDTO, TodoEntity>()
             .ReverseMap();
+
+        CreateMap<TodoDTO, TodoEntity>()
+            .ReverseMap();
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using WebAPI_TodoList.Infra.Data.DataContext;
 using WebAPI_TodoList.Domain.Interfaces;
 using WebAPI_TodoList.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI_TodoList.Infra.Data.Repository;
 
@@ -17,5 +18,7 @@ public class TodoRepository : ITodoRepository
         return todo;
     }
 
+    public async Task<IEnumerable<TodoEntity>> GetTodoListByUser(string userId)
+        => await _context.Tasks.AsNoTracking().Where(x => x.UserId == userId).ToListAsync();
 
 }
