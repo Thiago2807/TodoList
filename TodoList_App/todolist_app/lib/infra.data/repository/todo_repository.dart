@@ -17,7 +17,7 @@ class TodoRepository implements ITodoRepository {
 
     final Response<dynamic> responseServer = await _dio.post(
       "AddNewTask",
-      data: jsonEncode(entity.toJson()),
+      data: jsonEncode(entity),
       options: Options(
         headers: {
           "content-type": "application/json",

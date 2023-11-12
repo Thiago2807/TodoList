@@ -13,6 +13,6 @@ Map<String, Widget Function(BuildContext)> get routesApp => {
   "/Splash": (_) => const SplashScreen(),
   "/Home": (_) => const DefaultScreen(),
   "/ErrorSplash": (_) => const ErrorSplashScreen(),
-  "/AddNewTask": (_) => const AddTaskScreen(),
+  "/AddNewTask": (_) => AddTaskScreen(),
   "/ListTasks": (_) => const ListTaskScreen()
 };

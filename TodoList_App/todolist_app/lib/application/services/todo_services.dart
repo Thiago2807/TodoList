@@ -10,14 +10,14 @@ class TodoServices implements ITodoServices {
 
   @override
   Future addNewTask(
-      {required String title,
-      required String description,
+      {required TextEditingController title,
+      required TextEditingController description,
       required BuildContext context}) async {
     try {
       final TodoEntity responseTodo = await _iTodoRepository.addNewTask(
         TodoEntity(
-            title: title,
-            description: description,
+            title: title.text,
+            description: description.text,
             statusTodo: StatusTodoEnum.inProgress),
       );
     } catch (ex) {

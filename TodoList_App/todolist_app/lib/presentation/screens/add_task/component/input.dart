@@ -8,16 +8,19 @@ class InputAddTask extends StatelessWidget {
     super.key,
     required this.multiLines,
     required this.textInformation,
+    required this.textEditingController
   });
 
   final bool multiLines;
   final String textInformation;
+  final TextEditingController textEditingController;
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
 
     return TextField(
+      controller: textEditingController,
       maxLines: multiLines ? null : 1,
       expands: multiLines,
       maxLength: multiLines ? 150 : 50,

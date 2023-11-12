@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:todolist_app/application/interfaces/itodo_services.dart';
 import 'package:todolist_app/presentation/colors/colors.dart';
 import 'package:todolist_app/presentation/screens/add_task/component/input.dart';
 import '../../fonts/fonts.dart';
 
-class AddTaskScreen extends StatelessWidget {
-  const AddTaskScreen({super.key});
+class AddTaskScreen extends StatefulWidget {
+  AddTaskScreen({super.key});
+
+  @override
+  State<AddTaskScreen> createState() => _AddTaskScreenState();
+}
+
+class _AddTaskScreenState extends State<AddTaskScreen> {
+  final ITodoServices _iTodoServices = GetIt.instance<ITodoServices>();
+
+  final TextEditingController _titleController =
+      TextEditingController(text: "");
+  final TextEditingController _descriptionController =
+      TextEditingController(text: "");
 
   @override
   Widget build(BuildContext context) {
@@ -76,16 +90,18 @@ class AddTaskScreen extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const InputAddTask(
+                    InputAddTask(
                       multiLines: false,
                       textInformation: "Título",
+                      textEditingController: _titleController,
                     ),
                     SizedBox(height: size.height * .03),
                     SizedBox(
                       height: size.height * .16,
-                      child: const InputAddTask(
+                      child: InputAddTask(
                         multiLines: true,
                         textInformation: "Descrição",
+                        textEditingController: _descriptionController,
                       ),
                     ),
                   ],
@@ -93,7 +109,15 @@ class AddTaskScreen extends StatelessWidget {
               ),
               SizedBox(height: size.height * .04),
               GestureDetector(
-                onTap: () => FocusScope.of(context).unfocus(),
+                onTap: () async {
+                  FocusScope.of(context).unfocus();
+
+                  await _iTodoServices.addNewTask(
+                    title: _titleController,
+                    description: _descriptionController,
+                    context: context,
+                  );
+                },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: size.height * .02),
                   decoration: BoxDecoration(

@@ -14,15 +14,15 @@ class TodoEntity {
   StatusTodoEnum statusTodo;
 
   factory TodoEntity.fromJson(Map<String, dynamic> json) => TodoEntity(
-        statusTodo: json["statusTodo"] as StatusTodoEnum,
+        statusTodo: StatusTodoEnum.values[json["statusTodo"]],
         description: json["description"] as String,
         todoId: json["todoId"] as String,
         title: json["title"] as String,
       );
 
   Map<String, dynamic> toJson() => {
+        "statusTodo": statusTodo.index,
         "description": description,
-        "statusTodo": statusTodo,
         "title": title,
       };
 }
