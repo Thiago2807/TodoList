@@ -14,22 +14,25 @@ public class TokenJWT
 
     public string GenerateTokenJWT(UserCustomEntity user)
     {
-        string keyToken = _configuration.GetSection("SecretKey:Key").Value ?? string.Empty;
+        string keyToken = _configuration.GetSection("JWT:SecretKey").Value ?? throw new Exception("Não foi possível recuperar a chave de segurança.");
+        string issuer = _configuration.GetSection("JWT:Issuer").Value ?? throw new Exception("Não foi possível recuperar o emissor do token.");
+
         byte[] key = Encoding.ASCII.GetBytes(keyToken);
 
         JwtSecurityTokenHandler tokenHandler = new();
 
         SecurityTokenDescriptor tokenDescription = new()
         {
-            Expires = DateTime.Now.AddDays(1),
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
+            Issuer = issuer,
+            Expires = DateTime.Now.AddHours(8),
             Subject = new ClaimsIdentity(new Claim[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim(ClaimTypes.Name, user.Email ?? string.Empty),
                 new Claim(ClaimTypes.Surname, user.Name ?? string.Empty),
 
-            })
+            }),
+            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
         };
 
         JwtSecurityToken token = tokenHandler.CreateJwtSecurityToken(tokenDescription);

@@ -30,7 +30,9 @@ class SplashServices implements ISplashServices {
       }
     }
     catch (ex) {
-      Navigator.of(context).pushNamedAndRemoveUntil("/ErrorSplash", (route) => false);
+      if (context.mounted) {
+        Navigator.of(context).pushNamedAndRemoveUntil("/ErrorSplash", (route) => false);
+      }
     }
   }
 }

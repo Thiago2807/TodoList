@@ -24,10 +24,7 @@ public class AuthRepository : IAuthRepository
 
     public async Task<UserCustomEntity> AuthUserAsync(string email, string password)
     {
-        UserCustomEntity? user = await GetUserByEmailAsync(email);
-
-        if (user == null)
-            throw new AuthNotFoundExceptions();
+        UserCustomEntity? user = await GetUserByEmailAsync(email) ?? throw new AuthNotFoundExceptions();
 
         SignInResult result =  await _signInManager.PasswordSignInAsync(user, password, false, true);
 

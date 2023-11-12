@@ -27,6 +27,8 @@ class AuthServices implements IAuthServices {
       required String nickname,
       required BuildContext context}) async {
     try {
+      final AuthBloc stateScreen = context.read<AuthBloc>();
+
       bool valueResponseValidInputs = _validForm(
         email: email,
         context: context,
@@ -54,6 +56,8 @@ class AuthServices implements IAuthServices {
 
           ScaffoldMessageComponent.scaffoldMessenger(
               context, secondaryColor, "Cadastro realizado com sucesso!");
+
+          stateScreen.add(UpdateLoginScreen(loginScreen: true));
         }
       }
     } catch (ex) {

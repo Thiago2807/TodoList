@@ -12,7 +12,8 @@ public static class ConfigurationTokenJWT
 
     public static IServiceCollection AddJWTBearerToken(this IServiceCollection services, IConfiguration configuration)
     {
-        string? keyToken = configuration.GetSection("SecretKey:Key").Value;
+        string keyToken = configuration.GetSection("JWT:SecretKey").Value ?? throw new Exception("Não foi possível recuperar a chave de segurança.");
+        string issuer = configuration.GetSection("JWT:Issuer").Value ?? throw new Exception("Não foi possível recuperar o emissor do token.");
 
         byte[] key = Encoding.ASCII.GetBytes(keyToken ?? string.Empty);
 
@@ -22,14 +23,15 @@ public static class ConfigurationTokenJWT
             auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
         }).AddJwtBearer(x =>
         {
-            x.RequireHttpsMetadata = false;
             x.SaveToken = true;
+            x.RequireHttpsMetadata = false;
             x.TokenValidationParameters = new()
             {
+                ValidIssuer = issuer,
+                ValidateIssuer = true,
+                ValidateAudience = false,
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(key),
-                ValidateIssuer = false,
-                ValidateAudience = false
+                IssuerSigningKey = new SymmetricSecurityKey(key)
             };
         });
 

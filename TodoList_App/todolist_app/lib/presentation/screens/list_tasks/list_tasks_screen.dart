@@ -4,8 +4,28 @@ import 'package:todolist_app/presentation/colors/colors.dart';
 import '../../components/card_task.dart';
 import '../../fonts/fonts.dart';
 
-class ListTaskScreen extends StatelessWidget {
+class ListTaskScreen extends StatefulWidget {
   const ListTaskScreen({super.key});
+
+  @override
+  State<ListTaskScreen> createState() => _ListTaskScreenState();
+}
+
+class _ListTaskScreenState extends State<ListTaskScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 250),
+      vsync: this,
+    )..addListener(() => setState(() {}));
+
+    _animationController.forward();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,25 +79,29 @@ class ListTaskScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: size.width * .03),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Flexible(
-              child: ListView.builder(
-                itemCount: 10,
-                shrinkWrap: true,
-                physics: const AlwaysScrollableScrollPhysics(
-                  parent: BouncingScrollPhysics(),
+      body: AnimatedOpacity(
+        duration: const Duration(milliseconds: 250),
+        opacity: _animationController.value,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: size.width * .03),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Flexible(
+                child: ListView.builder(
+                  itemCount: 10,
+                  shrinkWrap: true,
+                  physics: const AlwaysScrollableScrollPhysics(
+                    parent: BouncingScrollPhysics(),
+                  ),
+                  itemBuilder: (context, index) {
+                    return const CardTask();
+                  },
                 ),
-                itemBuilder: (context, index) {
-                  return const CardTask();
-                },
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
