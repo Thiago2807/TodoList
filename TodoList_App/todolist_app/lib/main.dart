@@ -4,6 +4,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:todolist_app/domain/routes/routes_app.dart';
 import 'package:todolist_app/presentation/screens/auth/auth_bloc.dart';
 import 'package:todolist_app/presentation/screens/default/default_bloc.dart';
+import 'package:todolist_app/presentation/screens/list_tasks/list_tasks_screen_bloc.dart';
 
 import 'domain/themes/theme_dark.dart';
 import 'domain/themes/theme_light.dart';
@@ -25,6 +26,9 @@ void main() {
         ),
         BlocProvider(
           create: (_) => DefaultScreenBloc(),
+        ),
+        BlocProvider(
+          create: (_) => ListTaskBloc(),
         ),
       ],
       child: const MyApp(),

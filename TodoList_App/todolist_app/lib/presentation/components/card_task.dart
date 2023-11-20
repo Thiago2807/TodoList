@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:todolist_app/domain/entities/todo_entity.dart';
 
 import '../colors/colors.dart';
 import '../fonts/fonts.dart';
 
 class CardTask extends StatelessWidget {
-  const CardTask({super.key});
+  const CardTask({super.key, required this.todo});
+
+  final TodoEntity todo;
 
   @override
   Widget build(BuildContext context) {

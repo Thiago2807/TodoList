@@ -26,8 +26,26 @@ class TodoRepository implements ITodoRepository {
       ),
     );
 
-    entity = TodoEntity.fromJson(responseServer.data);
+    return TodoEntity.fromJson(responseServer.data);
+  }
 
-    return entity;
+  @override
+  Future<List<TodoEntity>> getTasks() async {
+    final AuthOutputUserDTO user = await AuthPreferences.getUserObject();
+
+    final Response<dynamic> responseServer = await _dio.get(
+      "GetListTask",
+      options: Options(
+        headers: {
+          "content-type": "application/json",
+          "Authorization": "Bearer ${user.token}",
+        },
+      ),
+    );
+
+    List<dynamic> listData = responseServer.data as List<dynamic>;
+
+    return listData.map((element) => TodoEntity.fromJson(element)).toList();
+
   }
 }
