@@ -23,6 +23,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+    final ThemeData theme = Theme.of(context);
 
     return Scaffold(
       appBar: PreferredSize(
@@ -37,7 +38,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 alignment: Alignment.centerRight,
                 child: Icon(
                   Icons.close_rounded,
-                  color: Color(secondaryAlterColor),
                   size: size.width * .08,
                 ),
               ),
@@ -55,10 +55,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             children: [
               Text(
                 "Adicionar nova tarefa",
-                style: FontGoogle.interFont(
-                  fontWeight: FontWeight.w500,
-                  size: size.width * .06,
-                  color: Color(blackColor),
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontSize: size.width * .06,
                 ),
               ),
               SizedBox(height: size.height * .005),
@@ -77,7 +75,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   horizontal: size.width * .03,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: theme.colorScheme.tertiaryContainer,
                   borderRadius: BorderRadius.circular(size.width * .03),
                   boxShadow: const [
                     BoxShadow(

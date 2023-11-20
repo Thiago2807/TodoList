@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../colors/colors.dart';
 import '../../../fonts/fonts.dart';
@@ -23,7 +24,6 @@ class InputAddTask extends StatelessWidget {
       controller: textEditingController,
       maxLines: multiLines ? null : 1,
       expands: multiLines,
-      maxLength: multiLines ? 150 : 50,
       decoration: InputDecoration(
         border: InputBorder.none,
         focusedBorder: UnderlineInputBorder(
