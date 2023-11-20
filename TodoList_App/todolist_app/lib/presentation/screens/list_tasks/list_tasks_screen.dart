@@ -1,16 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 import 'package:todolist_app/domain/entities/todo_entity.dart';
-import 'package:todolist_app/domain/themes/theme_light.dart';
-import 'package:todolist_app/presentation/colors/colors.dart';
+import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:todolist_app/presentation/screens/list_tasks/state/list_task_state.dart';
 
 import '../../../application/interfaces/itodo_services.dart';
-import '../../bloc/events/list_tasks_events.dart';
-import '../../bloc/states/list_tasks_states.dart';
 import '../../components/card_task.dart';
-import '../../fonts/fonts.dart';
-import 'list_tasks_screen_bloc.dart';
+import '../add_task/add_task_screen.dart';
 
 class ListTaskScreen extends StatefulWidget {
   const ListTaskScreen({super.key});
@@ -38,13 +35,18 @@ class _ListTaskScreenState extends State<ListTaskScreen>
 
   @override
   Widget build(BuildContext context) {
-    final ListTaskBloc statesScreen = context.read<ListTaskBloc>();
+    final ListTaskState controllerScreen = Provider.of<ListTaskState>(context);
     final Size size = MediaQuery.sizeOf(context);
     final ThemeData theme = Theme.of(context);
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.pushNamed(context, "/AddNewTask"),
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const AddTaskScreen(),
+          ),
+        ),
         elevation: 2,
         backgroundColor: theme.colorScheme.secondary,
         child: Icon(
@@ -87,7 +89,8 @@ class _ListTaskScreenState extends State<ListTaskScreen>
         duration: const Duration(milliseconds: 250),
         opacity: _animationController.value,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: size.width * .05, vertical: size.height * .02),
+          padding: EdgeInsets.symmetric(
+              horizontal: size.width * .05, vertical: size.height * .02),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -103,29 +106,25 @@ class _ListTaskScreenState extends State<ListTaskScreen>
                       ),
                     );
                   } else {
-                    return BlocBuilder<ListTaskBloc, ListTasksBaseStates>(
-                      builder: (context, state) {
-                        if (snapshot.data?.isNotEmpty ?? false) {
-                          statesScreen
-                              .add(AddListTaskEvent(listTodos: snapshot.data!));
+                    if (snapshot.data?.isNotEmpty ?? false) {
 
-                          if (state is AddListTaskState) {
-                            return Flexible(
-                              child: ListView.builder(
-                                itemCount: state.listTodo.length,
-                                physics: const AlwaysScrollableScrollPhysics(
-                                  parent: BouncingScrollPhysics(),
-                                ),
-                                itemBuilder: (context, index) =>
-                                    CardTask(todo: state.listTodo[index]),
-                              ),
-                            );
-                          }
-                        }
+                      controllerScreen.addListAsync(snapshot.data!);
 
-                        return Container();
-                      },
-                    );
+                      return Observer(
+                        builder: (context) => Flexible(
+                          child: ListView.builder(
+                            itemCount: controllerScreen.listTodo.length,
+                            physics: const AlwaysScrollableScrollPhysics(
+                              parent: BouncingScrollPhysics(),
+                            ),
+                            itemBuilder: (context, index) =>
+                                CardTask(todo: controllerScreen.listTodo[index]),
+                          ),
+                        ),
+                      );
+                    }
+
+                    return Container();
                   }
                 },
               ),

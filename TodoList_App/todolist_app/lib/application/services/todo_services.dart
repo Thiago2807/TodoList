@@ -9,9 +9,8 @@ import 'package:todolist_app/domain/enum/status_todo_enum.dart';
 import 'package:todolist_app/domain/interfaces/itodo_repository.dart';
 import 'package:todolist_app/presentation/colors/colors.dart';
 
-import '../../presentation/bloc/events/list_tasks_events.dart';
 import '../../presentation/components/scaffold_message.dart';
-import '../../presentation/screens/list_tasks/list_tasks_screen_bloc.dart';
+import '../../presentation/screens/list_tasks/state/list_task_state.dart';
 
 class TodoServices implements ITodoServices {
   final ITodoRepository _iTodoRepository = GetIt.instance<ITodoRepository>();
@@ -21,7 +20,7 @@ class TodoServices implements ITodoServices {
     required TextEditingController description,
     required BuildContext context}) async {
     try {
-      final ListTaskBloc statesScreen = context.read<ListTaskBloc>();
+      final ListTaskState stateScreen = Provider.of<ListTaskState>(context, listen: false);
 
       final TodoEntity responseTodo = await _iTodoRepository.addNewTask(
         TodoEntity(
@@ -38,9 +37,9 @@ class TodoServices implements ITodoServices {
           "Parabéns! Sua tarefa foi cadastrada com sucesso!",
         );
 
-        statesScreen.add(AddItemTaskEvent(todo: responseTodo));
+        await stateScreen.addItemListAsync(responseTodo);
 
-        Navigator.pop(context);
+        if (context.mounted) Navigator.pop(context);
       }
 
     } catch (ex) {

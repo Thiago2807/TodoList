@@ -6,7 +6,7 @@ import 'package:todolist_app/presentation/screens/add_task/component/input.dart'
 import '../../fonts/fonts.dart';
 
 class AddTaskScreen extends StatefulWidget {
-  AddTaskScreen({super.key});
+  const AddTaskScreen({super.key});
 
   @override
   State<AddTaskScreen> createState() => _AddTaskScreenState();
@@ -113,7 +113,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   await _iTodoServices.addNewTask(
                     title: _titleController,
                     description: _descriptionController,
-                    context: context,
+                    context: context
                   );
                 },
                 child: Container(

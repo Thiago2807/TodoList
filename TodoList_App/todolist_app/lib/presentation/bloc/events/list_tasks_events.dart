@@ -13,5 +13,4 @@ class AddItemTaskEvent extends ListTasksBaseEvent{
   TodoEntity todo;
 
   AddItemTaskEvent({required this.todo});
-
 }

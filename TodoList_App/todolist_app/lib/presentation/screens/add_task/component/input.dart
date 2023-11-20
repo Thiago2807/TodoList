@@ -19,6 +19,7 @@ class InputAddTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+    final ThemeData theme = Theme.of(context);
 
     return TextField(
       controller: textEditingController,
@@ -42,9 +43,7 @@ class InputAddTask extends StatelessWidget {
           color: Colors.grey.shade400,
         ),
       ),
-      style: FontGoogle.interFont(
-        color: Color(blackColor),
-      ),
+      style: theme.textTheme.displaySmall,
     );
   }
 }
