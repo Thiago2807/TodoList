@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../colors/colors.dart';
 import '../../../fonts/fonts.dart';
 import 'card_task.dart';
 
@@ -17,6 +16,7 @@ class OptionsHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+    final ThemeData theme = Theme.of(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -27,9 +27,8 @@ class OptionsHomeScreen extends StatelessWidget {
           children: [
             Text(
               title,
-              style: FontGoogle.interFont(
-                color: Color(blackColor),
-                size: size.width * .045,
+              style: theme.textTheme.displaySmall?.copyWith(
+                fontSize: size.width * .045,
                 fontWeight: FontWeight.w600,
               ),
             ),

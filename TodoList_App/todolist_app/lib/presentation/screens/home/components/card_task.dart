@@ -8,6 +8,7 @@ class CardTaskHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+    final ThemeData theme = Theme.of(context);
 
     return Container(
       width: size.width * .35,
@@ -20,7 +21,7 @@ class CardTaskHomeScreen extends StatelessWidget {
         vertical: size.height * .01,
       ),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: theme.colorScheme.tertiaryContainer,
         borderRadius: BorderRadius.circular(size.width * .02),
         boxShadow: const [
           BoxShadow(

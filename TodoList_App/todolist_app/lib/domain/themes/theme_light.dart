@@ -7,6 +7,11 @@ ThemeData get customThemeDataLight => ThemeData(
       useMaterial3: true,
       scaffoldBackgroundColor: Colors.grey.shade100,
 
+      appBarTheme: AppBarTheme(
+        color: Colors.grey.shade100,
+        surfaceTintColor: Colors.grey.shade100,
+      ),
+
       // INICIO: Cores
       primaryColor: Color(primaryColor),
       colorScheme: ThemeData().colorScheme.copyWith(
@@ -14,10 +19,9 @@ ThemeData get customThemeDataLight => ThemeData(
             tertiary: Color(blackColor),
             outline: Color(blackColor),
             tertiaryContainer: Colors.white,
-            scrim: Colors.white
+            scrim: Colors.white,
           ),
       // FIM: Cores
-
 
       // INICIO: Input
       inputDecorationTheme: InputDecorationTheme(
@@ -54,18 +58,21 @@ ThemeData get customThemeDataLight => ThemeData(
           // Fonte para inputs
           color: Color(blackColor),
         ),
-
         titleMedium: FontGoogle.dosisFont(
           color: Color(secondaryAlterColor),
           letterSpacing: .5,
           fontWeight: FontWeight.w500,
         ),
-
+        titleLarge: FontGoogle.robotoFont(
+          color: Color(secondaryColor),
+          letterSpacing: .3,
+          fontWeight: FontWeight.w500,
+        ),
       ),
       // FIM: Text
 
       iconTheme: IconThemeData(
-          color: Color(secondaryAlterColor),
+        color: Color(secondaryAlterColor),
       ),
 
       progressIndicatorTheme: const ProgressIndicatorThemeData(

@@ -7,14 +7,20 @@ ThemeData get customThemeDataDark => ThemeData(
       useMaterial3: true,
       scaffoldBackgroundColor: Color(backgroundDarkScreenColor),
 
+      appBarTheme: AppBarTheme(
+        surfaceTintColor: Color(blackColor),
+        color: Color(backgroundDarkScreenColor),
+      ),
+
       // INICIO: Cores
       primaryColor: const Color(0xff48cae4),
       colorScheme: ThemeData().colorScheme.copyWith(
-          secondary: Colors.white,
-          tertiary: Color(secondaryAlterColor),
-          outline: Colors.white,
-          scrim: Color(blackItemColor),
-          tertiaryContainer: Color(blackItemColor)),
+            secondary: Colors.white,
+            tertiary: Color(secondaryAlterColor),
+            outline: Colors.white,
+            scrim: Color(blackItemColor),
+            tertiaryContainer: Color(blackItemColor),
+          ),
       // FIM: Cores
 
       // INICIO: Input
@@ -50,6 +56,11 @@ ThemeData get customThemeDataDark => ThemeData(
         titleMedium: FontGoogle.dosisFont(
           color: Colors.white,
           letterSpacing: .5,
+          fontWeight: FontWeight.w500,
+        ),
+        titleLarge: FontGoogle.robotoFont(
+          color: Colors.white,
+          letterSpacing: .3,
           fontWeight: FontWeight.w500,
         ),
       ),

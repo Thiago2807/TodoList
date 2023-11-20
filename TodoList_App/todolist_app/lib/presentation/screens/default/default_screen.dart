@@ -27,6 +27,7 @@ class _HomeScreenState extends State<DefaultScreen> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+    final ThemeData theme = Theme.of(context);
 
     List<Widget> screens = [
       const HomeScreen(),
@@ -43,7 +44,6 @@ class _HomeScreenState extends State<DefaultScreen> {
               return AppBar(
                 elevation: 0,
                 centerTitle: !(state.indexScreen == 0),
-                backgroundColor: Colors.grey.shade200,
                 title: FutureBuilder<UserEntity>(
                   future: _defaultServices.getDataUserAsync(),
                   builder: (context, snapshot) {
@@ -62,11 +62,8 @@ class _HomeScreenState extends State<DefaultScreen> {
                               : "Olá, ${snapshot.data!.name}";
                           return Text(
                             nameUser,
-                            style: FontGoogle.robotoFont(
-                              color: Color(secondaryColor),
-                              letterSpacing: .3,
-                              size: size.width * .05,
-                              fontWeight: FontWeight.w500,
+                            style: theme.textTheme.titleLarge?.copyWith(
+                              fontSize: size.width * .05,
                             ),
                           );
                         }
@@ -76,11 +73,11 @@ class _HomeScreenState extends State<DefaultScreen> {
                 actions: [
                   PopupMenuButton(
                     elevation: 1,
-                    shape: RoundedRectangleBorder(
-                      borderRadius:
-                      BorderRadius.circular(size.width * .02),
-                    ),
                     splashRadius: 10,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(size.width * .02),
+                    ),
+                    color: theme.colorScheme.tertiaryContainer,
                     itemBuilder: (context) {
                       return <PopupMenuItem>[
                         PopupMenuItem(
@@ -88,14 +85,14 @@ class _HomeScreenState extends State<DefaultScreen> {
                             children: [
                               Icon(
                                 size: size.width * .05,
-                                color: Color(secondaryAlterColor),
+                                color: theme.colorScheme.secondary,
                                 Icons.settings_outlined,
                               ),
                               SizedBox(width: size.width * .02),
                               Text(
                                 "Configurações",
                                 style: FontGoogle.dosisFont(
-                                  color: Color(secondaryAlterColor),
+                                  color: theme.colorScheme.secondary,
                                   letterSpacing: .5,
                                   size: size.width * .04,
                                   fontWeight: FontWeight.w500,
@@ -111,14 +108,14 @@ class _HomeScreenState extends State<DefaultScreen> {
                             children: [
                               Icon(
                                 size: size.width * .05,
-                                color: Color(secondaryAlterColor),
+                                color: theme.colorScheme.secondary,
                                 Icons.exit_to_app_outlined,
                               ),
                               SizedBox(width: size.width * .02),
                               Text(
                                 "Sair",
                                 style: FontGoogle.dosisFont(
-                                  color: Color(secondaryAlterColor),
+                                  color: theme.colorScheme.secondary,
                                   letterSpacing: .5,
                                   size: size.width * .04,
                                   fontWeight: FontWeight.w500,
@@ -129,13 +126,12 @@ class _HomeScreenState extends State<DefaultScreen> {
                           onTap: () async {
                             showDialog(
                               context: context,
-                              builder: (context) =>
-                              const AlertDialogComponent(
+                              builder: (context) => const AlertDialogComponent(
                                 removeUntil: true,
                                 routeString: "/Splash",
                                 title: "Encerrar Sessão",
                                 content:
-                                "Você está prestes a encerrar a sessão. Tem certeza de que deseja sair do aplicativo agora?",
+                                    "Você está prestes a encerrar a sessão. Tem certeza de que deseja sair do aplicativo agora?",
                               ),
                             );
 
@@ -151,7 +147,7 @@ class _HomeScreenState extends State<DefaultScreen> {
                       ),
                       child: Icon(
                         Icons.more_vert_rounded,
-                        color: Color(secondaryColor),
+                        color: theme.colorScheme.secondary,
                       ),
                     ),
                   )

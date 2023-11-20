@@ -12,9 +12,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+    final ThemeData theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
       body: Container(
         padding: EdgeInsets.symmetric(
           vertical: size.height * .01,
@@ -31,9 +31,8 @@ class HomeScreen extends StatelessWidget {
                 alignment: Alignment.topRight,
                 child: Text(
                   "Veja sua próxima tarefa",
-                  style: FontGoogle.interFont(
-                    color: Color(blackColor),
-                    size: size.width * .04,
+                  style: theme.textTheme.displaySmall?.copyWith(
+                    fontSize: size.width * .04,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -45,9 +44,8 @@ class HomeScreen extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: Text(
                   "Comece a sua jornada por aqui",
-                  style: FontGoogle.interFont(
-                    color: Color(blackColor),
-                    size: size.width * .04,
+                  style: theme.textTheme.displaySmall?.copyWith(
+                    fontSize: size.width * .04,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
