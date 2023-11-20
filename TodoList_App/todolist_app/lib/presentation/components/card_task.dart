@@ -12,13 +12,14 @@ class CardTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+    final ThemeData theme = Theme.of(context);
 
     return Container(
       margin: EdgeInsets.symmetric(vertical: size.height * .01),
       padding: EdgeInsets.symmetric(
           vertical: size.height * .025, horizontal: size.width * .045),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: theme.colorScheme.tertiaryContainer,
         borderRadius: BorderRadius.circular(size.width * .015),
         boxShadow: const [
           BoxShadow(
@@ -37,18 +38,18 @@ class CardTask extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  "Titulo da tarefa",
+                  todo.title,
                   maxLines: 1,
                   textAlign: TextAlign.left,
                   style: FontGoogle.interFont(
-                    color: Color(secondaryColor),
+                    color: theme.colorScheme.secondary,
                     size: size.width * .045,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
                 SizedBox(height: size.height * .01),
                 Text(
-                  "Descrição da tarefa",
+                  todo.description,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 3,
                   style: FontGoogle.interFont(
@@ -65,7 +66,7 @@ class CardTask extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
             style: FontGoogle.dosisFont(
-              color: Color(secondaryColor),
+              color: theme.colorScheme.secondary,
               letterSpacing: .5,
               size: size.width * .045,
               fontWeight: FontWeight.w500,

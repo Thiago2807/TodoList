@@ -12,9 +12,12 @@ ThemeData get customThemeDataLight => ThemeData(
       colorScheme: ThemeData().colorScheme.copyWith(
             secondary: Color(secondaryColor),
             tertiary: Color(blackColor),
-
+            outline: Color(blackColor),
+            tertiaryContainer: Colors.white,
+            scrim: Colors.white
           ),
       // FIM: Cores
+
 
       // INICIO: Input
       inputDecorationTheme: InputDecorationTheme(
@@ -51,8 +54,19 @@ ThemeData get customThemeDataLight => ThemeData(
           // Fonte para inputs
           color: Color(blackColor),
         ),
+
+        titleMedium: FontGoogle.dosisFont(
+          color: Color(secondaryAlterColor),
+          letterSpacing: .5,
+          fontWeight: FontWeight.w500,
+        ),
+
       ),
       // FIM: Text
+
+      iconTheme: IconThemeData(
+          color: Color(secondaryAlterColor),
+      ),
 
       progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: Colors.white,

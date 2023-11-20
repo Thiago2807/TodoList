@@ -47,6 +47,7 @@ class MyApp extends StatelessWidget {
       routes: routesApp,
       theme: customThemeDataLight,
       darkTheme: customThemeDataDark,
+      themeMode: ThemeMode.system,
     );
   }
 }

@@ -10,3 +10,5 @@ int get redColor => 0xffc81d25;
 int get backgroundDarkScreenColor => 0xff333533;
 
 int get greenColor => 0xffa7c957;
+
+int get blackItemColor => 0xff242424;

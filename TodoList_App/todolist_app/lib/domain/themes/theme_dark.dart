@@ -10,9 +10,11 @@ ThemeData get customThemeDataDark => ThemeData(
       // INICIO: Cores
       primaryColor: const Color(0xff48cae4),
       colorScheme: ThemeData().colorScheme.copyWith(
-            secondary: Colors.white,
-            tertiary: Color(secondaryAlterColor),
-          ),
+          secondary: Colors.white,
+          tertiary: Color(secondaryAlterColor),
+          outline: Colors.white,
+          scrim: Color(blackItemColor),
+          tertiaryContainer: Color(blackItemColor)),
       // FIM: Cores
 
       // INICIO: Input
@@ -45,8 +47,15 @@ ThemeData get customThemeDataDark => ThemeData(
         displaySmall: FontGoogle.interFont(
           color: Colors.white,
         ),
+        titleMedium: FontGoogle.dosisFont(
+          color: Colors.white,
+          letterSpacing: .5,
+          fontWeight: FontWeight.w500,
+        ),
       ),
       // FIM: Text
+
+      iconTheme: const IconThemeData(color: Colors.white),
 
       progressIndicatorTheme: ProgressIndicatorThemeData(
         color: Color(blackColor),
