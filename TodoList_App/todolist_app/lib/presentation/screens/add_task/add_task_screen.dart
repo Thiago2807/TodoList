@@ -6,7 +6,6 @@ import 'package:todolist_app/presentation/colors/colors.dart';
 import 'package:todolist_app/presentation/screens/add_task/component/dropdown.dart';
 import 'package:todolist_app/presentation/screens/add_task/component/input.dart';
 import 'package:todolist_app/presentation/screens/add_task/state/add_task_state.dart';
-import '../../../domain/enum/status_todo_enum.dart';
 import '../../fonts/fonts.dart';
 
 class AddTaskScreen extends StatefulWidget {
@@ -122,15 +121,34 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               const DropdownCustom(),
               SizedBox(height: size.height * .04),
               GestureDetector(
+                onTap: () => showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    content: DatePickerDialog(
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime.now(),
+                      lastDate: DateTime.now().add(
+                        const Duration(days: 365),
+                      ),
+                    ),
+                  ),
+                ),
+                child: Container(
+                  child: const Text("Adicionar a data de inicio"),
+                ),
+              ),
+              SizedBox(height: size.height * .04),
+              GestureDetector(
                 onTap: () async {
                   FocusScope.of(context).unfocus();
 
                   await _iTodoServices.addNewTask(
-                    context: context,
-                    title: _titleController,
-                    description: _descriptionController,
-                    statusTodo: Provider.of<AddTaskState>(context, listen: false).valueDrop
-                  );
+                      context: context,
+                      title: _titleController,
+                      description: _descriptionController,
+                      statusTodo:
+                          Provider.of<AddTaskState>(context, listen: false)
+                              .valueDrop);
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: size.height * .02),
