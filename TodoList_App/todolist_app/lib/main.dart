@@ -1,5 +1,5 @@
+import 'package:todolist_app/presentation/screens/add_task/state/add_task_state.dart';
 import 'package:todolist_app/presentation/screens/list_tasks/state/list_task_state.dart';
-import 'package:todolist_app/presentation/screens/default/default_bloc.dart';
 import 'package:todolist_app/presentation/screens/auth/auth_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:todolist_app/domain/routes/routes_app.dart';
@@ -25,11 +25,11 @@ void main() {
         BlocProvider(
           create: (_) => AuthBloc(),
         ),
-        BlocProvider(
-          create: (_) => DefaultScreenBloc(),
-        ),
         Provider<ListTaskState>(
           create: (_) => ListTaskState(),
+        ),
+        Provider<AddTaskState>(
+          create: (_) => AddTaskState(),
         ),
       ],
       child: const MyApp(),

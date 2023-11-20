@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 import 'package:todolist_app/application/interfaces/itodo_services.dart';
 import 'package:todolist_app/presentation/colors/colors.dart';
+import 'package:todolist_app/presentation/screens/add_task/component/dropdown.dart';
 import 'package:todolist_app/presentation/screens/add_task/component/input.dart';
+import 'package:todolist_app/presentation/screens/add_task/state/add_task_state.dart';
+import '../../../domain/enum/status_todo_enum.dart';
 import '../../fonts/fonts.dart';
 
 class AddTaskScreen extends StatefulWidget {
@@ -106,14 +110,26 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
               ),
               SizedBox(height: size.height * .04),
+              Text(
+                "Informe o status da tarefa",
+                style: FontGoogle.interFont(
+                  fontWeight: FontWeight.w500,
+                  size: size.width * .035,
+                  color: Colors.grey.shade400,
+                ),
+              ),
+              SizedBox(height: size.height * .02),
+              const DropdownCustom(),
+              SizedBox(height: size.height * .04),
               GestureDetector(
                 onTap: () async {
                   FocusScope.of(context).unfocus();
 
                   await _iTodoServices.addNewTask(
+                    context: context,
                     title: _titleController,
                     description: _descriptionController,
-                    context: context
+                    statusTodo: Provider.of<AddTaskState>(context, listen: false).valueDrop
                   );
                 },
                 child: Container(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todolist_app/presentation/colors/colors.dart';
 
 import '../../fonts/fonts.dart';
+import 'components/appbar.dart';
 import 'components/options.dart';
 import 'components/next_task.dart';
 import '../../components/gradient.dart';
@@ -15,6 +16,10 @@ class HomeScreen extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
 
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size(size.width, size.height * .07),
+        child: AppBarCustom(),
+      ),
       body: Container(
         padding: EdgeInsets.symmetric(
           vertical: size.height * .01,

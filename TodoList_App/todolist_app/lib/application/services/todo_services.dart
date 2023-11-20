@@ -16,17 +16,21 @@ class TodoServices implements ITodoServices {
   final ITodoRepository _iTodoRepository = GetIt.instance<ITodoRepository>();
 
   @override
-  Future addNewTask({required TextEditingController title,
+  Future addNewTask({
+    required BuildContext context,
+    required StatusTodoEnum statusTodo,
+    required TextEditingController title,
     required TextEditingController description,
-    required BuildContext context}) async {
+  }) async {
     try {
-      final ListTaskState stateScreen = Provider.of<ListTaskState>(context, listen: false);
+      final ListTaskState stateScreen =
+          Provider.of<ListTaskState>(context, listen: false);
 
       final TodoEntity responseTodo = await _iTodoRepository.addNewTask(
         TodoEntity(
           title: title.text,
+          statusTodo: statusTodo,
           description: description.text,
-          statusTodo: StatusTodoEnum.inProgress,
         ),
       );
 
@@ -41,17 +45,15 @@ class TodoServices implements ITodoServices {
 
         if (context.mounted) Navigator.pop(context);
       }
-
     } catch (ex) {
       if (context.mounted) {
         String msgError = "";
 
         if (ex is DioException) {
           msgError = ex.response?.data.toString() ?? "";
-        }
-        else {
+        } else {
           msgError =
-          "A tarefa não pôde ser adicionada. Por favor, verifique as informações fornecidas e tente novamente.";
+              "A tarefa não pôde ser adicionada. Por favor, verifique as informações fornecidas e tente novamente.";
         }
 
         ScaffoldMessageComponent.scaffoldMessenger(
@@ -64,6 +66,6 @@ class TodoServices implements ITodoServices {
   }
 
   @override
-  Future<List<TodoEntity>> getTasks({required BuildContext context}) async => _iTodoRepository.getTasks();
-
+  Future<List<TodoEntity>> getTasks({required BuildContext context}) async =>
+      _iTodoRepository.getTasks();
 }
