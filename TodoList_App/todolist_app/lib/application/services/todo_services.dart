@@ -80,6 +80,52 @@ class TodoServices implements ITodoServices {
 
   @override
   Future<List<TodoEntity>> getTasks(
-          {required BuildContext context, StatusTodoEnum? status}) async =>
-      _iTodoRepository.getTasks(status: status);
+      {required BuildContext context, StatusTodoEnum? status}) async {
+    try {
+      return _iTodoRepository.getTasks(status: status);
+    } catch (ex) {
+      if (context.mounted) {
+        String msgError = "";
+
+        if (ex is DioException) {
+          msgError = ex.response?.data.toString() ?? "";
+        } else {
+          msgError =
+              "A tarefa não pôde ser adicionada. Por favor, verifique as informações fornecidas e tente novamente.";
+        }
+
+        ScaffoldMessageComponent.scaffoldMessenger(
+          context,
+          redColor,
+          msgError,
+        );
+      }
+      return [];
+    }
+  }
+
+  Future<TodoEntity?> getNextTaskAsync({required BuildContext context}) async {
+    try {
+      return _iTodoRepository.getNextTask();
+    } catch (ex) {
+      if (context.mounted) {
+        String msgError = "";
+
+        if (ex is DioException) {
+          msgError = ex.response?.data.toString() ?? "";
+        } else {
+          msgError =
+          "A tarefa não pôde ser adicionada. Por favor, verifique as informações fornecidas e tente novamente.";
+        }
+
+        ScaffoldMessageComponent.scaffoldMessenger(
+          context,
+          redColor,
+          msgError,
+        );
+      }
+      return null;
+    }
+  }
+
 }

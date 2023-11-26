@@ -4,29 +4,29 @@ class TodoEntity {
   TodoEntity({
     this.todoId,
     required this.title,
+    required this.dhInicio,
     required this.statusTodo,
     required this.description,
-    required this.dhInicio,
   });
 
   String title;
   String? todoId;
+  DateTime dhInicio;
   String description;
   StatusTodoEnum statusTodo;
-  DateTime dhInicio;
 
   factory TodoEntity.fromJson(Map<String, dynamic> json) => TodoEntity(
-        statusTodo: StatusTodoEnum.values[json["statusTodo"]],
-        description: json["description"] as String,
-        todoId: json["todoId"] as String,
         title: json["title"] as String,
+        todoId: json["todoId"] as String,
+        description: json["description"] as String,
         dhInicio: DateTime.parse(json["dhInicio"]),
+        statusTodo: StatusTodoEnum.values[json["statusTodo"] ?? 0],
       );
 
   Map<String, dynamic> toJson() => {
-        "statusTodo": statusTodo.index,
-        "description": description,
         "title": title,
+        "description": description,
+        "statusTodo": statusTodo.index,
         "dhInicio": dhInicio.toIso8601String()
       };
 }

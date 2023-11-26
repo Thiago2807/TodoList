@@ -25,7 +25,8 @@ class AuthRepository implements IAuthRepository {
         ResponseServerDefault(codError: 0, error: false, messageError: "");
 
     if (responseServer.statusCode != 201 && responseServer.statusCode != 200) {
-      Map<String, dynamic> descriptionError = responseServer.data as Map<String, dynamic>;
+      Map<String, dynamic> descriptionError =
+          responseServer.data as Map<String, dynamic>;
 
       response.error = true;
       response.codError = descriptionError["codError"];
@@ -49,4 +50,6 @@ class AuthRepository implements IAuthRepository {
 
     return responseServer.data as Map<String, dynamic>;
   }
+
+
 }

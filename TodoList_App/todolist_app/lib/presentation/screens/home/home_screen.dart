@@ -36,7 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
             parent: BouncingScrollPhysics(),
           ),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
             children: [
               Align(
                 alignment: Alignment.topRight,

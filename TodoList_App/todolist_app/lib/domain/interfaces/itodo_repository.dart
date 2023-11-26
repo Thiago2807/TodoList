@@ -5,6 +5,8 @@ abstract class ITodoRepository {
 
   Future<TodoEntity> addNewTask(TodoEntity entity);
 
+  Future<TodoEntity> getNextTask();
+
   Future<List<TodoEntity>> getTasks({StatusTodoEnum? status});
 
 }
