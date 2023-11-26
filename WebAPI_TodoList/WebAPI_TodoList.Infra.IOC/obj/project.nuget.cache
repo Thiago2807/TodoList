@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "xAv1q3O1ko63EdViyUY9VTrvF5lFMqIJqBACToPadzm7hlHY4GZAK7jhLDoFnhwoHF2bnpPwtUSRzRECkZKEJg==",
+  "dgSpecHash": "mlkPOpsZuWp+jvBKxAPlYNKM+ejq/mDXKkQZG9SrYxrGbYASm5BZQkWkv7Wa1hv3dzbMb2msaJuxd0T7ZAT7Gg==",
   "success": true,
   "projectFilePath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.IOC\\WebAPI_TodoList.Infra.IOC.csproj",
   "expectedPackageFiles": [

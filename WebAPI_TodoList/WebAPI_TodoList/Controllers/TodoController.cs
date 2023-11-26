@@ -4,12 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using WebAPI_TodoList.Application.DTO.Todo;
 using WebAPI_TodoList.Application.Interfaces;
 using WebAPI_TodoList.Application.Utility;
+using WebAPI_TodoList.Domain.Enum;
 using WebAPI_TodoList.HandleCustomException;
 
 namespace WebAPI_TodoList.Controllers;
 
 
-[Authorize]
+//[Authorize]
 [ApiController]
 [Route("v1/[controller]/[action]")]
 public class TodoController : ControllerBase
@@ -37,14 +38,15 @@ public class TodoController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetListTaskAsync()
+    public async Task<IActionResult> GetListTaskAsync([FromQuery] StatusTodoEnum? status = null)
     {
         try
         {
-            string headerRequest = Request.Headers.Authorization.FirstOrDefault() ?? throw new Exception("Não foi possível obter o código do usuário, tente novamente mais tarde.");
+            string headerRequest = Request.Headers.Authorization.FirstOrDefault() 
+                ?? throw new Exception("Não foi possível obter o código do usuário, tente novamente mais tarde.");
             string userId = TokenJWT.GetTokenClaims(headerRequest.Replace("Bearer ", ""))["nameid"];
 
-            IEnumerable<TodoDTO> listTodos = await _todoServices.GetListTodo(userId: userId);
+            IEnumerable<TodoDTO> listTodos = await _todoServices.GetListTodo(userId: userId, status);
 
             return Ok(listTodos);
 

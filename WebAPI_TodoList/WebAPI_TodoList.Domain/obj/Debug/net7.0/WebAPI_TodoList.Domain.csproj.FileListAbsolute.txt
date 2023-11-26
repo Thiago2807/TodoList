@@ -10,3 +10,4 @@ E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Domain\obj\Debug\net7.0\We
 E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Domain\obj\Debug\net7.0\refint\WebAPI_TodoList.Domain.dll
 E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Domain\obj\Debug\net7.0\WebAPI_TodoList.Domain.pdb
 E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Domain\obj\Debug\net7.0\ref\WebAPI_TodoList.Domain.dll
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Domain\obj\Debug\net7.0\WebAPI_TodoList.Domain.sourcelink.json

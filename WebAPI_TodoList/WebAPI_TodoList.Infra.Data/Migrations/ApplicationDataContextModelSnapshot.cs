@@ -165,6 +165,9 @@ namespace WebAPI_TodoList.Infra.Data.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(250)");
 
+                    b.Property<DateTime>("DhInicio")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("StatusTodo")
                         .HasColumnType("INT");
 

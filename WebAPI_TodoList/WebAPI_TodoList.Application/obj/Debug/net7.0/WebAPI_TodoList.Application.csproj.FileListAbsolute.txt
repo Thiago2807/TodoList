@@ -17,3 +17,4 @@ E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Application\bin\Debug\net7
 E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Application\bin\Debug\net7.0\WebAPI_TodoList.Infra.Data.pdb
 E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Application\obj\Debug\net7.0\WebAPI_TodoList.Application.csproj.CopyComplete
 E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Application\obj\Debug\net7.0\WebAPI_TodoList.Application.genruntimeconfig.cache
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Application\obj\Debug\net7.0\WebAPI_TodoList.Application.sourcelink.json

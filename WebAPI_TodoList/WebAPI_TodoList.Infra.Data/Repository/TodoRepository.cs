@@ -2,6 +2,7 @@
 using WebAPI_TodoList.Domain.Interfaces;
 using WebAPI_TodoList.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using WebAPI_TodoList.Domain.Enum;
 
 namespace WebAPI_TodoList.Infra.Data.Repository;
 
@@ -18,7 +19,14 @@ public class TodoRepository : ITodoRepository
         return todo;
     }
 
-    public async Task<IEnumerable<TodoEntity>> GetTodoListByUser(string userId)
-        => await _context.Tasks.AsNoTracking().Where(x => x.UserId == userId).ToListAsync();
+    public async Task<IEnumerable<TodoEntity>> GetTodoListByUser(string userId, StatusTodoEnum? status)
+    {
+        IQueryable<TodoEntity> query = _context.Tasks.AsNoTracking().Where(x => x.UserId == userId);
+
+        if (status.HasValue)
+            query = query.Where(x => x.StatusTodo == status);
+
+        return await query.ToListAsync();
+    }
 
 }

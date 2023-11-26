@@ -23,5 +23,8 @@ public class TodoConfigurationData : IEntityTypeConfiguration<TodoEntity>
             .HasColumnType("INT")
             .IsRequired();
 
+        builder.Property(prop => prop.DhInicio)
+            .IsRequired();
+
     }
 }

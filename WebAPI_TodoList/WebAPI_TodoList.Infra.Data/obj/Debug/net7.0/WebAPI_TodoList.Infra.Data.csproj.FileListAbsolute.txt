@@ -15,3 +15,4 @@ E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\obj\Debug\net7.
 E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\obj\Debug\net7.0\WebAPI_TodoList.Infra.Data.pdb
 E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\obj\Debug\net7.0\WebAPI_TodoList.Infra.Data.genruntimeconfig.cache
 E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\obj\Debug\net7.0\ref\WebAPI_TodoList.Infra.Data.dll
+E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Infra.Data\obj\Debug\net7.0\WebAPI_TodoList.Infra.Data.sourcelink.json
