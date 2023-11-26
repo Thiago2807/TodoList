@@ -25,6 +25,21 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
       TextEditingController(text: "");
 
   @override
+  void initState() {
+    Provider.of<AddTaskState>(context, listen: false).timeTask = null;
+    Provider.of<AddTaskState>(context, listen: false).dtTask = null;
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _descriptionController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
     final ThemeData theme = Theme.of(context);
@@ -144,11 +159,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       title: _titleController,
                       description: _descriptionController,
                       statusTodo: state.valueDrop);
-
-                  if (context.mounted) {
-                    state.dtTask = null;
-                    state.timeTask = null;
-                  }
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: size.height * .02),

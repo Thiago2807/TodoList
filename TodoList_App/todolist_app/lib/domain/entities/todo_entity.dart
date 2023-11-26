@@ -20,7 +20,7 @@ class TodoEntity {
         description: json["description"] as String,
         todoId: json["todoId"] as String,
         title: json["title"] as String,
-        dhInicio: json["dhInicio"] as DateTime,
+        dhInicio: DateTime.parse(json["dhInicio"]),
       );
 
   Map<String, dynamic> toJson() => {

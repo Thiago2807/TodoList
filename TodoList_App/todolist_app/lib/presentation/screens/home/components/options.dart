@@ -26,7 +26,7 @@ class OptionsHomeScreen extends StatefulWidget {
 class _OptionsHomeScreenState extends State<OptionsHomeScreen> {
   final ITodoServices _todoServices = GetIt.instance<ITodoServices>();
 
-  late final Future<List<TodoEntity>> _futureScreen;
+  late Future<List<TodoEntity>> _futureScreen;
 
   @override
   void initState() {
@@ -51,7 +51,8 @@ class _OptionsHomeScreenState extends State<OptionsHomeScreen> {
             }
           default:
             {
-              if (snapshot.data == null || snapshot.data!.isEmpty) return Container();
+              if (snapshot.data == null || snapshot.data!.isEmpty)
+                return Container();
 
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -59,6 +60,8 @@ class _OptionsHomeScreenState extends State<OptionsHomeScreen> {
                 children: [
                   SizedBox(height: size.height * .04),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         widget.title,
@@ -76,14 +79,22 @@ class _OptionsHomeScreenState extends State<OptionsHomeScreen> {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
+                      Expanded(child: Container()),
+                      IconButton(
+                        onPressed: () => setState(() {
+                          _futureScreen =
+                              _todoServices.getTasks(context: context, status: widget.status);
+                        }),
+                        icon: Icon(Icons.refresh_rounded),
+                      ),
                     ],
                   ),
-                  SizedBox(height: size.height * .005),
                   Align(
                     alignment: Alignment.topLeft,
                     child: Container(
                       width: size.width * .15,
-                      padding: EdgeInsets.symmetric(vertical: size.height * .002),
+                      padding:
+                          EdgeInsets.symmetric(vertical: size.height * .002),
                       decoration: BoxDecoration(
                         color: widget.color,
                         borderRadius: BorderRadius.circular(size.width),
@@ -100,7 +111,8 @@ class _OptionsHomeScreenState extends State<OptionsHomeScreen> {
                       physics: const AlwaysScrollableScrollPhysics(
                         parent: BouncingScrollPhysics(),
                       ),
-                      itemBuilder: (context, index) => CardTaskHomeScreen(todo: snapshot.data![index]),
+                      itemBuilder: (context, index) =>
+                          CardTaskHomeScreen(todo: snapshot.data![index]),
                     ),
                   ),
                 ],
