@@ -17,6 +17,9 @@ public class AddNewTaskDTO
     [Required]
     public StatusTodoEnum StatusTodo { get; set; }
 
+    [Required]
+    public DateTime DhInicio { get; set; }
+
     [JsonIgnore]
     public string? UserId { get; set; }
 

@@ -2,8 +2,8 @@
 using WebAPI_TodoList.Application.DTO.Todo;
 using WebAPI_TodoList.Domain.Interfaces;
 using WebAPI_TodoList.Domain.Entities;
-using AutoMapper;
 using WebAPI_TodoList.Domain.Enum;
+using AutoMapper;
 
 namespace WebAPI_TodoList.Application.Services;
 
@@ -27,5 +27,9 @@ public class TodoServices : ITodoServices
 
     public async Task<IEnumerable<TodoDTO>> GetListTodo(string userId, StatusTodoEnum? status)
         => _mapper.Map<IEnumerable<TodoDTO>>(await _todoRepository.GetTodoListByUser(userId, status));
+
+
+    public async Task<GetItemTodoDTO?> GetLastItemTodo(string userId)
+        => _mapper.Map<GetItemTodoDTO>(await _todoRepository.GetTodoByUser(userId));
 
 }

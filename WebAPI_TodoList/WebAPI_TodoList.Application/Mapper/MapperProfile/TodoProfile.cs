@@ -14,5 +14,8 @@ public class TodoProfile : Profile
         CreateMap<TodoDTO, TodoEntity>()
             .ReverseMap();
 
+        CreateMap<GetItemTodoDTO, TodoEntity>()
+            .ReverseMap();
+
     }
 }

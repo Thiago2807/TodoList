@@ -29,4 +29,7 @@ public class TodoRepository : ITodoRepository
         return await query.ToListAsync();
     }
 
+    public async Task<TodoEntity?> GetTodoByUser(string userId)
+        => await _context.Tasks.AsNoTracking().OrderBy(x => x.DhInicio).FirstOrDefaultAsync();
+
 }
