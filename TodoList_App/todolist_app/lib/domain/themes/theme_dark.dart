@@ -63,6 +63,11 @@ ThemeData get customThemeDataDark => ThemeData(
           letterSpacing: .3,
           fontWeight: FontWeight.w500,
         ),
+
+        bodySmall: FontGoogle.interFont(
+          color: Colors.grey.shade50,
+        ),
+
       ),
       // FIM: Text
 

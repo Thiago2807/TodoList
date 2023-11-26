@@ -8,6 +8,7 @@ import 'package:todolist_app/domain/entities/todo_entity.dart';
 import 'package:todolist_app/domain/enum/status_todo_enum.dart';
 import 'package:todolist_app/domain/interfaces/itodo_repository.dart';
 import 'package:todolist_app/presentation/colors/colors.dart';
+import 'package:todolist_app/presentation/screens/add_task/state/add_task_state.dart';
 
 import '../../presentation/components/scaffold_message.dart';
 import '../../presentation/screens/list_tasks/state/list_task_state.dart';
@@ -26,8 +27,20 @@ class TodoServices implements ITodoServices {
       final ListTaskState stateScreen =
           Provider.of<ListTaskState>(context, listen: false);
 
+      final AddTaskState stateScreenAddTask =
+          Provider.of<AddTaskState>(context, listen: false);
+
+      DateTime dtTask = DateTime(
+        stateScreenAddTask.dtTask!.year,
+        stateScreenAddTask.dtTask!.month,
+        stateScreenAddTask.dtTask!.day,
+        stateScreenAddTask.timeTask!.hour,
+        stateScreenAddTask.timeTask!.minute,
+      );
+
       final TodoEntity responseTodo = await _iTodoRepository.addNewTask(
         TodoEntity(
+          dhInicio: dtTask,
           title: title.text,
           statusTodo: statusTodo,
           description: description.text,
@@ -66,6 +79,7 @@ class TodoServices implements ITodoServices {
   }
 
   @override
-  Future<List<TodoEntity>> getTasks({required BuildContext context, StatusTodoEnum? status}) async =>
+  Future<List<TodoEntity>> getTasks(
+          {required BuildContext context, StatusTodoEnum? status}) async =>
       _iTodoRepository.getTasks(status: status);
 }

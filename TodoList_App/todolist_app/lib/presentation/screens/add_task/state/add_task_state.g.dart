@@ -25,6 +25,38 @@ mixin _$AddTaskState on _AddTaskState, Store {
     });
   }
 
+  late final _$timeTaskAtom =
+      Atom(name: '_AddTaskState.timeTask', context: context);
+
+  @override
+  TimeOfDay? get timeTask {
+    _$timeTaskAtom.reportRead();
+    return super.timeTask;
+  }
+
+  @override
+  set timeTask(TimeOfDay? value) {
+    _$timeTaskAtom.reportWrite(value, super.timeTask, () {
+      super.timeTask = value;
+    });
+  }
+
+  late final _$dtTaskAtom =
+      Atom(name: '_AddTaskState.dtTask', context: context);
+
+  @override
+  DateTime? get dtTask {
+    _$dtTaskAtom.reportRead();
+    return super.dtTask;
+  }
+
+  @override
+  set dtTask(DateTime? value) {
+    _$dtTaskAtom.reportWrite(value, super.dtTask, () {
+      super.dtTask = value;
+    });
+  }
+
   late final _$_AddTaskStateActionController =
       ActionController(name: '_AddTaskState', context: context);
 
@@ -40,9 +72,33 @@ mixin _$AddTaskState on _AddTaskState, Store {
   }
 
   @override
+  dynamic addTimeTask({required TimeOfDay time}) {
+    final _$actionInfo = _$_AddTaskStateActionController.startAction(
+        name: '_AddTaskState.addTimeTask');
+    try {
+      return super.addTimeTask(time: time);
+    } finally {
+      _$_AddTaskStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic addDtTask({required DateTime date}) {
+    final _$actionInfo = _$_AddTaskStateActionController.startAction(
+        name: '_AddTaskState.addDtTask');
+    try {
+      return super.addDtTask(date: date);
+    } finally {
+      _$_AddTaskStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-valueDrop: ${valueDrop}
+valueDrop: ${valueDrop},
+timeTask: ${timeTask},
+dtTask: ${dtTask}
     ''';
   }
 }

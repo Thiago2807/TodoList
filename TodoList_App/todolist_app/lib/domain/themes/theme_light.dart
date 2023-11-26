@@ -67,6 +67,11 @@ ThemeData get customThemeDataLight => ThemeData(
           letterSpacing: .3,
           fontWeight: FontWeight.w500,
         ),
+
+        bodySmall: FontGoogle.interFont(
+          color: Colors.black26,
+        ),
+
       ),
       // FIM: Text
 

@@ -1,39 +1,34 @@
 import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:day_night_time_picker/lib/daynight_timepicker.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class TimerTask extends StatelessWidget {
-  const TimerTask({super.key});
+import '../state/add_task_state.dart';
 
-  @override
-  Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
-    final ThemeData theme = Theme.of(context);
+Future timerTask({required BuildContext context}) async {
+  final AddTaskState stateScreen = Provider.of<AddTaskState>(context, listen: false);
 
-    return TextButton(
-      onPressed: () async {
-        final value = await Navigator.of(context).push(
-          showPicker(
-            context: context,
-            value: Time(hour: 6, minute: 0),
-            sunrise: const TimeOfDay(hour: 6, minute: 0), // optional
-            sunset: const TimeOfDay(hour: 18, minute: 0), // optional
-            duskSpanInMinutes: 120, // optional
-            onChange: (value) {},
-            is24HrFormat: true,
-            borderRadius: size.width * .02,
-            accentColor: theme.primaryColor,
-            blurredBackground: true,
-            height: size.height * .424,
-          ),
-        );
+  final Size size = MediaQuery.sizeOf(context);
+  final ThemeData theme = Theme.of(context);
 
-        print(value.toString());
-      },
-      child: const Text(
-        "Open time picker",
-        style: TextStyle(color: Colors.white),
-      ),
-    );
-  }
+  Time timeResponse = Time(hour: 6, minute: 0);
+
+  await Navigator.of(context).push(
+    showPicker(
+      context: context,
+      value: (stateScreen.timeTask ?? Time(hour: 6, minute: 0)) as Time,
+      sunrise: const TimeOfDay(hour: 6, minute: 0),
+      sunset: const TimeOfDay(hour: 18, minute: 0),
+      duskSpanInMinutes: 120,
+      onChange: (value) => timeResponse = value,
+      is24HrFormat: true,
+      borderRadius: size.width * .02,
+      accentColor: theme.primaryColor,
+      blurredBackground: true,
+      height: size.height * .424,
+    ),
+  );
+
+  await stateScreen.addTimeTask(time: timeResponse);
 }
+

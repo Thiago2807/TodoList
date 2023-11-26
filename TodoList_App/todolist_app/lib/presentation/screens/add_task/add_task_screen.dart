@@ -7,7 +7,7 @@ import 'package:todolist_app/presentation/screens/add_task/component/dropdown.da
 import 'package:todolist_app/presentation/screens/add_task/component/input.dart';
 import 'package:todolist_app/presentation/screens/add_task/state/add_task_state.dart';
 import '../../fonts/fonts.dart';
-import 'component/time.dart';
+import 'component/datetime_component.dart';
 
 class AddTaskScreen extends StatefulWidget {
   const AddTaskScreen({super.key});
@@ -121,19 +121,34 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               SizedBox(height: size.height * .02),
               const DropdownCustom(),
               SizedBox(height: size.height * .04),
-              const TimerTask(),
+              Text(
+                "Informe a data de inicio da tarefa",
+                style: FontGoogle.interFont(
+                  fontWeight: FontWeight.w500,
+                  size: size.width * .035,
+                  color: Colors.grey.shade400,
+                ),
+              ),
+              SizedBox(height: size.height * .04),
+              const DateTimeComponent(),
               SizedBox(height: size.height * .04),
               GestureDetector(
                 onTap: () async {
                   FocusScope.of(context).unfocus();
 
+                  final AddTaskState state =
+                      Provider.of<AddTaskState>(context, listen: false);
+
                   await _iTodoServices.addNewTask(
                       context: context,
                       title: _titleController,
                       description: _descriptionController,
-                      statusTodo:
-                          Provider.of<AddTaskState>(context, listen: false)
-                              .valueDrop);
+                      statusTodo: state.valueDrop);
+
+                  if (context.mounted) {
+                    state.dtTask = null;
+                    state.timeTask = null;
+                  }
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: size.height * .02),
