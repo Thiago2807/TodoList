@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todolist_app/presentation/bloc/events/auth_events.dart';
-import 'package:todolist_app/presentation/bloc/states/auth_states.dart';
-import 'package:todolist_app/presentation/fonts/fonts.dart';
-import 'package:todolist_app/presentation/screens/auth/auth_bloc.dart';
 import 'package:todolist_app/presentation/screens/auth/components/button.dart';
 import 'package:todolist_app/presentation/screens/auth/components/input.dart';
+import 'package:todolist_app/presentation/fonts/fonts.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../domain/enum/type_button_auth.dart';
+import '../state/auth_state.dart';
 import 'message_initial.dart';
 
 final GlobalKey _formKey = GlobalKey<FormState>();
@@ -36,8 +35,8 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
+    final AuthState stateScreen = Provider.of<AuthState>(context);
     final ThemeData theme = Theme.of(context);
-    final blocAuth = context.read<AuthBloc>();
     final Size size = MediaQuery.sizeOf(context);
 
     return Form(
@@ -53,9 +52,9 @@ class _BodyState extends State<Body> {
             labelInput: "Email",
             textEditingController: _emailEditingController,
           ),
-          BlocBuilder<AuthBloc, AuthState>(
-            builder: (context, state) {
-              if (state is StateAuth && !state.loginScreen) {
+          Observer(
+            builder: (_) {
+              if (!stateScreen.loginScreen) {
                 return Column(
                   children: [
                     SizedBox(height: size.height * .03),
@@ -76,12 +75,12 @@ class _BodyState extends State<Body> {
             labelInput: "Senha",
             textEditingController: _passwordEditingController,
           ),
-          BlocBuilder<AuthBloc, AuthState>(
-            builder: (context, state) => Column(
+          Observer(
+            builder: (_) => Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                if (state is StateAuth && state.loginScreen) ...[
+                if (stateScreen.loginScreen) ...[
                   SizedBox(height: size.height * .03),
                   Text(
                     "Esqueceu a senha?",
@@ -106,12 +105,12 @@ class _BodyState extends State<Body> {
             passwordController: _passwordEditingController,
           ),
           SizedBox(height: size.width * .05),
-          BlocBuilder<AuthBloc, AuthState>(
-            builder: (context, state) => Column(
+          Observer(
+            builder: (context) => Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                if (state is StateAuth && state.loginScreen) ...[
+                if (stateScreen.loginScreen) ...[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -144,7 +143,7 @@ class _BodyState extends State<Body> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      state is StateAuth && state.loginScreen
+                      stateScreen.loginScreen
                           ? "Ainda não se registrou?"
                           : "Já tem uma conta?",
                       style: FontGoogle.interFont(
@@ -154,15 +153,9 @@ class _BodyState extends State<Body> {
                     ),
                     SizedBox(width: size.width * .02),
                     GestureDetector(
-                      onTap: () => blocAuth.add(
-                        UpdateLoginScreen(
-                          loginScreen: state is StateAuth && state.loginScreen
-                              ? false
-                              : true,
-                        ),
-                      ),
+                      onTap: () => stateScreen.alterLoginScreen(),
                       child: Text(
-                        state is StateAuth && state.loginScreen
+                        stateScreen.loginScreen
                             ? "Crie uma conta"
                             : "Acesse sua conta",
                         style: FontGoogle.interFont(

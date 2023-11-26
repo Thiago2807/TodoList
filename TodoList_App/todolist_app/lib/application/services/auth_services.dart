@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:todolist_app/application/ultility/exception_utility.dart';
-import 'package:todolist_app/presentation/bloc/events/auth_events.dart';
-import 'package:todolist_app/presentation/screens/auth/auth_bloc.dart';
 import '../../domain/DTO/auth_input_user_dto.dart';
 import '../../domain/DTO/auth_register_user_dto.dart';
 import '../../domain/DTO/response_server_default.dart';
@@ -14,6 +12,7 @@ import '../../domain/interfaces/iauth_repository.dart';
 import '../../domain/keys/keys.dart';
 import '../../presentation/colors/colors.dart';
 import '../../presentation/components/scaffold_message.dart';
+import '../../presentation/screens/auth/state/auth_state.dart';
 import '../interfaces/iauth_services.dart';
 import '../preferences/auth_preferences.dart';
 
@@ -27,7 +26,7 @@ class AuthServices implements IAuthServices {
       required String nickname,
       required BuildContext context}) async {
     try {
-      final AuthBloc stateScreen = context.read<AuthBloc>();
+      final AuthState authStateScreen = Provider.of<AuthState>(context, listen: false);
 
       bool valueResponseValidInputs = _validForm(
         email: email,
@@ -52,12 +51,12 @@ class AuthServices implements IAuthServices {
             context, redColor, responseServer.messageError);
       } else {
         if (context.mounted) {
-          context.read<AuthBloc>().add(UpdateLoadingAuth(loadingScreen: true));
+          authStateScreen.alterLoadingScreen();
 
           ScaffoldMessageComponent.scaffoldMessenger(
               context, secondaryColor, "Cadastro realizado com sucesso!");
 
-          stateScreen.add(UpdateLoginScreen(loginScreen: true));
+          authStateScreen.alterLoginScreen();
         }
       }
     } catch (ex) {
