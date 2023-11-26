@@ -12,6 +12,8 @@ ThemeData get customThemeDataDark => ThemeData(
         color: Color(backgroundDarkScreenColor),
       ),
 
+
+
       // INICIO: Cores
       primaryColor: const Color(0xff48cae4),
       colorScheme: ThemeData().colorScheme.copyWith(

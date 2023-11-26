@@ -6,7 +6,8 @@ import 'package:todolist_app/presentation/colors/colors.dart';
 import '../state/add_task_state.dart';
 
 Future calendarCustom({required BuildContext context}) async {
-  final AddTaskState stateScreen = Provider.of<AddTaskState>(context, listen: false);
+  final AddTaskState stateScreen =
+      Provider.of<AddTaskState>(context, listen: false);
 
   final Size size = MediaQuery.sizeOf(context);
   final ThemeData theme = Theme.of(context);
@@ -24,7 +25,16 @@ Future calendarCustom({required BuildContext context}) async {
         children: [
           Align(
             alignment: Alignment.topRight,
-            child: Icon(Icons.add),
+            child: GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: CircleAvatar(
+                backgroundColor: theme.colorScheme.scrim,
+                child: Icon(
+                  Icons.close_rounded,
+                  color: theme.colorScheme.secondary,
+                ),
+              ),
+            ),
           ),
           SizedBox(height: size.height * .1),
           Align(
@@ -48,7 +58,7 @@ Future calendarCustom({required BuildContext context}) async {
                   monthCellStyle: DateRangePickerMonthCellStyle(
                     textStyle: theme.textTheme.displaySmall,
                     disabledDatesTextStyle: theme.textTheme.bodySmall,
-                    todayTextStyle: TextStyle(color: Colors.white),
+                    todayTextStyle: const TextStyle(color: Colors.white),
                   ),
                 ),
               ),

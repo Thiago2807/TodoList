@@ -51,8 +51,9 @@ class _OptionsHomeScreenState extends State<OptionsHomeScreen> {
             }
           default:
             {
-              if (snapshot.data == null || snapshot.data!.isEmpty)
+              if (snapshot.data == null || snapshot.data!.isEmpty) {
                 return Container();
+              }
 
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -85,7 +86,7 @@ class _OptionsHomeScreenState extends State<OptionsHomeScreen> {
                           _futureScreen =
                               _todoServices.getTasks(context: context, status: widget.status);
                         }),
-                        icon: Icon(Icons.refresh_rounded),
+                        icon: const Icon(Icons.refresh_rounded),
                       ),
                     ],
                   ),

@@ -21,6 +21,7 @@ class _ListTaskScreenState extends State<ListTaskScreen>
   late AnimationController _animationController;
   final ITodoServices _todoServices = GetIt.instance<ITodoServices>();
 
+  late Future<List<TodoEntity>> _listTodo;
 
   @override
   void initState() {
@@ -30,6 +31,8 @@ class _ListTaskScreenState extends State<ListTaskScreen>
     )..addListener(() => setState(() {}));
 
     _animationController.forward();
+
+    _listTodo = _todoServices.getTasks(context: context);
 
     super.initState();
   }
@@ -97,7 +100,7 @@ class _ListTaskScreenState extends State<ListTaskScreen>
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               FutureBuilder<List<TodoEntity>>(
-                future: _todoServices.getTasks(context: context),
+                future: _listTodo,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(
@@ -113,13 +116,21 @@ class _ListTaskScreenState extends State<ListTaskScreen>
 
                       return Observer(
                         builder: (context) => Flexible(
-                          child: ListView.builder(
-                            itemCount: controllerScreen.listTodo.length,
-                            physics: const AlwaysScrollableScrollPhysics(
-                              parent: BouncingScrollPhysics(),
+                          child: RefreshIndicator(
+                            color: theme.colorScheme.secondary,
+                            backgroundColor: theme.colorScheme.scrim,
+                            onRefresh: () async => setState(() {
+                              _listTodo =
+                                  _todoServices.getTasks(context: context);
+                            }),
+                            child: ListView.builder(
+                              itemCount: controllerScreen.listTodo.length,
+                              physics: const AlwaysScrollableScrollPhysics(
+                                parent: BouncingScrollPhysics(),
+                              ),
+                              itemBuilder: (context, index) =>
+                                  CardTask(todo: controllerScreen.listTodo[index]),
                             ),
-                            itemBuilder: (context, index) =>
-                                CardTask(todo: controllerScreen.listTodo[index]),
                           ),
                         ),
                       );
