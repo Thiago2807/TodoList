@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todolist_app/domain/enum/status_todo_enum.dart';
 import 'package:todolist_app/presentation/colors/colors.dart';
 
 import '../../fonts/fonts.dart';
@@ -106,10 +107,12 @@ class HomeScreen extends StatelessWidget {
               const OptionsHomeScreen(
                 title: "Prioridade",
                 color: Colors.deepOrange,
+                status: StatusTodoEnum.priority,
               ),
               const OptionsHomeScreen(
                 title: "Em progresso",
                 color: Colors.deepPurpleAccent,
+                status: StatusTodoEnum.inProgress,
               ),
             ],
           ),

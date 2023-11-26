@@ -5,6 +5,7 @@ import 'package:todolist_app/domain/entities/todo_entity.dart';
 import 'package:dio/dio.dart';
 
 import '../../application/preferences/auth_preferences.dart';
+import '../../domain/enum/status_todo_enum.dart';
 import '../../domain/interfaces/itodo_repository.dart';
 import '../url_server.dart';
 
@@ -30,11 +31,17 @@ class TodoRepository implements ITodoRepository {
   }
 
   @override
-  Future<List<TodoEntity>> getTasks() async {
+  Future<List<TodoEntity>> getTasks({StatusTodoEnum? status}) async {
     final AuthOutputUserDTO user = await AuthPreferences.getUserObject();
 
+    String urlRequest = "GetListTask";
+
+    if (status != null) {
+      urlRequest += "?status=${status.index}";
+    }
+
     final Response<dynamic> responseServer = await _dio.get(
-      "GetListTask",
+      urlRequest,
       options: Options(
         headers: {
           "content-type": "application/json",

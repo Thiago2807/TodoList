@@ -66,6 +66,6 @@ class TodoServices implements ITodoServices {
   }
 
   @override
-  Future<List<TodoEntity>> getTasks({required BuildContext context}) async =>
-      _iTodoRepository.getTasks();
+  Future<List<TodoEntity>> getTasks({required BuildContext context, StatusTodoEnum? status}) async =>
+      _iTodoRepository.getTasks(status: status);
 }

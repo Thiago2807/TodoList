@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:todolist_app/domain/entities/todo_entity.dart';
 
 import '../../../fonts/fonts.dart';
 
 class CardTaskHomeScreen extends StatelessWidget {
-  const CardTaskHomeScreen({super.key});
+  const CardTaskHomeScreen({
+    super.key,
+    required this.todo,
+  });
+
+  final TodoEntity todo;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +42,7 @@ class CardTaskHomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            "Titulo da tarefa",
+            todo.title,
             maxLines: 2,
             style: FontGoogle.interFont(
               color: Colors.grey.shade500,
@@ -46,7 +52,7 @@ class CardTaskHomeScreen extends StatelessWidget {
           ),
           SizedBox(height: size.height * .01),
           Text(
-            "Descrição resumida",
+            todo.description,
             maxLines: 3,
             style: FontGoogle.interFont(
               color: Colors.grey.shade500,
