@@ -54,6 +54,7 @@ dependencies:
   mobx: ^2.2.1
   flutter_mobx: ^2.2.0
   mobx_codegen: ^2.4.0
+  day_night_time_picker: ^1.3.0+1
 
 dev_dependencies:
   flutter_test:

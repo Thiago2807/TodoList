@@ -7,6 +7,7 @@ import 'package:todolist_app/presentation/screens/add_task/component/dropdown.da
 import 'package:todolist_app/presentation/screens/add_task/component/input.dart';
 import 'package:todolist_app/presentation/screens/add_task/state/add_task_state.dart';
 import '../../fonts/fonts.dart';
+import 'component/time.dart';
 
 class AddTaskScreen extends StatefulWidget {
   const AddTaskScreen({super.key});
@@ -120,23 +121,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               SizedBox(height: size.height * .02),
               const DropdownCustom(),
               SizedBox(height: size.height * .04),
-              GestureDetector(
-                onTap: () => showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    content: DatePickerDialog(
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime.now(),
-                      lastDate: DateTime.now().add(
-                        const Duration(days: 365),
-                      ),
-                    ),
-                  ),
-                ),
-                child: Container(
-                  child: const Text("Adicionar a data de inicio"),
-                ),
-              ),
+              const TimerTask(),
               SizedBox(height: size.height * .04),
               GestureDetector(
                 onTap: () async {

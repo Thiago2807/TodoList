@@ -6,7 +6,6 @@ import '../../presentation/fonts/fonts.dart';
 ThemeData get customThemeDataLight => ThemeData(
       useMaterial3: true,
       scaffoldBackgroundColor: Colors.grey.shade100,
-
       appBarTheme: AppBarTheme(
         color: Colors.grey.shade100,
         surfaceTintColor: Colors.grey.shade100,
@@ -74,8 +73,11 @@ ThemeData get customThemeDataLight => ThemeData(
       iconTheme: IconThemeData(
         color: Color(secondaryAlterColor),
       ),
-
       progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: Colors.white,
       ),
+      timePickerTheme: TimePickerThemeData(
+        backgroundColor: Colors.grey.shade200,
+      ),
+      cardColor: Colors.white,
     );

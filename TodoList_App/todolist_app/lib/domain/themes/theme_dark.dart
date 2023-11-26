@@ -71,4 +71,7 @@ ThemeData get customThemeDataDark => ThemeData(
       progressIndicatorTheme: ProgressIndicatorThemeData(
         color: Color(blackColor),
       ),
+
+      cardColor: Color(blackColor),
+
     );
