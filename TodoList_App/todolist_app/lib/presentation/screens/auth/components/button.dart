@@ -44,9 +44,11 @@ class Button extends StatelessWidget {
       return Observer(
         builder: (context) => ElevatedButton(
           onPressed: () async {
-            stateScreen.alterLoadingScreen();
-            FocusScope.of(context).unfocus(); // Fechar o teclado antes do envio
-            try {
+            await stateScreen.alterLoadingScreen();
+
+            if (context.mounted) {
+              FocusScope.of(context).unfocus(); // Fechar o teclado antes do envio
+
               if (!stateScreen.loginScreen) {
                 await _authServices.registerEmailUser(
                   email: emailController.text,
@@ -61,9 +63,9 @@ class Button extends StatelessWidget {
                   context: context,
                 );
               }
-            } finally {
-              stateScreen.alterLoadingScreen();
             }
+
+            await stateScreen.alterLoadingScreen();
           },
           style: ElevatedButton.styleFrom(
             shape: buttonRadiusCustom,

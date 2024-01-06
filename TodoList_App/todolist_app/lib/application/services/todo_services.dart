@@ -11,6 +11,7 @@ import 'package:todolist_app/presentation/colors/colors.dart';
 import 'package:todolist_app/presentation/screens/add_task/state/add_task_state.dart';
 
 import '../../presentation/components/scaffold_message.dart';
+import '../../presentation/screens/home/state/home_screen_state.dart';
 import '../../presentation/screens/list_tasks/state/list_task_state.dart';
 
 class TodoServices implements ITodoServices {
@@ -24,6 +25,8 @@ class TodoServices implements ITodoServices {
     required TextEditingController description,
   }) async {
     try {
+      final HomeScreenState homeControllerScreen = Provider.of<HomeScreenState>(context, listen: false);
+
       final ListTaskState stateScreen =
           Provider.of<ListTaskState>(context, listen: false);
 
@@ -58,6 +61,8 @@ class TodoServices implements ITodoServices {
 
         if (context.mounted) Navigator.pop(context);
       }
+
+      await homeControllerScreen.restoreHomeScreen();
     } catch (ex) {
       if (context.mounted) {
         String msgError = "";

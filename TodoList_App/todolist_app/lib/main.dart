@@ -1,3 +1,4 @@
+import 'package:todolist_app/presentation/screens/home/state/home_screen_state.dart';
 import 'package:todolist_app/presentation/screens/list_tasks/state/list_task_state.dart';
 import 'package:todolist_app/presentation/screens/add_task/state/add_task_state.dart';
 import 'package:todolist_app/presentation/screens/auth/state/auth_state.dart';
@@ -29,6 +30,9 @@ void main() {
         ),
         Provider<AddTaskState>(
           create: (_) => AddTaskState(),
+        ),
+        Provider<HomeScreenState>(
+          create: (_) => HomeScreenState(),
         ),
       ],
       child: const MyApp(),

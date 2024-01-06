@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 import 'package:todolist_app/domain/enum/status_todo_enum.dart';
 import 'package:todolist_app/presentation/colors/colors.dart';
+import 'package:todolist_app/presentation/screens/home/state/home_screen_state.dart';
 
+import '../../../application/interfaces/itodo_services.dart';
+import '../../../domain/entities/todo_entity.dart';
 import '../../fonts/fonts.dart';
 import 'components/appbar.dart';
 import 'components/options.dart';
@@ -16,8 +22,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final ITodoServices _todoServices = GetIt.instance<ITodoServices>();
+
   @override
   Widget build(BuildContext context) {
+    final HomeScreenState controllerScreen =
+        Provider.of<HomeScreenState>(context);
     final Size size = MediaQuery.sizeOf(context);
     final ThemeData theme = Theme.of(context);
 
@@ -108,15 +118,25 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              const OptionsHomeScreen(
-                title: "Prioridade",
-                color: Colors.deepOrange,
-                status: StatusTodoEnum.priority,
+              Observer(
+                builder: (_) => OptionsHomeScreen(
+                  title: "Prioridade",
+                  color: Colors.deepOrange,
+                  status: StatusTodoEnum.priority,
+                  listTodo: controllerScreen.listPriority.expand((x) => x).toList(),
+                  request: controllerScreen.requestList,
+                  rechargeList: controllerScreen.rechargeListPriority,
+                ),
               ),
-              const OptionsHomeScreen(
-                title: "Em progresso",
-                color: Colors.deepPurpleAccent,
-                status: StatusTodoEnum.inProgress,
+              Observer(
+                builder: (_) => OptionsHomeScreen(
+                  title: "Em progresso",
+                  color: Colors.deepPurpleAccent,
+                  status: StatusTodoEnum.inProgress,
+                  listTodo: controllerScreen.listProgress.expand((x) => x).toList(),
+                  request: controllerScreen.requestList,
+                    rechargeList: controllerScreen.rechargeListProgress,
+                ),
               ),
             ],
           ),

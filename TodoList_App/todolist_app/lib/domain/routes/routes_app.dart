@@ -9,8 +9,8 @@ import '../../presentation/screens/splash/splash_screen.dart';
 
 Map<String, Widget Function(BuildContext)> get routesApp => {
   "/Login": (_) => const AuthScreen(typeAuth: TypeAuthEnum.login),
-  "/Splash": (_) => const SplashScreen(),
-  "/Home": (_) => const HomeScreen(),
   "/ErrorSplash": (_) => const ErrorSplashScreen(),
-  "/ListTasks": (_) => const ListTaskScreen()
+  "/ListTasks": (_) => const ListTaskScreen(),
+  "/Splash": (_) => const SplashScreen(),
+  "/Home": (_) => const HomeScreen()
 };
