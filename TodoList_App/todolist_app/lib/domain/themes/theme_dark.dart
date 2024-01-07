@@ -55,6 +55,9 @@ ThemeData get customThemeDataDark => ThemeData(
         displaySmall: FontGoogle.interFont(
           color: Colors.white,
         ),
+        bodyLarge: FontGoogle.interFont(
+          color: Color(secondaryAlterColor),
+        ),
         titleMedium: FontGoogle.dosisFont(
           color: Colors.white,
           letterSpacing: .5,

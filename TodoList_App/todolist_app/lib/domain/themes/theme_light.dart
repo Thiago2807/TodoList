@@ -53,6 +53,9 @@ ThemeData get customThemeDataLight => ThemeData(
           fontWeight: FontWeight.w500,
           color: Colors.white,
         ),
+        bodyLarge: FontGoogle.interFont(
+          color: Color(secondaryAlterColor),
+        ),
         displaySmall: FontGoogle.interFont(
           // Fonte para inputs
           color: Color(blackColor),

@@ -49,14 +49,18 @@ abstract class _HomeScreenState with Store {
 
   @action
   Future rechargeListProgress() async {
+    isLoading = true;
     listProgress.clear();
     listProgress.add(await _iTodoRepository.getTasks(status: StatusTodoEnum.inProgress));
+    isLoading = false;
   }
 
   @action
   Future rechargeListPriority() async {
+    isLoading = true;
     listPriority.clear();
     listPriority.add(await _iTodoRepository.getTasks(status: StatusTodoEnum.priority));
+    isLoading = false;
   }
 
 }
