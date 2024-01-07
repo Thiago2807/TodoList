@@ -86,4 +86,21 @@ class TodoRepository implements ITodoRepository {
       ),
     );
   }
+
+  @override
+  Future updateTaskAsync(TodoEntity entity) async {
+    final AuthOutputUserDTO user = await AuthPreferences.getUserObject();
+
+    await _dio.patch(
+      "UpdateTodo",
+      data: jsonEncode(entity),
+      options: Options(
+          headers: {
+            "content-type": "application/json",
+            "Authorization": "Bearer ${user.token}",
+          }
+      ),
+    );
+  }
+
 }

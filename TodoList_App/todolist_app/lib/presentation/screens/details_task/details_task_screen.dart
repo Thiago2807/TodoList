@@ -139,15 +139,19 @@ class DetailsTaskScreen extends StatelessWidget {
             ),
             SizedBox(height: size.height * .02),
             GestureDetector(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AddTaskScreen(
-                    todo: todoEntity,
-                    isEditing: true,
+              onTap: () async {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddTaskScreen(
+                      todo: todoEntity,
+                      isEditing: true,
+                    ),
                   ),
-                ),
-              ),
+                );
+
+                if (context.mounted) Navigator.pop(context);
+              },
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: size.height * .02),
                 decoration: BoxDecoration(

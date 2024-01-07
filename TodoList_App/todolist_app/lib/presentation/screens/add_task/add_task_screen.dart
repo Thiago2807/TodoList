@@ -174,11 +174,28 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 onTap: () async {
                   FocusScope.of(context).unfocus();
 
-                  if (widget.isEditing) {
-                  } else {
-                    final AddTaskState state =
-                        Provider.of<AddTaskState>(context, listen: false);
+                  final AddTaskState state =
+                      Provider.of<AddTaskState>(context, listen: false);
 
+                  if (widget.isEditing) {
+                    DateTime dtTask = DateTime(
+                      state.dtTask!.year,
+                      state.dtTask!.month,
+                      state.dtTask!.day,
+                      state.timeTask!.hour,
+                      state.timeTask!.minute,
+                    );
+
+                    final TodoEntity entity = TodoEntity(
+                      dhInicio: dtTask,
+                      statusTodo: state.valueDrop,
+                      todoId: widget.todo!.todoId!,
+                      title: _titleController.text,
+                      description: _descriptionController.text,
+                    );
+
+                    await _iTodoServices.updateTaskAsync(entity: entity, context: context);
+                  } else {
                     await _iTodoServices.addNewTask(
                       context: context,
                       title: _titleController,

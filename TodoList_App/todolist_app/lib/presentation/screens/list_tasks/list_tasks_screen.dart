@@ -129,15 +129,22 @@ class _ListTaskScreenState extends State<ListTaskScreen>
                                 parent: BouncingScrollPhysics(),
                               ),
                               itemBuilder: (context, index) => GestureDetector(
-                                onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => DetailsTaskScreen(
-                                      todoEntity:
-                                          controllerScreen.listTodo[index],
+                                onTap: () async {
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => DetailsTaskScreen(
+                                        todoEntity:
+                                            controllerScreen.listTodo[index],
+                                      ),
                                     ),
-                                  ),
-                                ),
+                                  );
+
+                                  setState(() {
+                                    _listTodo =
+                                        _todoServices.getTasks(context: context);
+                                  });
+                                },
                                 child: CardTask(
                                   todo: controllerScreen.listTodo[index],
                                 ),

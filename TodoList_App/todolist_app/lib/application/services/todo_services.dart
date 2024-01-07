@@ -189,4 +189,45 @@ class TodoServices implements ITodoServices {
       }
     }
   }
+
+  @override
+  Future updateTaskAsync(
+      {required TodoEntity entity, required BuildContext context}) async {
+    try {
+      final HomeScreenState homeControllerScreen =
+      Provider.of<HomeScreenState>(context, listen: false);
+
+      await _iTodoRepository.updateTaskAsync(entity);
+
+      if (context.mounted) Navigator.pop(context);
+
+      if (context.mounted) {
+        ScaffoldMessageComponent.scaffoldMessenger(
+          context,
+          greenColor,
+          "Tarefa atualizada com sucesso",
+        );
+      }
+
+      await homeControllerScreen.restoreHomeScreen();
+    } catch (ex) {
+      if (context.mounted) {
+        String msgError = "";
+
+        if (ex is DioException) {
+          msgError = ex.response?.data.toString() ?? "";
+        } else {
+          msgError =
+          "Não foi possível atualizar a tarefa, tente novamente mais tarde.";
+        }
+
+        ScaffoldMessageComponent.scaffoldMessenger(
+          context,
+          redColor,
+          msgError,
+        );
+      }
+    }
+  }
+
 }

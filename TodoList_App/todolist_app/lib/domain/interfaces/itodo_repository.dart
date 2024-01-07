@@ -9,6 +9,8 @@ abstract class ITodoRepository {
 
   Future<TodoEntity> getNextTask();
 
+  Future updateTaskAsync(TodoEntity entity);
+
   Future<List<TodoEntity>> getTasks({StatusTodoEnum? status});
 
 }

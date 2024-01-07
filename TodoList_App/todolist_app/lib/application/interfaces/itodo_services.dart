@@ -17,4 +17,7 @@ abstract class ITodoServices {
       required TextEditingController description,
       required BuildContext context,
       required StatusTodoEnum statusTodo});
+
+  Future updateTaskAsync(
+      {required TodoEntity entity, required BuildContext context});
 }

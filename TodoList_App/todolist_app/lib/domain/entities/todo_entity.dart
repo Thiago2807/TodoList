@@ -24,9 +24,10 @@ class TodoEntity {
       );
 
   Map<String, dynamic> toJson() => {
+        "todoId": todoId,
         "title": title,
         "description": description,
         "statusTodo": statusTodo.index,
-        "dhInicio": dhInicio.toIso8601String()
+        "dhInicio": dhInicio.toIso8601String(),
       };
 }
