@@ -119,7 +119,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.deepOrange,
                   status: StatusTodoEnum.priority,
                   isLoading: controllerScreen.isLoading,
-                  listTodo: controllerScreen.listPriority.expand((x) => x).toList(),
+                  listTodo:
+                      controllerScreen.listPriority.expand((x) => x).toList(),
                   request: controllerScreen.requestList,
                   rechargeList: controllerScreen.rechargeListPriority,
                 ),
@@ -130,9 +131,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.deepPurpleAccent,
                   status: StatusTodoEnum.inProgress,
                   isLoading: controllerScreen.isLoading,
-                  listTodo: controllerScreen.listProgress.expand((x) => x).toList(),
+                  listTodo:
+                      controllerScreen.listProgress.expand((x) => x).toList(),
                   request: controllerScreen.requestList,
-                    rechargeList: controllerScreen.rechargeListProgress,
+                  rechargeList: controllerScreen.rechargeListProgress,
                 ),
               ),
             ],

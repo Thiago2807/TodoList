@@ -42,4 +42,19 @@ public class TodoServices : ITodoServices
             throw new Exception("Não foi possível remover a tarefa, tente novamente mais tarde.");
     }
 
+    public async Task UpdateTaskAsync(TodoDTO todo)
+    {
+        TodoEntity entity = await _todoRepository.GetTodoByIdAsync(todo.TodoId);
+
+        entity.Title = todo.Title;
+        entity.DhInicio = todo.DhInicio;
+        entity.StatusTodo = todo.StatusTodo;
+        entity.Description = todo.Description;
+
+        bool responseServer = await _todoRepository.UpdateTaskAsync(entity);
+
+        if (!responseServer)
+            throw new Exception("Não foi possível atualizar o tarefa, tente novamente mais tarde.");
+    }
+
 }

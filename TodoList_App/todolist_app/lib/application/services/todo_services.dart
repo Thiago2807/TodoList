@@ -10,6 +10,7 @@ import 'package:todolist_app/domain/interfaces/itodo_repository.dart';
 import 'package:todolist_app/presentation/colors/colors.dart';
 import 'package:todolist_app/presentation/screens/add_task/state/add_task_state.dart';
 
+import '../../presentation/components/alert_dialog.dart';
 import '../../presentation/components/scaffold_message.dart';
 import '../../presentation/screens/home/state/home_screen_state.dart';
 import '../../presentation/screens/list_tasks/state/list_task_state.dart';
@@ -145,19 +146,30 @@ class TodoServices implements ITodoServices {
       final HomeScreenState homeControllerScreen =
           Provider.of<HomeScreenState>(context, listen: false);
 
-      await _iTodoRepository.deleteTaskAsync(idTask: entity.todoId!);
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialogComponent(
+          title: "Excluir tarefa",
+          content: "Você realmente deseja excluir essa tarefa?",
+          functionAction: () async {
+            await _iTodoRepository.deleteTaskAsync(idTask: entity.todoId!);
 
-      controllerScreen.listTodo.remove(entity);
+            controllerScreen.listTodo.remove(entity);
 
-      if (context.mounted) {
-        ScaffoldMessageComponent.scaffoldMessenger(
-          context,
-          greenColor,
-          "Tarefa removida com sucesso",
-        );
-      }
+            if (context.mounted) Navigator.pop(context);
 
-      await homeControllerScreen.restoreHomeScreen();
+            if (context.mounted) {
+              ScaffoldMessageComponent.scaffoldMessenger(
+                context,
+                greenColor,
+                "Tarefa removida com sucesso",
+              );
+            }
+
+            await homeControllerScreen.restoreHomeScreen();
+          },
+        ),
+      );
     } catch (ex) {
       if (context.mounted) {
         String msgError = "";

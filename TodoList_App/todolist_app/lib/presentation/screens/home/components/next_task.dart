@@ -7,6 +7,7 @@ import '../../../../application/interfaces/itodo_services.dart';
 import '../../../../domain/entities/todo_entity.dart';
 import '../../../components/gradient.dart';
 import '../../../fonts/fonts.dart';
+import '../../details_task/details_task_screen.dart';
 
 class NextTaskComponent extends StatefulWidget {
   const NextTaskComponent({Key? key}) : super(key: key);
@@ -19,6 +20,7 @@ class _NextTaskComponentState extends State<NextTaskComponent>
     with SingleTickerProviderStateMixin {
   final ITodoServices _todoServices = GetIt.instance<ITodoServices>();
   late Future<TodoEntity?> nextTodo;
+  TodoEntity? todo;
 
   @override
   void initState() {
@@ -31,127 +33,143 @@ class _NextTaskComponentState extends State<NextTaskComponent>
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Container(
-          padding: EdgeInsets.symmetric(
-            vertical: size.height * .02,
-            horizontal: size.width * .04,
-          ),
-          decoration: BoxDecoration(
-            color: Color(secondaryColor),
-            gradient: gradientSuaveColors,
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(size.width * .05),
-              bottomLeft: Radius.circular(size.width * .05),
-              topLeft: Radius.circular(size.width * .01),
-              bottomRight: Radius.circular(size.width * .01),
+    return GestureDetector(
+      onTap: () {
+        if (todo != null) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailsTaskScreen(
+                todoEntity: todo!,
+              ),
             ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: size.width * .025,
-                      vertical: size.height * .01),
-                  decoration: BoxDecoration(
-                    color: Color(secondaryAlterColor),
-                    borderRadius:
-                    BorderRadius.circular(size.width * .01),
-                  ),
-                  child: Text(
-                    "Próxima",
-                    style: FontGoogle.dosisFont(
-                      color: Colors.white,
-                      letterSpacing: .5,
-                      size: size.width * .04,
-                      fontWeight: FontWeight.w500,
+          );
+        }
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(
+              vertical: size.height * .02,
+              horizontal: size.width * .04,
+            ),
+            decoration: BoxDecoration(
+              color: Color(secondaryColor),
+              gradient: gradientSuaveColors,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(size.width * .05),
+                bottomLeft: Radius.circular(size.width * .05),
+                topLeft: Radius.circular(size.width * .01),
+                bottomRight: Radius.circular(size.width * .01),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: size.width * .025,
+                        vertical: size.height * .01),
+                    decoration: BoxDecoration(
+                      color: Color(secondaryAlterColor),
+                      borderRadius:
+                      BorderRadius.circular(size.width * .01),
+                    ),
+                    child: Text(
+                      "Próxima",
+                      style: FontGoogle.dosisFont(
+                        color: Colors.white,
+                        letterSpacing: .5,
+                        size: size.width * .04,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              FutureBuilder(
-                future: nextTodo,
-                builder: (context, snapshot) {
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.active:
-                    case ConnectionState.waiting:
-                      {
-                        return Text(
-                          "Carregando tarefa...",
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: FontGoogle.dosisFont(
-                            color: Colors.white,
-                            letterSpacing: .5,
-                            size: size.width * .04,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        );
-                        ;
-                      }
-                    default:
-                      {
-                        if (snapshot.data == null) {
-                          return Container();
+                FutureBuilder(
+                  future: nextTodo,
+                  builder: (context, snapshot) {
+                    switch (snapshot.connectionState) {
+                      case ConnectionState.active:
+                      case ConnectionState.waiting:
+                        {
+                          return Text(
+                            "Carregando tarefa...",
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: FontGoogle.dosisFont(
+                              color: Colors.white,
+                              letterSpacing: .5,
+                              size: size.width * .04,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          );
+                          ;
                         }
+                      default:
+                        {
+                          if (snapshot.data == null) {
+                            return Container();
+                          }else {
+                            todo = snapshot.data;
+                          }
 
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            SizedBox(
-                              height: size.height * .02,
-                            ),
-                            Text(
-                              snapshot.data!.title,
-                              style: FontGoogle.dosisFont(
-                                color: Colors.white,
-                                letterSpacing: .5,
-                                size: size.width * .05,
-                                fontWeight: FontWeight.w500,
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              SizedBox(
+                                height: size.height * .02,
                               ),
-                            ),
-                            SizedBox(
-                              height: size.height * .005,
-                            ),
-                            Text(
-                              snapshot.data!.description,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: FontGoogle.dosisFont(
-                                color: Colors.white,
-                                letterSpacing: .5,
-                                size: size.width * .04,
-                                fontWeight: FontWeight.w500,
+                              Text(
+                                todo!.title,
+                                style: FontGoogle.dosisFont(
+                                  color: Colors.white,
+                                  letterSpacing: .5,
+                                  size: size.width * .05,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              height: size.height * .01,
-                            ),
-                            Text(
-                              DateFormat("dd/MM/yyyy HH:mm").format(snapshot.data!.dhInicio),
-                              textAlign: TextAlign.right,
-                              style: FontGoogle.dosisFont(
-                                color: Colors.white,
-                                letterSpacing: .5,
-                                size: size.width * .035,
-                                fontWeight: FontWeight.w500,
+                              SizedBox(
+                                height: size.height * .005,
                               ),
-                            ),
-                          ],
-                        );
-                      }
-                  }
-                },
-              ),
-            ],
+                              Text(
+                                todo!.description,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: FontGoogle.dosisFont(
+                                  color: Colors.white,
+                                  letterSpacing: .5,
+                                  size: size.width * .04,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              SizedBox(
+                                height: size.height * .01,
+                              ),
+                              Text(
+                                DateFormat("dd/MM/yyyy HH:mm").format(todo!.dhInicio),
+                                textAlign: TextAlign.right,
+                                style: FontGoogle.dosisFont(
+                                  color: Colors.white,
+                                  letterSpacing: .5,
+                                  size: size.width * .035,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          );
+                        }
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

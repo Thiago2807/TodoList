@@ -7,16 +7,18 @@ import 'gradient.dart';
 class AlertDialogComponent extends StatelessWidget {
   const AlertDialogComponent({
     super.key,
+    this.functionAction,
     required this.title,
     required this.content,
-    required this.routeString,
-    required this.removeUntil,
+    this.routeString,
+    this.removeUntil,
   });
 
   final String title;
   final String content;
-  final String routeString;
-  final bool removeUntil;
+  final String? routeString;
+  final bool? removeUntil;
+  final VoidCallback? functionAction;
 
   @override
   Widget build(BuildContext context) {
@@ -82,12 +84,16 @@ class AlertDialogComponent extends StatelessWidget {
                         right: size.width * .1,
                       ),
                       child: TextButton(
-                        onPressed: () {
-                          if (removeUntil) {
-                            Navigator.of(context).pushNamedAndRemoveUntil(
-                                routeString, (route) => false);
-                          } else {
-                            Navigator.of(context).pushNamed(routeString);
+                        onPressed: () async {
+                          if (functionAction != null) {
+                            functionAction!();
+                          }else {
+                            if (removeUntil!) {
+                              Navigator.of(context).pushNamedAndRemoveUntil(
+                                  routeString!, (route) => false);
+                            } else {
+                              Navigator.of(context).pushNamed(routeString!);
+                            }
                           }
                         },
                         style: TextButton.styleFrom(

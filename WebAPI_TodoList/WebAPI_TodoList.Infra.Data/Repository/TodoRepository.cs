@@ -30,7 +30,7 @@ public class TodoRepository : ITodoRepository
     }
 
     public async Task<TodoEntity?> GetTodoByUser(string userId)
-        => await _context.Tasks.AsNoTracking().OrderBy(x => x.DhInicio).FirstOrDefaultAsync();
+        => await _context.Tasks.AsNoTracking().OrderBy(x => x.DhInicio).FirstOrDefaultAsync(x => x.UserId == userId);
 
     public async Task<TodoEntity> GetTodoByIdAsync(Guid id)
         => await _context.Tasks.FirstOrDefaultAsync(x => x.TodoId == id)
@@ -39,6 +39,13 @@ public class TodoRepository : ITodoRepository
     public async Task<bool> DeleteTodoAsync(TodoEntity todo)
     {
         _context.Tasks.Remove(todo);
+
+        return await _context.SaveChangesAsync() > 0;
+    }
+
+    public async Task<bool> UpdateTaskAsync(TodoEntity todo)
+    {
+        _context.Tasks.Update(todo);
 
         return await _context.SaveChangesAsync() > 0;
     }

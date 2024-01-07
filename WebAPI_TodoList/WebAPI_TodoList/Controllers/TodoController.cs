@@ -91,4 +91,20 @@ public class TodoController : ControllerBase
         }
     }
 
+    [HttpPatch]
+    public async Task<IActionResult> UpdateTodoAsync([FromBody] TodoDTO todo)
+    {
+        try
+        {
+            await _todoServices.UpdateTaskAsync(todo);
+
+            return Ok();
+
+        }
+        catch (Exception ex)
+        {
+            return new HandleDefaultException().HandleDefault(ex.Message);
+        }
+    }
+
 }

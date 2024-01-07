@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebAPI_TodoList.Infra.IOC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e51329f4a9bd19f1ecfd83761b2af20f2b553664")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b4b04bc89157beeab40d55f6cd65d6dc0ff1b056")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebAPI_TodoList.Infra.IOC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebAPI_TodoList.Infra.IOC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

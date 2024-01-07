@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:todolist_app/application/interfaces/itodo_services.dart';
+import 'package:todolist_app/domain/entities/todo_entity.dart';
 import 'package:todolist_app/presentation/colors/colors.dart';
 import 'package:todolist_app/presentation/screens/add_task/component/dropdown.dart';
 import 'package:todolist_app/presentation/screens/add_task/component/input.dart';
@@ -10,7 +11,14 @@ import '../../fonts/fonts.dart';
 import 'component/datetime_component.dart';
 
 class AddTaskScreen extends StatefulWidget {
-  const AddTaskScreen({super.key});
+  const AddTaskScreen({
+    super.key,
+    this.todo,
+    required this.isEditing,
+  });
+
+  final TodoEntity? todo;
+  final bool isEditing;
 
   @override
   State<AddTaskScreen> createState() => _AddTaskScreenState();
@@ -19,15 +27,26 @@ class AddTaskScreen extends StatefulWidget {
 class _AddTaskScreenState extends State<AddTaskScreen> {
   final ITodoServices _iTodoServices = GetIt.instance<ITodoServices>();
 
-  final TextEditingController _titleController =
-      TextEditingController(text: "");
-  final TextEditingController _descriptionController =
-      TextEditingController(text: "");
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
 
   @override
   void initState() {
-    Provider.of<AddTaskState>(context, listen: false).timeTask = null;
-    Provider.of<AddTaskState>(context, listen: false).dtTask = null;
+    final AddTaskState stateScreen =
+        Provider.of<AddTaskState>(context, listen: false);
+
+    stateScreen.dtTask = widget.todo?.dhInicio;
+    stateScreen.timeTask = widget.todo == null
+        ? null
+        : TimeOfDay.fromDateTime(widget.todo!.dhInicio);
+
+    _titleController.text = (widget.todo == null ? "" : widget.todo!.title);
+    _descriptionController.text =
+        (widget.todo == null ? "" : widget.todo!.description);
+
+    if (widget.todo != null) {
+      stateScreen.alterValueDrop(widget.todo!.statusTodo);
+    }
 
     super.initState();
   }
@@ -73,14 +92,16 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                "Adicionar nova tarefa",
+                widget.isEditing ? "Editar tarefa" : "Adicionar nova tarefa",
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontSize: size.width * .06,
                 ),
               ),
               SizedBox(height: size.height * .005),
               Text(
-                "Adicione uma nova tarefa e organize seu dia de forma eficiente.",
+                widget.isEditing
+                    ? "Atualize sua tarefa existente e mantenha seu dia produtivo e organizado. "
+                    : "Adicione uma nova tarefa e organize seu dia de forma eficiente.",
                 style: FontGoogle.interFont(
                   fontWeight: FontWeight.w500,
                   size: size.width * .035,
@@ -137,7 +158,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               const DropdownCustom(),
               SizedBox(height: size.height * .04),
               Text(
-                "Informe a data de inicio da tarefa",
+                widget.isEditing
+                    ? "Informe a data e hora da tarefa"
+                    : "Informe a data de inicio da tarefa",
                 style: FontGoogle.interFont(
                   fontWeight: FontWeight.w500,
                   size: size.width * .035,
@@ -151,14 +174,18 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 onTap: () async {
                   FocusScope.of(context).unfocus();
 
-                  final AddTaskState state =
-                      Provider.of<AddTaskState>(context, listen: false);
+                  if (widget.isEditing) {
+                  } else {
+                    final AddTaskState state =
+                        Provider.of<AddTaskState>(context, listen: false);
 
-                  await _iTodoServices.addNewTask(
+                    await _iTodoServices.addNewTask(
                       context: context,
                       title: _titleController,
+                      statusTodo: state.valueDrop,
                       description: _descriptionController,
-                      statusTodo: state.valueDrop);
+                    );
+                  }
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: size.height * .02),
@@ -167,7 +194,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     borderRadius: BorderRadius.circular(size.width * .02),
                   ),
                   child: Text(
-                    "Adicionar",
+                    widget.isEditing ? "Editar" : "Adicionar",
                     textAlign: TextAlign.center,
                     style: FontGoogle.interFont(
                       fontWeight: FontWeight.w500,

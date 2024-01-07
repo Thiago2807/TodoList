@@ -8,6 +8,7 @@ import 'package:todolist_app/presentation/screens/list_tasks/state/list_task_sta
 import '../../../application/interfaces/itodo_services.dart';
 import '../../components/card_task.dart';
 import '../add_task/add_task_screen.dart';
+import '../details_task/details_task_screen.dart';
 
 class ListTaskScreen extends StatefulWidget {
   const ListTaskScreen({super.key});
@@ -48,7 +49,7 @@ class _ListTaskScreenState extends State<ListTaskScreen>
         onPressed: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const AddTaskScreen(),
+            builder: (context) => const AddTaskScreen(isEditing: false),
           ),
         ),
         elevation: 2,
@@ -111,7 +112,6 @@ class _ListTaskScreenState extends State<ListTaskScreen>
                     );
                   } else {
                     if (snapshot.data?.isNotEmpty ?? false) {
-
                       controllerScreen.addListAsync(snapshot.data!);
 
                       return Observer(
@@ -128,8 +128,20 @@ class _ListTaskScreenState extends State<ListTaskScreen>
                               physics: const AlwaysScrollableScrollPhysics(
                                 parent: BouncingScrollPhysics(),
                               ),
-                              itemBuilder: (context, index) =>
-                                  CardTask(todo: controllerScreen.listTodo[index]),
+                              itemBuilder: (context, index) => GestureDetector(
+                                onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailsTaskScreen(
+                                      todoEntity:
+                                          controllerScreen.listTodo[index],
+                                    ),
+                                  ),
+                                ),
+                                child: CardTask(
+                                  todo: controllerScreen.listTodo[index],
+                                ),
+                              ),
                             ),
                           ),
                         ),
