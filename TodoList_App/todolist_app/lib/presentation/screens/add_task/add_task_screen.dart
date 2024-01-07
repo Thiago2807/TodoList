@@ -195,6 +195,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     );
 
                     await _iTodoServices.updateTaskAsync(entity: entity, context: context);
+                    if (context.mounted) Navigator.pop(context);
                   } else {
                     await _iTodoServices.addNewTask(
                       context: context,

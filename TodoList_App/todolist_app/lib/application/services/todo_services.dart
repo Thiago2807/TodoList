@@ -138,7 +138,7 @@ class TodoServices implements ITodoServices {
 
   @override
   Future deleteTaskAsync(
-      {required TodoEntity entity, required BuildContext context}) async {
+      {required TodoEntity entity, required BuildContext context, bool twoPop = false}) async {
     try {
       final ListTaskState controllerScreen =
           Provider.of<ListTaskState>(context, listen: false);
@@ -146,7 +146,7 @@ class TodoServices implements ITodoServices {
       final HomeScreenState homeControllerScreen =
           Provider.of<HomeScreenState>(context, listen: false);
 
-      showDialog(
+      await showDialog(
         context: context,
         builder: (context) => AlertDialogComponent(
           title: "Excluir tarefa",
@@ -157,6 +157,10 @@ class TodoServices implements ITodoServices {
             controllerScreen.listTodo.remove(entity);
 
             if (context.mounted) Navigator.pop(context);
+
+            if (twoPop && context.mounted) {
+              Navigator.pop(context);
+            }
 
             if (context.mounted) {
               ScaffoldMessageComponent.scaffoldMessenger(

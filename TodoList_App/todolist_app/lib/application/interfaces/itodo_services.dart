@@ -5,7 +5,7 @@ import '../../domain/enum/status_todo_enum.dart';
 
 abstract class ITodoServices {
   Future deleteTaskAsync(
-      {required TodoEntity entity, required BuildContext context});
+      {required TodoEntity entity, required BuildContext context, bool twoPop = false});
 
   Future<TodoEntity?> getNextTaskAsync({required BuildContext context});
 
