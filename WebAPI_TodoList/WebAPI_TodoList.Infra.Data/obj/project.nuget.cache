@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Q9h6ddyQ1mdLui16uolzlp0MwiKGdrrpH1oCcXNpmqtojL5NnM/r0n9UXqF8psSZ3Gv+Qjd6Y2yiU1Pjv5582A==",
+  "dgSpecHash": "9nKRK2bjIUYeywp4lqdYlNC0EckstGI06OHQLUN7keNrJ/4T5SUWTPUNSpdOr+VAWEVDBjeqfCyB3Gqi/eDvOA==",
   "success": true,
-  "projectFilePath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj",
+  "projectFilePath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\thiag\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\thiag\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

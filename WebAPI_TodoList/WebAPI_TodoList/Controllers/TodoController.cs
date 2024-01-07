@@ -75,4 +75,20 @@ public class TodoController : ControllerBase
         }
     }
 
+    [HttpDelete]
+    public async Task<IActionResult> DeleteTodoAsync([FromQuery] Guid id)
+    {
+        try
+        {
+            await _todoServices.DeleteTodoAsync(id);
+
+            return Ok();
+
+        }
+        catch (Exception ex)
+        {
+            return new HandleDefaultException().HandleDefault(ex.Message);
+        }
+    }
+
 }

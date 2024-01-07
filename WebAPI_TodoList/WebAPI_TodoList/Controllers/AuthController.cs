@@ -2,8 +2,8 @@
 using WebAPI_TodoList.HandleCustomException;
 using WebAPI_TodoList.Application.DTO.Auth;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using WebAPI_TodoList.Domain.Exceptions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI_TodoList.Controllers;
 

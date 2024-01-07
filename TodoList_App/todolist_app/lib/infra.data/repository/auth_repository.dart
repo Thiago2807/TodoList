@@ -44,6 +44,9 @@ class AuthRepository implements IAuthRepository {
       options: Options(validateStatus: (status) => status! < 500),
     );
 
+    print(responseServer.statusCode);
+    print(responseServer.data);
+
     if (responseServer.statusCode != 200) {
       throw Exception(responseServer.data);
     }

@@ -25,7 +25,8 @@ class TodoServices implements ITodoServices {
     required TextEditingController description,
   }) async {
     try {
-      final HomeScreenState homeControllerScreen = Provider.of<HomeScreenState>(context, listen: false);
+      final HomeScreenState homeControllerScreen =
+          Provider.of<HomeScreenState>(context, listen: false);
 
       final ListTaskState stateScreen =
           Provider.of<ListTaskState>(context, listen: false);
@@ -109,6 +110,7 @@ class TodoServices implements ITodoServices {
     }
   }
 
+  @override
   Future<TodoEntity?> getNextTaskAsync({required BuildContext context}) async {
     try {
       return _iTodoRepository.getNextTask();
@@ -120,7 +122,7 @@ class TodoServices implements ITodoServices {
           msgError = ex.response?.data.toString() ?? "";
         } else {
           msgError =
-          "A tarefa não pôde ser adicionada. Por favor, verifique as informações fornecidas e tente novamente.";
+              "A tarefa não pôde ser adicionada. Por favor, verifique as informações fornecidas e tente novamente.";
         }
 
         ScaffoldMessageComponent.scaffoldMessenger(
@@ -133,4 +135,46 @@ class TodoServices implements ITodoServices {
     }
   }
 
+  @override
+  Future deleteTaskAsync(
+      {required TodoEntity entity, required BuildContext context}) async {
+    try {
+      final ListTaskState controllerScreen =
+          Provider.of<ListTaskState>(context, listen: false);
+
+      final HomeScreenState homeControllerScreen =
+          Provider.of<HomeScreenState>(context, listen: false);
+
+      await _iTodoRepository.deleteTaskAsync(idTask: entity.todoId!);
+
+      controllerScreen.listTodo.remove(entity);
+
+      if (context.mounted) {
+        ScaffoldMessageComponent.scaffoldMessenger(
+          context,
+          greenColor,
+          "Tarefa removida com sucesso",
+        );
+      }
+
+      await homeControllerScreen.restoreHomeScreen();
+    } catch (ex) {
+      if (context.mounted) {
+        String msgError = "";
+
+        if (ex is DioException) {
+          msgError = ex.response?.data.toString() ?? "";
+        } else {
+          msgError =
+              "Não foi possível remover a tarefa, tente novamente mais tarde.";
+        }
+
+        ScaffoldMessageComponent.scaffoldMessenger(
+          context,
+          redColor,
+          msgError,
+        );
+      }
+    }
+  }
 }

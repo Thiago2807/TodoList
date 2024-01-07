@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WebAPI_TodoList.Domain
-build_property.ProjectDir = E:\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Domain\
+build_property.ProjectDir = E:\Projetos\_TodoList\TodoList\WebAPI_TodoList\WebAPI_TodoList.Domain\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

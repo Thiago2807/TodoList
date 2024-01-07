@@ -100,6 +100,8 @@ class _OptionsHomeScreenState extends State<OptionsHomeScreen>
               animationController.forward();
               final List<TodoEntity> listTodo = widget.listTodo;
 
+              if (widget.listTodo.isEmpty) return Container();
+
               return AnimatedBuilder(
                 animation: animation,
                 builder: (context, child) => Opacity(
@@ -132,7 +134,8 @@ class _OptionsHomeScreenState extends State<OptionsHomeScreen>
                             ),
                           ),
                           IconButton(
-                            onPressed: widget.isLoading ? null : widget.rechargeList,
+                            onPressed:
+                                widget.isLoading ? null : widget.rechargeList,
                             icon: const Icon(Icons.refresh_rounded),
                           ),
                         ],
@@ -141,8 +144,8 @@ class _OptionsHomeScreenState extends State<OptionsHomeScreen>
                         alignment: Alignment.topLeft,
                         child: Container(
                           width: size.width * .15,
-                          padding:
-                              EdgeInsets.symmetric(vertical: size.height * .002),
+                          padding: EdgeInsets.symmetric(
+                              vertical: size.height * .002),
                           decoration: BoxDecoration(
                             color: widget.color,
                             borderRadius: BorderRadius.circular(size.width),

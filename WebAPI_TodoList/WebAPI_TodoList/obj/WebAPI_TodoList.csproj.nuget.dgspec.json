@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList\\WebAPI_TodoList.csproj": {}
+    "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList\\WebAPI_TodoList.csproj": {}
   },
   "projects": {
-    "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Application\\WebAPI_TodoList.Application.csproj": {
+    "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Application\\WebAPI_TodoList.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Application\\WebAPI_TodoList.Application.csproj",
+        "projectUniqueName": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Application\\WebAPI_TodoList.Application.csproj",
         "projectName": "WebAPI_TodoList.Application",
-        "projectPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Application\\WebAPI_TodoList.Application.csproj",
+        "projectPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Application\\WebAPI_TodoList.Application.csproj",
         "packagesPath": "C:\\Users\\thiag\\.nuget\\packages\\",
-        "outputPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Application\\obj\\",
+        "outputPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,11 +33,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj": {
-                "projectPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj"
+              "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj": {
+                "projectPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj"
               },
-              "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj": {
-                "projectPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj"
+              "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj": {
+                "projectPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj"
               }
             }
           }
@@ -81,14 +81,14 @@
         }
       }
     },
-    "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj": {
+    "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj",
+        "projectUniqueName": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj",
         "projectName": "WebAPI_TodoList.Domain",
-        "projectPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj",
+        "projectPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj",
         "packagesPath": "C:\\Users\\thiag\\.nuget\\packages\\",
-        "outputPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\obj\\",
+        "outputPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -147,14 +147,14 @@
         }
       }
     },
-    "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj": {
+    "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj",
+        "projectUniqueName": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj",
         "projectName": "WebAPI_TodoList.Infra.Data",
-        "projectPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj",
+        "projectPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj",
         "packagesPath": "C:\\Users\\thiag\\.nuget\\packages\\",
-        "outputPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\obj\\",
+        "outputPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -176,8 +176,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj": {
-                "projectPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj"
+              "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj": {
+                "projectPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj"
               }
             }
           }
@@ -245,14 +245,14 @@
         }
       }
     },
-    "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.IOC\\WebAPI_TodoList.Infra.IOC.csproj": {
+    "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.IOC\\WebAPI_TodoList.Infra.IOC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.IOC\\WebAPI_TodoList.Infra.IOC.csproj",
+        "projectUniqueName": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.IOC\\WebAPI_TodoList.Infra.IOC.csproj",
         "projectName": "WebAPI_TodoList.Infra.IOC",
-        "projectPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.IOC\\WebAPI_TodoList.Infra.IOC.csproj",
+        "projectPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.IOC\\WebAPI_TodoList.Infra.IOC.csproj",
         "packagesPath": "C:\\Users\\thiag\\.nuget\\packages\\",
-        "outputPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.IOC\\obj\\",
+        "outputPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.IOC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -274,11 +274,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Application\\WebAPI_TodoList.Application.csproj": {
-                "projectPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Application\\WebAPI_TodoList.Application.csproj"
+              "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Application\\WebAPI_TodoList.Application.csproj": {
+                "projectPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Application\\WebAPI_TodoList.Application.csproj"
               },
-              "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj": {
-                "projectPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj"
+              "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj": {
+                "projectPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj"
               }
             }
           }
@@ -326,14 +326,14 @@
         }
       }
     },
-    "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList\\WebAPI_TodoList.csproj": {
+    "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList\\WebAPI_TodoList.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList\\WebAPI_TodoList.csproj",
+        "projectUniqueName": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList\\WebAPI_TodoList.csproj",
         "projectName": "WebAPI_TodoList",
-        "projectPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList\\WebAPI_TodoList.csproj",
+        "projectPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList\\WebAPI_TodoList.csproj",
         "packagesPath": "C:\\Users\\thiag\\.nuget\\packages\\",
-        "outputPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList\\obj\\",
+        "outputPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -355,17 +355,17 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Application\\WebAPI_TodoList.Application.csproj": {
-                "projectPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Application\\WebAPI_TodoList.Application.csproj"
+              "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Application\\WebAPI_TodoList.Application.csproj": {
+                "projectPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Application\\WebAPI_TodoList.Application.csproj"
               },
-              "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj": {
-                "projectPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj"
+              "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj": {
+                "projectPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj"
               },
-              "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj": {
-                "projectPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj"
+              "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj": {
+                "projectPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.Data\\WebAPI_TodoList.Infra.Data.csproj"
               },
-              "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.IOC\\WebAPI_TodoList.Infra.IOC.csproj": {
-                "projectPath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.IOC\\WebAPI_TodoList.Infra.IOC.csproj"
+              "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.IOC\\WebAPI_TodoList.Infra.IOC.csproj": {
+                "projectPath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.IOC\\WebAPI_TodoList.Infra.IOC.csproj"
               }
             }
           }

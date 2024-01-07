@@ -32,4 +32,14 @@ public class TodoServices : ITodoServices
     public async Task<GetItemTodoDTO?> GetLastItemTodo(string userId)
         => _mapper.Map<GetItemTodoDTO>(await _todoRepository.GetTodoByUser(userId));
 
+    public async Task DeleteTodoAsync(Guid id)
+    {
+        TodoEntity todo = await _todoRepository.GetTodoByIdAsync(id);
+
+        bool responseDelete = await _todoRepository.DeleteTodoAsync(todo);
+
+        if (!responseDelete)
+            throw new Exception("Não foi possível remover a tarefa, tente novamente mais tarde.");
+    }
+
 }

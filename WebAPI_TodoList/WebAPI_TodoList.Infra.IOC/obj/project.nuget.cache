@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mlkPOpsZuWp+jvBKxAPlYNKM+ejq/mDXKkQZG9SrYxrGbYASm5BZQkWkv7Wa1hv3dzbMb2msaJuxd0T7ZAT7Gg==",
+  "dgSpecHash": "SXfYC6gNle1JvK99V1f1TMtfKQZCQY+nmUTO5gWZGexAXj7OhaU9fiGZs2HwcET4LRARw1Yt0S4N/o8LeZRlZw==",
   "success": true,
-  "projectFilePath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.IOC\\WebAPI_TodoList.Infra.IOC.csproj",
+  "projectFilePath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Infra.IOC\\WebAPI_TodoList.Infra.IOC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\thiag\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\thiag\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

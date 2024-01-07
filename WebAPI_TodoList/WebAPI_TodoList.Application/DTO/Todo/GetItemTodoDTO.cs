@@ -2,7 +2,8 @@
 
 public sealed class GetItemTodoDTO
 {
+    public Guid TodoId { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
-    public DateTime DhInitial { get; set; }
+    public DateTime dhInicio { get; set; }
 }

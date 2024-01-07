@@ -3,6 +3,8 @@ import '../enum/status_todo_enum.dart';
 
 abstract class ITodoRepository {
 
+  Future deleteTaskAsync({required String idTask});
+
   Future<TodoEntity> addNewTask(TodoEntity entity);
 
   Future<TodoEntity> getNextTask();

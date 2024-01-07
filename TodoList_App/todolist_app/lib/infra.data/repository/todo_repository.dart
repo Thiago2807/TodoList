@@ -53,7 +53,6 @@ class TodoRepository implements ITodoRepository {
     List<dynamic> listData = responseServer.data as List<dynamic>;
 
     return listData.map((element) => TodoEntity.fromJson(element)).toList();
-
   }
 
   @override
@@ -73,4 +72,18 @@ class TodoRepository implements ITodoRepository {
     return TodoEntity.fromJson(responseServer.data as Map<String, dynamic>);
   }
 
+  @override
+  Future deleteTaskAsync({required String idTask}) async {
+    final AuthOutputUserDTO user = await AuthPreferences.getUserObject();
+
+    await _dio.delete(
+      "DeleteTodo?id=$idTask",
+      options: Options(
+        headers: {
+          "content-type": "application/json",
+          "Authorization": "Bearer ${user.token}",
+        }
+      ),
+    );
+  }
 }

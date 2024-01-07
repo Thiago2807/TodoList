@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:intl/intl.dart';
 import 'package:todolist_app/domain/entities/todo_entity.dart';
 
+import '../../application/interfaces/itodo_services.dart';
 import '../fonts/fonts.dart';
 
 class CardTask extends StatelessWidget {
-  const CardTask({super.key, required this.todo});
+  CardTask({super.key, required this.todo});
+  final ITodoServices _todoServices = GetIt.instance<ITodoServices>();
 
   final TodoEntity todo;
 
@@ -40,6 +44,7 @@ class CardTask extends StatelessWidget {
                   todo.title,
                   maxLines: 1,
                   textAlign: TextAlign.left,
+                  overflow: TextOverflow.ellipsis,
                   style: FontGoogle.interFont(
                     color: theme.colorScheme.secondary,
                     size: size.width * .045,
@@ -61,7 +66,7 @@ class CardTask extends StatelessWidget {
             ),
           ),
           Text(
-            "00:00",
+            DateFormat("HH:mm").format(todo.dhInicio),
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
             style: FontGoogle.dosisFont(
@@ -69,6 +74,13 @@ class CardTask extends StatelessWidget {
               letterSpacing: .5,
               size: size.width * .045,
               fontWeight: FontWeight.w500,
+            ),
+          ),
+          IconButton(
+            onPressed: () async => await _todoServices.deleteTaskAsync(entity: todo, context: context),
+            icon: const Icon(
+              Icons.delete_rounded,
+              color: Colors.redAccent,
             ),
           ),
         ],

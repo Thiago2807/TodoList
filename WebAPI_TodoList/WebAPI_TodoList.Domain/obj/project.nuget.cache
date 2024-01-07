@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BTiK66SViW+TatZjoZnNKQKbzrKJ6swPR9xSLNpX8Lcdf6H+yV6ZrQ54UxLOaSJjd3/d6otk3JYDcegToM0tyg==",
+  "dgSpecHash": "ZpxW6yJXa6Of0Nfgrz170RPV8zabqTtwkUBCm3dgYhXXZa0YclppMskzpg6MIPcH8z08UXhsAGgDT4RPi8l+rw==",
   "success": true,
-  "projectFilePath": "E:\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj",
+  "projectFilePath": "E:\\Projetos\\_TodoList\\TodoList\\WebAPI_TodoList\\WebAPI_TodoList.Domain\\WebAPI_TodoList.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\thiag\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.10\\microsoft.aspnetcore.cryptography.internal.7.0.10.nupkg.sha512",
     "C:\\Users\\thiag\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.10\\microsoft.aspnetcore.cryptography.keyderivation.7.0.10.nupkg.sha512",

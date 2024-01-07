@@ -32,4 +32,15 @@ public class TodoRepository : ITodoRepository
     public async Task<TodoEntity?> GetTodoByUser(string userId)
         => await _context.Tasks.AsNoTracking().OrderBy(x => x.DhInicio).FirstOrDefaultAsync();
 
+    public async Task<TodoEntity> GetTodoByIdAsync(Guid id)
+        => await _context.Tasks.FirstOrDefaultAsync(x => x.TodoId == id)
+            ?? throw new Exception("Não foi possível localizar a tarefa especificada.");
+
+    public async Task<bool> DeleteTodoAsync(TodoEntity todo)
+    {
+        _context.Tasks.Remove(todo);
+
+        return await _context.SaveChangesAsync() > 0;
+    }
+
 }
