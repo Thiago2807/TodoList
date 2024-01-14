@@ -31,63 +31,62 @@ class AlertDialogComponent extends StatelessWidget {
       contentPadding: const EdgeInsets.all(0),
       content: SizedBox(
         height: size.height / 2,
-        child: Stack(
-          children: [
-            Align(
-              alignment: Alignment.center,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(radiusTop),
+        child: Align(
+          alignment: Alignment.center,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(radiusTop),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: size.height * .02),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: radiusTop,
+                      topRight: radiusTop,
+                    ),
+                    gradient: gradientSuaveColors,
+                    boxShadow: const [
+                      BoxShadow(
+                          blurRadius: 5,
+                          offset: Offset(1, 1),
+                          color: Colors.black12)
+                    ],
+                  ),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      title,
+                      style: FontGoogle.interFont(
+                          color: Colors.white, fontWeight: FontWeight.w500),
+                    ),
+                  ),
                 ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                SizedBox(height: size.height * .01),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: size.width * .03),
+                  child: Text(
+                    content,
+                    textAlign: TextAlign.center,
+                    style: FontGoogle.interFont(
+                      size: size.width * .035,
+                      color: Color(blackColor),
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+                Row(
                   children: [
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: size.height * .02),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: radiusTop,
-                          topRight: radiusTop,
-                        ),
-                        gradient: gradientSuaveColors,
-                      ),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          title,
-                          style: FontGoogle.interFont(
-                              color: Colors.white, fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: size.height * .01),
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: size.width * .03),
-                      child: Text(
-                        content,
-                        textAlign: TextAlign.center,
-                        style: FontGoogle.interFont(
-                          size: size.width * .035,
-                          color: Color(blackColor),
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: size.width * .05,
-                        left: size.width * .1,
-                        right: size.width * .1,
-                      ),
+                    Expanded(
                       child: TextButton(
                         onPressed: () async {
                           if (functionAction != null) {
                             functionAction!();
-                          }else {
+                          } else {
                             if (removeUntil!) {
                               Navigator.of(context).pushNamedAndRemoveUntil(
                                   routeString!, (route) => false);
@@ -103,32 +102,35 @@ class AlertDialogComponent extends StatelessWidget {
                         child: Text(
                           "Confirmar",
                           style: FontGoogle.interFont(
-                            color: Color(secondaryAlterColor),
+                            size: size.width * .035,
                             fontWeight: FontWeight.w500,
+                            color: Color(secondaryAlterColor),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: TextButton.styleFrom(
+                          elevation: 0,
+                          foregroundColor: Colors.white,
+                        ),
+                        child: Text(
+                          "Cancelar",
+                          style: FontGoogle.interFont(
+                            size: size.width * .035,
+                            fontWeight: FontWeight.w500,
+                            color: Color(secondaryAlterColor),
                           ),
                         ),
                       ),
                     ),
                   ],
                 ),
-              ),
+              ],
             ),
-            Positioned(
-              right: 0,
-              top: size.width * .26,
-              child: GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: size.width * .05,
-                  child: Icon(
-                    Icons.close,
-                    color: Color(secondaryAlterColor),
-                  ),
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

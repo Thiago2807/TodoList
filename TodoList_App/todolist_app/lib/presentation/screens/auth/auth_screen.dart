@@ -21,7 +21,7 @@ class _AuthScreenState extends State<AuthScreen>
     animationController = AnimationController(
       duration: const Duration(seconds: 1),
       vsync: this,
-    );
+    )..addStatusListener((status) => setState(() {}));
 
     animationController.forward();
 

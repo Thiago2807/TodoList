@@ -7,6 +7,7 @@ import 'package:get_it/get_it.dart';
 import 'package:todolist_app/presentation/screens/list_tasks/state/list_task_state.dart';
 
 import '../../../application/interfaces/itodo_services.dart';
+import '../../colors/colors.dart';
 import '../../components/card_task.dart';
 import '../add_task/add_task_screen.dart';
 import '../details_task/details_task_screen.dart';
@@ -47,12 +48,19 @@ class _ListTaskScreenState extends State<ListTaskScreen>
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const AddTaskScreen(isEditing: false),
-          ),
-        ),
+        onPressed: () async {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddTaskScreen(isEditing: false),
+            ),
+          );
+
+          setState(() {
+            _listTodo =
+                _todoServices.getTasks(context: context);
+          });
+        },
         elevation: 2,
         backgroundColor: theme.colorScheme.secondary,
         child: Icon(
@@ -163,6 +171,16 @@ class _ListTaskScreenState extends State<ListTaskScreen>
                         children: [
                           Lottie.network(
                             "https://lottie.host/b49926f9-14d0-4a1d-859b-5daaa7835249/VeqqUDQWR9.json",
+                            renderCache: RenderCache.raster,
+                            onLoaded: (element) => Transform.scale(
+                              scaleX: size.width * .002,
+                              scaleY: size.width * .002,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 1.5,
+                                color: Color(secondaryAlterColor),
+                              ),
+                            ),
+                            backgroundLoading: true
                           ),
                           Text(
                             "Você está com tudo em dia, nenhuma tarefa pendente!",

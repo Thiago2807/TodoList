@@ -19,6 +19,9 @@ abstract class _HomeScreenState with Store {
   ObservableList<List<TodoEntity>> listProgress = ObservableList<List<TodoEntity>>();
 
   @observable
+  TodoEntity? nextTask;
+
+  @observable
   bool isLoading = false;
 
   @action
@@ -40,6 +43,9 @@ abstract class _HomeScreenState with Store {
 
   @action
   Future restoreHomeScreen() async {
+    nextTask = null;
+    nextTask = await _iTodoRepository.getNextTask();
+
     listProgress.clear();
     listProgress.add(await _iTodoRepository.getTasks(status: StatusTodoEnum.inProgress));
 

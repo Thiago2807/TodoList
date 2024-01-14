@@ -41,6 +41,22 @@ mixin _$HomeScreenState on _HomeScreenState, Store {
     });
   }
 
+  late final _$nextTaskAtom =
+      Atom(name: '_HomeScreenState.nextTask', context: context);
+
+  @override
+  TodoEntity? get nextTask {
+    _$nextTaskAtom.reportRead();
+    return super.nextTask;
+  }
+
+  @override
+  set nextTask(TodoEntity? value) {
+    _$nextTaskAtom.reportWrite(value, super.nextTask, () {
+      super.nextTask = value;
+    });
+  }
+
   late final _$isLoadingAtom =
       Atom(name: '_HomeScreenState.isLoading', context: context);
 
@@ -99,6 +115,7 @@ mixin _$HomeScreenState on _HomeScreenState, Store {
     return '''
 listPriority: ${listPriority},
 listProgress: ${listProgress},
+nextTask: ${nextTask},
 isLoading: ${isLoading}
     ''';
   }

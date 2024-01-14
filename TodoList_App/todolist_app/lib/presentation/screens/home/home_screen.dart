@@ -50,7 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(height: size.height * .01),
-              const NextTaskComponent(),
+              Observer(
+                builder: (context) => NextTaskComponent(
+                  todo: controllerScreen.nextTask,
+                ),
+              ),
               SizedBox(height: size.height * .04),
               Align(
                 alignment: Alignment.topLeft,

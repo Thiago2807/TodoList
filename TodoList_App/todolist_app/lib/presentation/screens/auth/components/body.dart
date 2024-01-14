@@ -110,34 +110,34 @@ class _BodyState extends State<Body> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                if (stateScreen.loginScreen) ...[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(child: Divider(color: Colors.grey.shade500)),
-                      Container(
-                        margin:
-                            EdgeInsets.symmetric(horizontal: size.width * .03),
-                        child: Text(
-                          "OU",
-                          style: FontGoogle.interFont(
-                              color: Colors.grey.shade500,
-                              size: size.width * .035),
-                        ),
-                      ),
-                      Expanded(child: Divider(color: Colors.grey.shade500)),
-                    ],
-                  ),
-                  SizedBox(height: size.width * .05),
-                  Button(
-                    typeButton: TypeButtonAuth.google,
-                    emailController: _emailEditingController,
-                    nicknameController: _nicknameEditingController,
-                    passwordController: _passwordEditingController,
-                  ),
-                  SizedBox(height: size.width * .1),
-                ],
+                // if (stateScreen.loginScreen) ...[
+                //   Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     crossAxisAlignment: CrossAxisAlignment.center,
+                //     children: [
+                //       Expanded(child: Divider(color: Colors.grey.shade500)),
+                //       Container(
+                //         margin:
+                //             EdgeInsets.symmetric(horizontal: size.width * .03),
+                //         child: Text(
+                //           "OU",
+                //           style: FontGoogle.interFont(
+                //               color: Colors.grey.shade500,
+                //               size: size.width * .035),
+                //         ),
+                //       ),
+                //       Expanded(child: Divider(color: Colors.grey.shade500)),
+                //     ],
+                //   ),
+                //   SizedBox(height: size.width * .05),
+                //   Button(
+                //     typeButton: TypeButtonAuth.google,
+                //     emailController: _emailEditingController,
+                //     nicknameController: _nicknameEditingController,
+                //     passwordController: _passwordEditingController,
+                //   ),
+                //   SizedBox(height: size.width * .1),
+                // ],
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,

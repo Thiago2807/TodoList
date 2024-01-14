@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: gradientColors
+          gradient: gradientSuaveColors
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

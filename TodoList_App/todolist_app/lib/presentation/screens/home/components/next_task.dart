@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:todolist_app/presentation/colors/colors.dart';
+import 'package:todolist_app/presentation/screens/home/state/home_screen_state.dart';
 
 import '../../../../application/interfaces/itodo_services.dart';
 import '../../../../domain/entities/todo_entity.dart';
@@ -10,7 +12,9 @@ import '../../../fonts/fonts.dart';
 import '../../details_task/details_task_screen.dart';
 
 class NextTaskComponent extends StatefulWidget {
-  const NextTaskComponent({Key? key}) : super(key: key);
+  NextTaskComponent({Key? key, required this.todo}) : super(key: key);
+
+  TodoEntity? todo;
 
   @override
   State<NextTaskComponent> createState() => _NextTaskComponentState();
@@ -20,7 +24,6 @@ class _NextTaskComponentState extends State<NextTaskComponent>
     with SingleTickerProviderStateMixin {
   final ITodoServices _todoServices = GetIt.instance<ITodoServices>();
   late Future<TodoEntity?> nextTodo;
-  TodoEntity? todo;
 
   @override
   void initState() {
@@ -31,16 +34,17 @@ class _NextTaskComponentState extends State<NextTaskComponent>
 
   @override
   Widget build(BuildContext context) {
+    final HomeScreenState controllerState = Provider.of<HomeScreenState>(context, listen: false);
     final Size size = MediaQuery.sizeOf(context);
 
     return GestureDetector(
       onTap: () {
-        if (todo != null) {
+        if (widget.todo != null) {
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => DetailsTaskScreen(
-                todoEntity: todo!,
+                todoEntity: widget.todo!,
               ),
             ),
           );
@@ -67,7 +71,7 @@ class _NextTaskComponentState extends State<NextTaskComponent>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                todo == null
+                controllerState.nextTask == null
                     ? Container()
                     : Align(
                         alignment: Alignment.centerRight,
@@ -112,7 +116,9 @@ class _NextTaskComponentState extends State<NextTaskComponent>
                         }
                       default:
                         {
-                          if (snapshot.data == null) {
+                          controllerState.nextTask ??= snapshot.data;
+
+                          if (controllerState.nextTask == null) {
                             return LayoutBuilder(
                               builder: (context, constraints) => Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -142,8 +148,6 @@ class _NextTaskComponentState extends State<NextTaskComponent>
                                 ],
                               ),
                             );
-                          } else {
-                            todo = snapshot.data;
                           }
 
                           return Column(
@@ -153,7 +157,7 @@ class _NextTaskComponentState extends State<NextTaskComponent>
                                 height: size.height * .02,
                               ),
                               Text(
-                                todo!.title,
+                                controllerState.nextTask!.title,
                                 style: FontGoogle.dosisFont(
                                   color: Colors.white,
                                   letterSpacing: .5,
@@ -165,7 +169,7 @@ class _NextTaskComponentState extends State<NextTaskComponent>
                                 height: size.height * .005,
                               ),
                               Text(
-                                todo!.description,
+                                controllerState.nextTask!.description,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: FontGoogle.dosisFont(
@@ -180,7 +184,7 @@ class _NextTaskComponentState extends State<NextTaskComponent>
                               ),
                               Text(
                                 DateFormat("dd/MM/yyyy HH:mm")
-                                    .format(todo!.dhInicio),
+                                    .format(controllerState.nextTask!.dhInicio),
                                 textAlign: TextAlign.right,
                                 style: FontGoogle.dosisFont(
                                   color: Colors.white,
