@@ -1,4 +1,5 @@
-﻿using WebAPI_TodoList.Infra.Data.DataContext;
+﻿using static WebAPI_TodoList.Domain.Exceptions.CustomExceptions;
+using WebAPI_TodoList.Infra.Data.DataContext;
 using WebAPI_TodoList.Domain.Interfaces;
 using WebAPI_TodoList.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -34,7 +35,7 @@ public class TodoRepository : ITodoRepository
 
     public async Task<TodoEntity> GetTodoByIdAsync(Guid id)
         => await _context.Tasks.FirstOrDefaultAsync(x => x.TodoId == id)
-            ?? throw new Exception("Não foi possível localizar a tarefa especificada.");
+            ?? throw new NotFoundException("Não foi possível localizar a tarefa especificada.");
 
     public async Task<bool> DeleteTodoAsync(TodoEntity todo)
     {

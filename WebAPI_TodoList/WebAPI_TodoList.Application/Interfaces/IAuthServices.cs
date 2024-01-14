@@ -1,4 +1,5 @@
-﻿using WebAPI_TodoList.Application.DTO.Auth;
+﻿using WebAPI_TodoList.Application.DTO;
+using WebAPI_TodoList.Application.DTO.Auth;
 
 namespace WebAPI_TodoList.Application.Interfaces;
 

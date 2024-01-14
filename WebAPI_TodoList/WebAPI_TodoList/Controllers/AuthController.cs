@@ -1,8 +1,6 @@
 ﻿using WebAPI_TodoList.Application.Interfaces;
-using WebAPI_TodoList.HandleCustomException;
 using WebAPI_TodoList.Application.DTO.Auth;
 using Microsoft.AspNetCore.Authorization;
-using WebAPI_TodoList.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI_TodoList.Controllers;
@@ -27,7 +25,7 @@ public class AuthController : ControllerBase
 		}
 		catch (Exception ex)
 		{
-            return new HandleDefaultException().HandleDefault(ex.Message);
+            return StatusCode(500, ex.Message);
         }
     }
 
@@ -39,15 +37,11 @@ public class AuthController : ControllerBase
         {
             AuthOutputUserDTO responseServer = await _authServices.AuthUserAsync(cred);
 
-            return Ok(responseServer);
-        }
-        catch (AuthNotFoundExceptions ex)
-        {
-            return new HandleNotFoundException().HandleNotFound(ex.Message);
+            return StatusCode(200, responseServer);
         }
         catch (Exception ex)
         {
-            return new HandleDefaultException().HandleDefault(ex.Message);
+            return StatusCode(500, ex.Message);
         }
     }
 

@@ -1,12 +1,9 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Query;
-using WebAPI_TodoList.Application.DTO.Todo;
+﻿using static WebAPI_TodoList.Domain.Exceptions.CustomExceptions;
 using WebAPI_TodoList.Application.Interfaces;
+using WebAPI_TodoList.Application.DTO.Todo;
 using WebAPI_TodoList.Application.Utility;
 using WebAPI_TodoList.Domain.Enum;
-using WebAPI_TodoList.HandleCustomException;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI_TodoList.Controllers;
 
@@ -24,7 +21,8 @@ public class TodoController : ControllerBase
     {
 		try
 		{
-            string headerRequest = Request.Headers.Authorization.FirstOrDefault() ?? throw new Exception("Não foi possível obter o código do usuário, tente novamente mais tarde.");
+            string headerRequest = Request.Headers.Authorization.FirstOrDefault() 
+                ?? throw new BadRequestException("Não foi possível obter o código do usuário, tente novamente mais tarde.");
             todo.UserId = TokenJWT.GetTokenClaims(headerRequest.Replace("Bearer ", ""))["nameid"];
 
             AddNewTaskDTO newTask = await _todoServices.AddNewTaskAsync(todo);
@@ -34,7 +32,7 @@ public class TodoController : ControllerBase
         }
 		catch (Exception ex) 
 		{
-            return new HandleDefaultException().HandleDefault(ex.Message);
+            return StatusCode(500, ex.Message);
         }
     }
 
@@ -44,7 +42,7 @@ public class TodoController : ControllerBase
         try
         {
             string headerRequest = Request.Headers.Authorization.FirstOrDefault() 
-                ?? throw new Exception("Não foi possível obter o código do usuário, tente novamente mais tarde.");
+                ?? throw new BadRequestException("Não foi possível obter o código do usuário, tente novamente mais tarde.");
             string userId = TokenJWT.GetTokenClaims(headerRequest.Replace("Bearer ", ""))["nameid"];
 
             IEnumerable<TodoDTO> listTodos = await _todoServices.GetListTodo(userId: userId, status);
@@ -54,7 +52,7 @@ public class TodoController : ControllerBase
         }
         catch (Exception ex)
         {
-            return new HandleDefaultException().HandleDefault(ex.Message);
+            return StatusCode(500, ex.Message);
         }
     }
 
@@ -64,7 +62,7 @@ public class TodoController : ControllerBase
         try
         {
             string headerRequest = Request.Headers.Authorization.FirstOrDefault()
-                ?? throw new Exception("Não foi possível obter o código do usuário, tente novamente mais tarde.");
+                ?? throw new BadRequestException("Não foi possível obter o código do usuário, tente novamente mais tarde.");
             string userId = TokenJWT.GetTokenClaims(headerRequest.Replace("Bearer ", ""))["nameid"];
 
             return Ok(await _todoServices.GetLastItemTodo(userId: userId));
@@ -72,7 +70,7 @@ public class TodoController : ControllerBase
         }
         catch (Exception ex)
         {
-            return new HandleDefaultException().HandleDefault(ex.Message);
+            return StatusCode(500, ex.Message);
         }
     }
 
@@ -88,7 +86,7 @@ public class TodoController : ControllerBase
         }
         catch (Exception ex)
         {
-            return new HandleDefaultException().HandleDefault(ex.Message);
+            return StatusCode(500, ex.Message);
         }
     }
 
@@ -104,7 +102,7 @@ public class TodoController : ControllerBase
         }
         catch (Exception ex)
         {
-            return new HandleDefaultException().HandleDefault(ex.Message);
+            return StatusCode(500, ex.Message);
         }
     }
 

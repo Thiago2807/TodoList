@@ -4,6 +4,7 @@ using WebAPI_TodoList.Domain.Interfaces;
 using WebAPI_TodoList.Domain.Entities;
 using WebAPI_TodoList.Domain.Enum;
 using AutoMapper;
+using static WebAPI_TodoList.Domain.Exceptions.CustomExceptions;
 
 namespace WebAPI_TodoList.Application.Services;
 
@@ -39,7 +40,7 @@ public class TodoServices : ITodoServices
         bool responseDelete = await _todoRepository.DeleteTodoAsync(todo);
 
         if (!responseDelete)
-            throw new Exception("Não foi possível remover a tarefa, tente novamente mais tarde.");
+            throw new InternetServerErrorException("Não foi possível remover a tarefa, tente novamente mais tarde.");
     }
 
     public async Task UpdateTaskAsync(TodoDTO todo)
@@ -54,7 +55,7 @@ public class TodoServices : ITodoServices
         bool responseServer = await _todoRepository.UpdateTaskAsync(entity);
 
         if (!responseServer)
-            throw new Exception("Não foi possível atualizar o tarefa, tente novamente mais tarde.");
+            throw new InternetServerErrorException("Não foi possível atualizar o tarefa, tente novamente mais tarde.");
     }
 
 }

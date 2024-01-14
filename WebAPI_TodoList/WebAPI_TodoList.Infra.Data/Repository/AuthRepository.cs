@@ -1,7 +1,7 @@
-﻿using WebAPI_TodoList.Infra.Data.DataContext;
+﻿using static WebAPI_TodoList.Domain.Exceptions.CustomExceptions;
+using WebAPI_TodoList.Infra.Data.DataContext;
 using WebAPI_TodoList.Infra.Data.Identity;
 using WebAPI_TodoList.Domain.Interfaces;
-using WebAPI_TodoList.Domain.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,14 +24,15 @@ public class AuthRepository : IAuthRepository
 
     public async Task<UserCustomEntity> AuthUserAsync(string email, string password)
     {
-        UserCustomEntity? user = await GetUserByEmailAsync(email) ?? throw new AuthNotFoundExceptions();
+        UserCustomEntity? user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email) 
+            ?? throw new NotFoundException("Não foi possível encontrar o usuário especificado, verifique e tente novamente.");
 
         SignInResult result =  await _signInManager.PasswordSignInAsync(user, password, false, true);
 
         if (result.Succeeded)
             return user;
         else
-            throw new AuthCustomExceptions("Ocorreu um erro no momento de realizar o login.");
+            throw new BadRequestException("Ocorreu um erro no momento de realizar o login.");
     }
 
     public async Task<UserCustomEntity?> GetUserByEmailAsync(string email) 

@@ -30,6 +30,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.AddMiddlewareException();
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
