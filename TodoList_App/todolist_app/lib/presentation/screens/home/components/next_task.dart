@@ -67,28 +67,30 @@ class _NextTaskComponentState extends State<NextTaskComponent>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: size.width * .025,
-                        vertical: size.height * .01),
-                    decoration: BoxDecoration(
-                      color: Color(secondaryAlterColor),
-                      borderRadius:
-                      BorderRadius.circular(size.width * .01),
-                    ),
-                    child: Text(
-                      "Próxima",
-                      style: FontGoogle.dosisFont(
-                        color: Colors.white,
-                        letterSpacing: .5,
-                        size: size.width * .04,
-                        fontWeight: FontWeight.w500,
+                todo == null
+                    ? Container()
+                    : Align(
+                        alignment: Alignment.centerRight,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: size.width * .025,
+                              vertical: size.height * .01),
+                          decoration: BoxDecoration(
+                            color: Color(secondaryAlterColor),
+                            borderRadius:
+                                BorderRadius.circular(size.width * .01),
+                          ),
+                          child: Text(
+                            "Próxima",
+                            style: FontGoogle.dosisFont(
+                              color: Colors.white,
+                              letterSpacing: .5,
+                              size: size.width * .04,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
                 FutureBuilder(
                   future: nextTodo,
                   builder: (context, snapshot) {
@@ -107,13 +109,40 @@ class _NextTaskComponentState extends State<NextTaskComponent>
                               fontWeight: FontWeight.w500,
                             ),
                           );
-                          ;
                         }
                       default:
                         {
                           if (snapshot.data == null) {
-                            return Container();
-                          }else {
+                            return LayoutBuilder(
+                              builder: (context, constraints) => Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Text(
+                                    "Atualmente, você não possui tarefas pendentes. ",
+                                    maxLines: 2,
+                                    textAlign: TextAlign.right,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: FontGoogle.dosisFont(
+                                      color: Colors.white,
+                                      letterSpacing: .5,
+                                      size: constraints.maxWidth * .045,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Explore sua agenda e comece a planejar suas tarefas!",
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: FontGoogle.dosisFont(
+                                      letterSpacing: .5,
+                                      size: constraints.maxWidth * .04,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          } else {
                             todo = snapshot.data;
                           }
 
@@ -150,7 +179,8 @@ class _NextTaskComponentState extends State<NextTaskComponent>
                                 height: size.height * .01,
                               ),
                               Text(
-                                DateFormat("dd/MM/yyyy HH:mm").format(todo!.dhInicio),
+                                DateFormat("dd/MM/yyyy HH:mm")
+                                    .format(todo!.dhInicio),
                                 textAlign: TextAlign.right,
                                 style: FontGoogle.dosisFont(
                                   color: Colors.white,

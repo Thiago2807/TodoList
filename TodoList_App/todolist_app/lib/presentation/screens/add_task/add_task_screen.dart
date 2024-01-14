@@ -24,11 +24,14 @@ class AddTaskScreen extends StatefulWidget {
   State<AddTaskScreen> createState() => _AddTaskScreenState();
 }
 
-class _AddTaskScreenState extends State<AddTaskScreen> {
+class _AddTaskScreenState extends State<AddTaskScreen>
+    with SingleTickerProviderStateMixin {
   final ITodoServices _iTodoServices = GetIt.instance<ITodoServices>();
 
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
+
+  late AnimationController animationController;
 
   @override
   void initState() {
@@ -48,12 +51,20 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
       stateScreen.alterValueDrop(widget.todo!.statusTodo);
     }
 
+    animationController = AnimationController(
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    )..addStatusListener((status) => setState(() {}));
+
+    animationController.forward();
+
     super.initState();
   }
 
   @override
   void dispose() {
     _titleController.dispose();
+    animationController.dispose();
     _descriptionController.dispose();
     super.dispose();
   }
@@ -83,145 +94,150 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
           ),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: size.width * .1, vertical: size.height * .02),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                widget.isEditing ? "Editar tarefa" : "Adicionar nova tarefa",
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontSize: size.width * .06,
+      body: AnimatedOpacity(
+        opacity: animationController.value,
+        duration: const Duration(milliseconds: 500),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: size.width * .1, vertical: size.height * .02),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  widget.isEditing ? "Editar tarefa" : "Adicionar nova tarefa",
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontSize: size.width * .06,
+                  ),
                 ),
-              ),
-              SizedBox(height: size.height * .005),
-              Text(
-                widget.isEditing
-                    ? "Atualize sua tarefa existente e mantenha seu dia produtivo e organizado. "
-                    : "Adicione uma nova tarefa e organize seu dia de forma eficiente.",
-                style: FontGoogle.interFont(
-                  fontWeight: FontWeight.w500,
-                  size: size.width * .035,
-                  color: Colors.grey.shade400,
+                SizedBox(height: size.height * .005),
+                Text(
+                  widget.isEditing
+                      ? "Atualize sua tarefa existente e mantenha seu dia produtivo e organizado. "
+                      : "Adicione uma nova tarefa e organize seu dia de forma eficiente.",
+                  style: FontGoogle.interFont(
+                    fontWeight: FontWeight.w500,
+                    size: size.width * .035,
+                    color: Colors.grey.shade400,
+                  ),
                 ),
-              ),
-              SizedBox(height: size.height * .03),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  vertical: size.height * .02,
-                  horizontal: size.width * .03,
+                SizedBox(height: size.height * .03),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    vertical: size.height * .02,
+                    horizontal: size.width * .03,
+                  ),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.tertiaryContainer,
+                    borderRadius: BorderRadius.circular(size.width * .03),
+                    boxShadow: const [
+                      BoxShadow(
+                        blurRadius: 5,
+                        offset: Offset(1, 2),
+                        color: Colors.black12,
+                      )
+                    ],
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      InputAddTask(
+                        multiLines: false,
+                        textInformation: "Título",
+                        textEditingController: _titleController,
+                      ),
+                      SizedBox(height: size.height * .03),
+                      SizedBox(
+                        height: size.height * .16,
+                        child: InputAddTask(
+                          multiLines: true,
+                          textInformation: "Descrição",
+                          textEditingController: _descriptionController,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.tertiaryContainer,
-                  borderRadius: BorderRadius.circular(size.width * .03),
-                  boxShadow: const [
-                    BoxShadow(
-                      blurRadius: 5,
-                      offset: Offset(1, 2),
-                      color: Colors.black12,
-                    )
-                  ],
+                SizedBox(height: size.height * .04),
+                Text(
+                  "Informe o status da tarefa",
+                  style: FontGoogle.interFont(
+                    fontWeight: FontWeight.w500,
+                    size: size.width * .035,
+                    color: Colors.grey.shade400,
+                  ),
                 ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    InputAddTask(
-                      multiLines: false,
-                      textInformation: "Título",
-                      textEditingController: _titleController,
+                SizedBox(height: size.height * .02),
+                const DropdownCustom(),
+                SizedBox(height: size.height * .04),
+                Text(
+                  widget.isEditing
+                      ? "Informe a data e hora da tarefa"
+                      : "Informe a data de inicio da tarefa",
+                  style: FontGoogle.interFont(
+                    fontWeight: FontWeight.w500,
+                    size: size.width * .035,
+                    color: Colors.grey.shade400,
+                  ),
+                ),
+                SizedBox(height: size.height * .04),
+                const DateTimeComponent(),
+                SizedBox(height: size.height * .04),
+                GestureDetector(
+                  onTap: () async {
+                    FocusScope.of(context).unfocus();
+
+                    final AddTaskState state =
+                        Provider.of<AddTaskState>(context, listen: false);
+
+                    if (widget.isEditing) {
+                      DateTime dtTask = DateTime(
+                        state.dtTask!.year,
+                        state.dtTask!.month,
+                        state.dtTask!.day,
+                        state.timeTask!.hour,
+                        state.timeTask!.minute,
+                      );
+
+                      final TodoEntity entity = TodoEntity(
+                        dhInicio: dtTask,
+                        statusTodo: state.valueDrop,
+                        todoId: widget.todo!.todoId!,
+                        title: _titleController.text,
+                        description: _descriptionController.text,
+                      );
+
+                      await _iTodoServices.updateTaskAsync(
+                          entity: entity, context: context);
+                      if (context.mounted) Navigator.pop(context);
+                    } else {
+                      await _iTodoServices.addNewTask(
+                        context: context,
+                        title: _titleController,
+                        statusTodo: state.valueDrop,
+                        description: _descriptionController,
+                      );
+                    }
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: size.height * .02),
+                    decoration: BoxDecoration(
+                      color: Color(secondaryAlterColor),
+                      borderRadius: BorderRadius.circular(size.width * .02),
                     ),
-                    SizedBox(height: size.height * .03),
-                    SizedBox(
-                      height: size.height * .16,
-                      child: InputAddTask(
-                        multiLines: true,
-                        textInformation: "Descrição",
-                        textEditingController: _descriptionController,
+                    child: Text(
+                      widget.isEditing ? "Editar" : "Adicionar",
+                      textAlign: TextAlign.center,
+                      style: FontGoogle.interFont(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
                       ),
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(height: size.height * .04),
-              Text(
-                "Informe o status da tarefa",
-                style: FontGoogle.interFont(
-                  fontWeight: FontWeight.w500,
-                  size: size.width * .035,
-                  color: Colors.grey.shade400,
-                ),
-              ),
-              SizedBox(height: size.height * .02),
-              const DropdownCustom(),
-              SizedBox(height: size.height * .04),
-              Text(
-                widget.isEditing
-                    ? "Informe a data e hora da tarefa"
-                    : "Informe a data de inicio da tarefa",
-                style: FontGoogle.interFont(
-                  fontWeight: FontWeight.w500,
-                  size: size.width * .035,
-                  color: Colors.grey.shade400,
-                ),
-              ),
-              SizedBox(height: size.height * .04),
-              const DateTimeComponent(),
-              SizedBox(height: size.height * .04),
-              GestureDetector(
-                onTap: () async {
-                  FocusScope.of(context).unfocus();
-
-                  final AddTaskState state =
-                      Provider.of<AddTaskState>(context, listen: false);
-
-                  if (widget.isEditing) {
-                    DateTime dtTask = DateTime(
-                      state.dtTask!.year,
-                      state.dtTask!.month,
-                      state.dtTask!.day,
-                      state.timeTask!.hour,
-                      state.timeTask!.minute,
-                    );
-
-                    final TodoEntity entity = TodoEntity(
-                      dhInicio: dtTask,
-                      statusTodo: state.valueDrop,
-                      todoId: widget.todo!.todoId!,
-                      title: _titleController.text,
-                      description: _descriptionController.text,
-                    );
-
-                    await _iTodoServices.updateTaskAsync(entity: entity, context: context);
-                    if (context.mounted) Navigator.pop(context);
-                  } else {
-                    await _iTodoServices.addNewTask(
-                      context: context,
-                      title: _titleController,
-                      statusTodo: state.valueDrop,
-                      description: _descriptionController,
-                    );
-                  }
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: size.height * .02),
-                  decoration: BoxDecoration(
-                    color: Color(secondaryAlterColor),
-                    borderRadius: BorderRadius.circular(size.width * .02),
-                  ),
-                  child: Text(
-                    widget.isEditing ? "Editar" : "Adicionar",
-                    textAlign: TextAlign.center,
-                    style: FontGoogle.interFont(
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

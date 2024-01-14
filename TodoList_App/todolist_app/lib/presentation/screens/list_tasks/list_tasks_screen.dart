@@ -1,4 +1,5 @@
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:todolist_app/domain/entities/todo_entity.dart';
 import 'package:flutter/material.dart';
@@ -141,8 +142,8 @@ class _ListTaskScreenState extends State<ListTaskScreen>
                                   );
 
                                   setState(() {
-                                    _listTodo =
-                                        _todoServices.getTasks(context: context);
+                                    _listTodo = _todoServices.getTasks(
+                                        context: context);
                                   });
                                 },
                                 child: CardTask(
@@ -155,7 +156,25 @@ class _ListTaskScreenState extends State<ListTaskScreen>
                       );
                     }
 
-                    return Container();
+                    return Container(
+                      margin: EdgeInsets.only(bottom: size.height * .2),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Lottie.network(
+                            "https://lottie.host/b49926f9-14d0-4a1d-859b-5daaa7835249/VeqqUDQWR9.json",
+                          ),
+                          Text(
+                            "Você está com tudo em dia, nenhuma tarefa pendente!",
+                            textAlign: TextAlign.center,
+                            style: theme.textTheme.titleMedium?.copyWith(
+                              fontSize: size.width * .04,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
                   }
                 },
               ),

@@ -1,2 +1,2 @@
 String get urlServer =>
-    "https://63fb-2804-431-cfc9-412c-4c06-6c00-ad68-ce41.ngrok-free.app/";
+    "https://9e14-2804-431-cfc8-3900-bcda-ca21-24fd-1e15.ngrok-free.app/";

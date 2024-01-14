@@ -37,9 +37,6 @@ class _HomeScreenState extends State<HomeScreen> {
           horizontal: size.height * .03,
         ),
         child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(
-            parent: BouncingScrollPhysics(),
-          ),
           child: Column(
             children: [
               Align(
